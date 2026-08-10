@@ -1,7 +1,9 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -10,16 +12,21 @@
   >
 
   <meta name="theme-color" content="#080a0f">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta
+    name="mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
 
   <title>Nepal Daily</title>
 
-  <style>
 
-    /* =========================
-       GLOBAL
-    ========================= */
+  <style>
 
     * {
       box-sizing: border-box;
@@ -31,7 +38,9 @@
     }
 
     body {
+
       margin: 0;
+
       min-height: 100vh;
 
       background:
@@ -63,8 +72,11 @@
     }
 
     .app {
+
       width: 100%;
+
       max-width: 520px;
+
       min-height: 100vh;
 
       margin: auto;
@@ -78,48 +90,62 @@
     ========================= */
 
     .header {
+
       padding: 22px 18px 10px;
 
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
     }
 
     .brand {
+
       display: flex;
+
       align-items: center;
+
       gap: 10px;
     }
 
     .flag {
+
       width: 42px;
       height: 42px;
 
       border-radius: 13px;
 
       display: grid;
+
       place-items: center;
 
       font-size: 24px;
 
-      background: rgba(255,255,255,0.07);
+      background:
+        rgba(255,255,255,0.07);
 
-      border: 1px solid rgba(255,255,255,0.10);
+      border:
+        1px solid rgba(255,255,255,0.10);
 
       backdrop-filter: blur(15px);
+
       -webkit-backdrop-filter: blur(15px);
     }
 
     .brand-text h1 {
+
       margin: 0;
 
       font-size: 21px;
+
       font-weight: 900;
 
       letter-spacing: -0.6px;
     }
 
     .brand-text p {
+
       margin: 2px 0 0;
 
       font-size: 12px;
@@ -128,14 +154,17 @@
     }
 
     .notification-btn {
+
       width: 42px;
       height: 42px;
 
-      border: 1px solid rgba(255,255,255,0.10);
+      border:
+        1px solid rgba(255,255,255,0.10);
 
       border-radius: 14px;
 
-      background: rgba(255,255,255,0.06);
+      background:
+        rgba(255,255,255,0.06);
 
       color: white;
 
@@ -150,20 +179,24 @@
     ========================= */
 
     main {
+
       padding: 8px 15px;
     }
 
     .welcome {
+
       margin: 10px 3px 18px;
     }
 
     .welcome small {
+
       color: #858c9c;
 
       font-size: 13px;
     }
 
     .welcome h2 {
+
       margin: 4px 0 0;
 
       font-size: 27px;
@@ -179,15 +212,19 @@
     ========================= */
 
     .card {
+
       position: relative;
 
       overflow: hidden;
 
-      border: 1px solid rgba(255,255,255,0.09);
+      border:
+        1px solid rgba(255,255,255,0.09);
 
-      background: rgba(255,255,255,0.055);
+      background:
+        rgba(255,255,255,0.055);
 
       backdrop-filter: blur(22px);
+
       -webkit-backdrop-filter: blur(22px);
 
       border-radius: 23px;
@@ -201,6 +238,7 @@
     }
 
     .card::before {
+
       content: "";
 
       position: absolute;
@@ -211,7 +249,8 @@
       right: -65px;
       top: -65px;
 
-      background: rgba(255,255,255,0.05);
+      background:
+        rgba(255,255,255,0.05);
 
       border-radius: 50%;
 
@@ -219,6 +258,7 @@
     }
 
     .section-head {
+
       display: flex;
 
       align-items: center;
@@ -229,6 +269,7 @@
     }
 
     .section-title {
+
       display: flex;
 
       align-items: center;
@@ -241,10 +282,12 @@
     }
 
     .section-icon {
+
       font-size: 18px;
     }
 
     .see-all {
+
       border: 0;
 
       background: transparent;
@@ -258,10 +301,11 @@
 
 
     /* =========================
-       RASHI CARD
+       HOROSCOPE
     ========================= */
 
-    .rashi-card {
+    .horoscope-card {
+
       background:
         linear-gradient(
           135deg,
@@ -270,15 +314,19 @@
         );
     }
 
-    .rashi-content {
+    .horoscope-main {
+
       display: flex;
 
       align-items: center;
 
       gap: 14px;
+
+      margin-bottom: 14px;
     }
 
     .rashi-symbol {
+
       width: 64px;
       height: 64px;
 
@@ -287,22 +335,27 @@
       border-radius: 19px;
 
       display: grid;
+
       place-items: center;
 
       font-size: 34px;
 
-      background: rgba(255,255,255,0.08);
+      background:
+        rgba(255,255,255,0.08);
 
-      border: 1px solid rgba(255,255,255,0.10);
+      border:
+        1px solid rgba(255,255,255,0.10);
     }
 
-    .rashi-info {
+    .horoscope-info {
+
       flex: 1;
 
       min-width: 0;
     }
 
-    .rashi-info small {
+    .horoscope-info small {
+
       color: #959cac;
 
       font-size: 10px;
@@ -312,26 +365,134 @@
       letter-spacing: 0.6px;
     }
 
-    .rashi-info h3 {
-      margin: 3px 0 5px;
+    .horoscope-info h3 {
+
+      margin: 3px 0 3px;
 
       font-size: 20px;
     }
 
-    .rashi-info p {
-      margin: 0;
+    .horoscope-info .vedic-name {
 
-      color: #aeb4c1;
+      color: #9fa7b7;
+
+      font-size: 11px;
+    }
+
+    .horoscope-reading {
+
+      margin: 0 0 15px;
+
+      color: #c0c5cf;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       HOROSCOPE DETAILS
+    ========================= */
+
+    .horoscope-details {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 8px;
+
+      margin-bottom: 15px;
+    }
+
+    .detail-box {
+
+      padding: 11px;
+
+      border-radius: 14px;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      border:
+        1px solid rgba(255,255,255,0.06);
+    }
+
+    .detail-box span {
+
+      display: block;
+
+      color: #7f8797;
+
+      font-size: 10px;
+
+      margin-bottom: 4px;
+    }
+
+    .detail-box strong {
 
       font-size: 12px;
 
-      line-height: 1.5;
-
-      white-space: pre-line;
+      font-weight: 750;
     }
 
+
+    /* =========================
+       LANGUAGE
+    ========================= */
+
+    .language-row {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+    }
+
+    .language-label {
+
+      color: #858c9c;
+
+      font-size: 11px;
+    }
+
+    .language-select {
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      background:
+        rgba(255,255,255,0.06);
+
+      color: white;
+
+      border-radius: 10px;
+
+      padding: 7px 9px;
+
+      font-size: 11px;
+
+      outline: none;
+    }
+
+    .language-select option {
+
+      background: #11141b;
+
+      color: white;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
     .listen-btn {
-      margin-top: 15px;
 
       width: 100%;
 
@@ -341,7 +502,8 @@
 
       border-radius: 13px;
 
-      background: rgba(255,255,255,0.09);
+      background:
+        rgba(255,255,255,0.09);
 
       color: white;
 
@@ -351,6 +513,7 @@
     }
 
     .listen-btn:active {
+
       transform: scale(0.98);
     }
 
@@ -360,6 +523,7 @@
     ========================= */
 
     .quote-card {
+
       background:
         linear-gradient(
           135deg,
@@ -369,6 +533,7 @@
     }
 
     .quote {
+
       font-size: 17px;
 
       line-height: 1.55;
@@ -381,6 +546,7 @@
     }
 
     .quote-author {
+
       font-size: 12px;
 
       color: #858c9a;
@@ -392,6 +558,7 @@
     ========================= */
 
     .news-item {
+
       display: flex;
 
       gap: 12px;
@@ -403,12 +570,14 @@
     }
 
     .news-item:first-of-type {
+
       border-top: 0;
 
       padding-top: 0;
     }
 
     .news-number {
+
       width: 31px;
       height: 31px;
 
@@ -417,9 +586,11 @@
       border-radius: 10px;
 
       display: grid;
+
       place-items: center;
 
-      background: rgba(255,255,255,0.07);
+      background:
+        rgba(255,255,255,0.07);
 
       color: #9da5b5;
 
@@ -429,10 +600,12 @@
     }
 
     .news-content {
+
       flex: 1;
     }
 
     .news-content h4 {
+
       margin: 0 0 5px;
 
       font-size: 14px;
@@ -441,6 +614,7 @@
     }
 
     .news-meta {
+
       color: #777f8f;
 
       font-size: 10px;
@@ -452,6 +626,7 @@
     ========================= */
 
     .notification-card {
+
       display: flex;
 
       align-items: center;
@@ -460,19 +635,23 @@
 
       padding: 15px;
 
-      background: rgba(255,255,255,0.035);
+      background:
+        rgba(255,255,255,0.035);
     }
 
     .notification-icon {
+
       width: 43px;
       height: 43px;
 
       display: grid;
+
       place-items: center;
 
       border-radius: 14px;
 
-      background: rgba(255,255,255,0.07);
+      background:
+        rgba(255,255,255,0.07);
 
       font-size: 20px;
 
@@ -480,10 +659,12 @@
     }
 
     .notification-text {
+
       flex: 1;
     }
 
     .notification-text strong {
+
       display: block;
 
       font-size: 13px;
@@ -492,12 +673,14 @@
     }
 
     .notification-text span {
+
       font-size: 11px;
 
       color: #858c9a;
     }
 
     .toggle {
+
       width: 45px;
       height: 25px;
 
@@ -513,6 +696,7 @@
     }
 
     .toggle span {
+
       display: block;
 
       width: 19px;
@@ -526,11 +710,14 @@
     }
 
     .toggle.active {
+
       background: #4f46e5;
     }
 
     .toggle.active span {
-      transform: translateX(20px);
+
+      transform:
+        translateX(20px);
     }
 
 
@@ -539,14 +726,18 @@
     ========================= */
 
     .bottom-nav {
+
       position: fixed;
 
       left: 50%;
+
       bottom: 12px;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
-      width: min(490px, calc(100% - 24px));
+      width:
+        min(490px, calc(100% - 24px));
 
       height: 68px;
 
@@ -568,6 +759,7 @@
         rgba(17,19,26,0.84);
 
       backdrop-filter: blur(25px);
+
       -webkit-backdrop-filter: blur(25px);
 
       box-shadow:
@@ -577,6 +769,7 @@
     }
 
     .nav-btn {
+
       border: 0;
 
       border-radius: 17px;
@@ -603,10 +796,12 @@
     }
 
     .nav-btn .nav-icon {
+
       font-size: 19px;
     }
 
     .nav-btn.active {
+
       color: white;
 
       background:
@@ -619,6 +814,7 @@
     ========================= */
 
     .toast {
+
       position: fixed;
 
       left: 50%;
@@ -651,6 +847,7 @@
     }
 
     .toast.show {
+
       transform:
         translate(-50%, 0);
 
@@ -659,10 +856,11 @@
 
 
     /* =========================
-       RASHI MODAL
+       RASHI SELECTOR MODAL
     ========================= */
 
     .rashi-modal-backdrop {
+
       position: fixed;
 
       inset: 0;
@@ -681,11 +879,14 @@
         rgba(0,0,0,0.68);
 
       backdrop-filter: blur(8px);
+
       -webkit-backdrop-filter: blur(8px);
     }
 
     .rashi-modal {
-      width: min(500px, 100%);
+
+      width:
+        min(500px, 100%);
 
       max-height: 88vh;
 
@@ -710,20 +911,24 @@
     @keyframes rashiUp {
 
       from {
-        transform: translateY(40px);
+
+        transform:
+          translateY(40px);
 
         opacity: 0;
       }
 
       to {
-        transform: translateY(0);
+
+        transform:
+          translateY(0);
 
         opacity: 1;
       }
-
     }
 
     .modal-top {
+
       display: flex;
 
       justify-content: space-between;
@@ -734,6 +939,7 @@
     }
 
     .modal-top small {
+
       color: #858c9c;
 
       font-size: 10px;
@@ -744,12 +950,14 @@
     }
 
     .modal-top h2 {
+
       margin: 4px 0 0;
 
       font-size: 23px;
     }
 
     .modal-close {
+
       width: 38px;
       height: 38px;
 
@@ -766,6 +974,7 @@
     }
 
     .rashi-system-label {
+
       margin-bottom: 15px;
 
       color: #858c9c;
@@ -774,6 +983,7 @@
     }
 
     .rashi-grid {
+
       display: grid;
 
       grid-template-columns:
@@ -783,6 +993,7 @@
     }
 
     .rashi-option {
+
       min-height: 105px;
 
       padding: 12px 7px;
@@ -813,25 +1024,31 @@
     }
 
     .rashi-option:active {
-      transform: scale(0.95);
+
+      transform:
+        scale(0.95);
     }
 
     .rashi-option:hover {
+
       background:
         rgba(255,255,255,0.09);
     }
 
     .rashi-option-symbol {
+
       font-size: 27px;
 
       margin-bottom: 3px;
     }
 
     .rashi-option strong {
+
       font-size: 12px;
     }
 
     .rashi-option small {
+
       color: #858c9c;
 
       font-size: 9px;
@@ -839,30 +1056,28 @@
 
 
     /* =========================
-       MOBILE
+       RESPONSIVE
     ========================= */
 
     @media (max-width: 350px) {
 
       .rashi-grid {
+
         grid-template-columns:
           repeat(2, 1fr);
       }
 
     }
 
-
-    /* =========================
-       DESKTOP
-    ========================= */
-
     @media (min-width: 700px) {
 
       body {
+
         padding: 20px 0;
       }
 
       .app {
+
         border-left:
           1px solid rgba(255,255,255,0.05);
 
@@ -873,577 +1088,1376 @@
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-  <div class="app">
+
+<div class="app">
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header class="header">
+
+    <div class="brand">
+
+      <div class="flag">
+        🇳🇵
+      </div>
+
+      <div class="brand-text">
+
+        <h1>
+          Nepal Daily
+        </h1>
+
+        <p>
+          Your daily Nepal update
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="notification-btn"
+      onclick="showToast('Notifications coming soon 🔔')"
+      aria-label="Notifications"
+    >
+      🔔
+    </button>
+
+  </header>
+
+
+
+  <main>
 
 
     <!-- =========================
-         HEADER
+         WELCOME
     ========================= -->
 
-    <header class="header">
+    <section class="welcome">
 
-      <div class="brand">
+      <small id="today">
+        Today
+      </small>
 
-        <div class="flag">
-          🇳🇵
+      <h2>
+        Good afternoon 👋
+      </h2>
+
+    </section>
+
+
+
+    <!-- =========================
+         HOROSCOPE
+    ========================= -->
+
+    <section class="card horoscope-card">
+
+
+      <div class="section-head">
+
+        <div class="section-title">
+
+          <span class="section-icon">
+            🔮
+          </span>
+
+          Horoscope
+
         </div>
 
-        <div class="brand-text">
 
-          <h1>
-            Nepal Daily
-          </h1>
+        <button
+          class="see-all"
+          onclick="openRashi()"
+        >
+          Change Rashi
+        </button>
 
-          <p>
-            Your daily Nepal update
-          </p>
+      </div>
+
+
+
+      <div class="horoscope-main">
+
+
+        <div
+          class="rashi-symbol"
+          id="rashiSymbol"
+        >
+          🔮
+        </div>
+
+
+        <div class="horoscope-info">
+
+          <small>
+            YOUR HOROSCOPE
+          </small>
+
+          <h3 id="rashiName">
+            Choose your Rashi
+          </h3>
+
+          <div
+            class="vedic-name"
+            id="vedicName"
+          >
+            Select your sign to begin
+          </div>
 
         </div>
 
       </div>
 
 
-      <button
-        class="notification-btn"
-        onclick="showToast('Notifications coming soon 🔔')"
-        aria-label="Notifications"
+
+      <p
+        class="horoscope-reading"
+        id="horoscopeReading"
       >
-        🔔
-      </button>
+        Choose your Rashi to see today's horoscope.
+      </p>
 
-    </header>
 
 
+      <!-- DETAILS -->
 
-    <main>
+      <div
+        class="horoscope-details"
+        id="horoscopeDetails"
+      >
 
-
-      <!-- =========================
-           WELCOME
-      ========================= -->
-
-      <section class="welcome">
-
-        <small id="today">
-          Today
-        </small>
-
-        <h2>
-          Good afternoon 👋
-        </h2>
-
-      </section>
-
-
-
-      <!-- =========================
-           RASHI
-      ========================= -->
-
-      <section class="card rashi-card">
-
-
-        <div class="section-head">
-
-          <div class="section-title">
-
-            <span class="section-icon">
-              🔮
-            </span>
-
-            Daily Rashi
-
-          </div>
-
-
-          <button
-            class="see-all"
-            onclick="openRashi()"
-          >
-            Change
-          </button>
-
-        </div>
-
-
-
-        <div class="rashi-content">
-
-
-          <div
-            class="rashi-symbol"
-            id="rashiSymbol"
-          >
-            🔮
-          </div>
-
-
-          <div class="rashi-info">
-
-            <small>
-              YOUR RASHI
-            </small>
-
-            <h3 id="rashiName">
-              Choose your Rashi
-            </h3>
-
-            <p id="rashiText">
-              Choose your Rashi to see today's reading.
-            </p>
-
-          </div>
-
-        </div>
-
-
-
-        <button
-          class="listen-btn"
-          onclick="listenRashi()"
-        >
-          🔊 Listen to Rashi
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           DAILY QUOTE
-      ========================= -->
-
-      <section class="card quote-card">
-
-
-        <div class="section-head">
-
-          <div class="section-title">
-
-            <span class="section-icon">
-              ✨
-            </span>
-
-            Daily Quote
-
-          </div>
-
-        </div>
-
-
-        <div class="quote">
-          “Small steps every day create big changes.”
-        </div>
-
-
-        <div class="quote-author">
-          — Nepal Daily
-        </div>
-
-
-        <button
-          class="listen-btn"
-          onclick="listenQuote()"
-        >
-          🔊 Listen to Quote
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           TOP NEWS
-      ========================= -->
-
-      <section class="card">
-
-
-        <div class="section-head">
-
-          <div class="section-title">
-
-            <span class="section-icon">
-              📰
-            </span>
-
-            Top 10 Nepal News
-
-          </div>
-
-
-          <button
-            class="see-all"
-            onclick="openNews()"
-          >
-            See all
-          </button>
-
-        </div>
-
-
-
-        <div id="newsList">
-
-
-          <div class="news-item">
-
-            <div class="news-number">
-              01
-            </div>
-
-            <div class="news-content">
-
-              <h4>
-                Latest Nepal news will appear here
-              </h4>
-
-              <div class="news-meta">
-                Nepal Daily · Today
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="news-item">
-
-            <div class="news-number">
-              02
-            </div>
-
-            <div class="news-content">
-
-              <h4>
-                Daily national updates in one place
-              </h4>
-
-              <div class="news-meta">
-                Nepal Daily · Today
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="news-item">
-
-            <div class="news-number">
-              03
-            </div>
-
-            <div class="news-content">
-
-              <h4>
-                Business, technology and important updates
-              </h4>
-
-              <div class="news-meta">
-                Nepal Daily · Today
-              </div>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-
-      <!-- =========================
-           MORNING RASHI
-      ========================= -->
-
-      <section class="card notification-card">
-
-
-        <div class="notification-icon">
-          🔔
-        </div>
-
-
-        <div class="notification-text">
-
-          <strong>
-            Morning Rashi
-          </strong>
+        <div class="detail-box">
 
           <span>
-            Get your daily Rashi every morning
+            ❤️ Love
           </span>
+
+          <strong id="loveText">
+            —
+          </strong>
 
         </div>
 
 
-        <button
-          class="toggle"
-          id="notificationToggle"
-          onclick="toggleNotifications()"
-          aria-label="Toggle morning Rashi notifications"
+        <div class="detail-box">
+
+          <span>
+            💼 Career
+          </span>
+
+          <strong id="careerText">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <span>
+            💰 Finance
+          </span>
+
+          <strong id="financeText">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <span>
+            🧘 Health
+          </span>
+
+          <strong id="healthText">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <span>
+            ⭐ Lucky Number
+          </span>
+
+          <strong id="luckyNumber">
+            —
+          </strong>
+
+        </div>
+
+
+        <div class="detail-box">
+
+          <span>
+            🎨 Lucky Color
+          </span>
+
+          <strong id="luckyColor">
+            —
+          </strong>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- LANGUAGE -->
+
+      <div class="language-row">
+
+        <span class="language-label">
+          Horoscope language
+        </span>
+
+        <select
+          class="language-select"
+          id="languageSelect"
+          onchange="changeLanguage()"
         >
 
-          <span></span>
+          <option value="en">
+            🇬🇧 English
+          </option>
 
-        </button>
+          <option value="ne">
+            🇳🇵 नेपाली
+          </option>
 
-      </section>
+        </select>
+
+      </div>
 
 
-    </main>
+
+      <!-- LISTEN -->
+
+      <button
+        class="listen-btn"
+        onclick="listenHoroscope()"
+      >
+        🔊 Listen to Horoscope
+      </button>
+
+
+    </section>
 
 
 
     <!-- =========================
-         BOTTOM NAVIGATION
+         DAILY QUOTE
     ========================= -->
 
-    <nav class="bottom-nav">
+    <section class="card quote-card">
+
+
+      <div class="section-head">
+
+        <div class="section-title">
+
+          <span class="section-icon">
+            ✨
+          </span>
+
+          Daily Quote
+
+        </div>
+
+      </div>
+
+
+      <div class="quote">
+        “Small steps every day create big changes.”
+      </div>
+
+
+      <div class="quote-author">
+        — Nepal Daily
+      </div>
 
 
       <button
-        class="nav-btn active"
-        onclick="setActive(this, 'Home')"
+        class="listen-btn"
+        onclick="listenQuote()"
       >
+        🔊 Listen to Quote
+      </button>
 
-        <span class="nav-icon">
-          ⌂
+    </section>
+
+
+
+    <!-- =========================
+         NEWS
+    ========================= -->
+
+    <section class="card">
+
+
+      <div class="section-head">
+
+        <div class="section-title">
+
+          <span class="section-icon">
+            📰
+          </span>
+
+          Top 10 Nepal News
+
+        </div>
+
+
+        <button
+          class="see-all"
+          onclick="openNews()"
+        >
+          See all
+        </button>
+
+      </div>
+
+
+
+      <div id="newsList">
+
+
+        <div class="news-item">
+
+          <div class="news-number">
+            01
+          </div>
+
+          <div class="news-content">
+
+            <h4>
+              Latest Nepal news will appear here
+            </h4>
+
+            <div class="news-meta">
+              Nepal Daily · Today
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="news-item">
+
+          <div class="news-number">
+            02
+          </div>
+
+          <div class="news-content">
+
+            <h4>
+              Daily national updates in one place
+            </h4>
+
+            <div class="news-meta">
+              Nepal Daily · Today
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="news-item">
+
+          <div class="news-number">
+            03
+          </div>
+
+          <div class="news-content">
+
+            <h4>
+              Business, technology and important updates
+            </h4>
+
+            <div class="news-meta">
+              Nepal Daily · Today
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MORNING NOTIFICATION
+    ========================= -->
+
+    <section class="card notification-card">
+
+
+      <div class="notification-icon">
+        🔔
+      </div>
+
+
+      <div class="notification-text">
+
+        <strong>
+          Morning Horoscope
+        </strong>
+
+        <span>
+          Get your daily horoscope every morning
         </span>
 
-        Home
-
-      </button>
+      </div>
 
 
       <button
-        class="nav-btn"
-        onclick="setActive(this, 'News')"
+        class="toggle"
+        id="notificationToggle"
+        onclick="toggleNotifications()"
+        aria-label="Toggle morning horoscope notifications"
       >
 
-        <span class="nav-icon">
-          📰
-        </span>
-
-        News
+        <span></span>
 
       </button>
 
-
-      <button
-        class="nav-btn"
-        onclick="setActive(this, 'Rashi')"
-      >
-
-        <span class="nav-icon">
-          🔮
-        </span>
-
-        Rashi
-
-      </button>
+    </section>
 
 
-      <button
-        class="nav-btn"
-        onclick="setActive(this, 'Settings')"
-      >
-
-        <span class="nav-icon">
-          ⚙️
-        </span>
-
-        Settings
-
-      </button>
-
-
-    </nav>
-
-
-  </div>
+  </main>
 
 
 
-  <!-- TOAST -->
+  <!-- =========================
+       BOTTOM NAV
+  ========================= -->
 
-  <div
-    class="toast"
-    id="toast"
-  ></div>
-
+  <nav class="bottom-nav">
 
 
-  <script>
+    <button
+      class="nav-btn active"
+      onclick="setActive(this, 'Home')"
+    >
 
-    /* =========================
-       DATE
-    ========================= */
+      <span class="nav-icon">
+        ⌂
+      </span>
 
-    const dateElement =
-      document.getElementById("today");
+      Home
 
-
-    const today =
-      new Date();
+    </button>
 
 
-    dateElement.innerText =
-      today.toLocaleDateString(
-        "en-NP",
-        {
-          weekday: "long",
-          month: "long",
-          day: "numeric"
-        }
+    <button
+      class="nav-btn"
+      onclick="setActive(this, 'News')"
+    >
+
+      <span class="nav-icon">
+        📰
+      </span>
+
+      News
+
+    </button>
+
+
+    <button
+      class="nav-btn"
+      onclick="setActive(this, 'Rashi')"
+    >
+
+      <span class="nav-icon">
+        🔮
+      </span>
+
+      Rashi
+
+    </button>
+
+
+    <button
+      class="nav-btn"
+      onclick="setActive(this, 'Settings')"
+    >
+
+      <span class="nav-icon">
+        ⚙️
+      </span>
+
+      Settings
+
+    </button>
+
+
+  </nav>
+
+
+</div>
+
+
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+
+<script>
+
+
+  /* =========================
+     DATE
+  ========================= */
+
+  const dateElement =
+    document.getElementById("today");
+
+
+  const today =
+    new Date();
+
+
+  dateElement.innerText =
+    today.toLocaleDateString(
+      "en-NP",
+      {
+        weekday: "long",
+        month: "long",
+        day: "numeric"
+      }
+    );
+
+
+
+  /* =========================
+     RASHI DATA
+  ========================= */
+
+  const rashiData = [
+
+    {
+      western: "Aries",
+      vedic: "Mesha",
+      symbol: "♈",
+      dates: "Mar 21 – Apr 19"
+    },
+
+    {
+      western: "Taurus",
+      vedic: "Vrishabha",
+      symbol: "♉",
+      dates: "Apr 20 – May 20"
+    },
+
+    {
+      western: "Gemini",
+      vedic: "Mithuna",
+      symbol: "♊",
+      dates: "May 21 – Jun 20"
+    },
+
+    {
+      western: "Cancer",
+      vedic: "Karka",
+      symbol: "♋",
+      dates: "Jun 21 – Jul 22"
+    },
+
+    {
+      western: "Leo",
+      vedic: "Simha",
+      symbol: "♌",
+      dates: "Jul 23 – Aug 22"
+    },
+
+    {
+      western: "Virgo",
+      vedic: "Kanya",
+      symbol: "♍",
+      dates: "Aug 23 – Sep 22"
+    },
+
+    {
+      western: "Libra",
+      vedic: "Tula",
+      symbol: "♎",
+      dates: "Sep 23 – Oct 22"
+    },
+
+    {
+      western: "Scorpio",
+      vedic: "Vrishchika",
+      symbol: "♏",
+      dates: "Oct 23 – Nov 21"
+    },
+
+    {
+      western: "Sagittarius",
+      vedic: "Dhanu",
+      symbol: "♐",
+      dates: "Nov 22 – Dec 21"
+    },
+
+    {
+      western: "Capricorn",
+      vedic: "Makara",
+      symbol: "♑",
+      dates: "Dec 22 – Jan 19"
+    },
+
+    {
+      western: "Aquarius",
+      vedic: "Kumbha",
+      symbol: "♒",
+      dates: "Jan 20 – Feb 18"
+    },
+
+    {
+      western: "Pisces",
+      vedic: "Meena",
+      symbol: "♓",
+      dates: "Feb 19 – Mar 20"
+    }
+
+  ];
+
+
+
+  /* =========================
+     FRONTEND HOROSCOPE DATA
+  ========================= */
+
+  const horoscopeData = {
+
+    Aries: {
+
+      en: {
+        reading:
+          "Today is a good day to take initiative. Trust your ideas, but give yourself time to think before making an important decision.",
+        love: "Be open",
+        career: "Take initiative",
+        finance: "Stay careful",
+        health: "Stay active",
+        number: "7",
+        color: "Red"
+      },
+
+      ne: {
+        reading:
+          "आज नयाँ काम सुरु गर्न राम्रो दिन हो। आफ्नो विचारमा विश्वास गर्नुहोस् तर महत्वपूर्ण निर्णय लिनुअघि सोच्न समय दिनुहोस्।",
+        love: "खुला मन राख्नुहोस्",
+        career: "पहल गर्नुहोस्",
+        finance: "सावधान रहनुहोस्",
+        health: "सक्रिय रहनुहोस्",
+        number: "७",
+        color: "रातो"
+      }
+
+    },
+
+
+    Taurus: {
+
+      en: {
+        reading:
+          "Patience can bring better results today. Focus on steady progress instead of trying to finish everything at once.",
+        love: "Show care",
+        career: "Stay focused",
+        finance: "Plan ahead",
+        health: "Rest well",
+        number: "4",
+        color: "Green"
+      },
+
+      ne: {
+        reading:
+          "आज धैर्यले राम्रो परिणाम ल्याउन सक्छ। सबै कुरा एकैपटक पूरा गर्नुभन्दा निरन्तर प्रगतिमा ध्यान दिनुहोस्।",
+        love: "माया देखाउनुहोस्",
+        career: "ध्यान केन्द्रित गर्नुहोस्",
+        finance: "अगाडि योजना बनाउनुहोस्",
+        health: "राम्रो आराम गर्नुहोस्",
+        number: "४",
+        color: "हरियो"
+      }
+
+    },
+
+
+    Gemini: {
+
+      en: {
+        reading:
+          "Communication is your strength today. A conversation may open the door to an interesting new opportunity.",
+        love: "Talk openly",
+        career: "Share ideas",
+        finance: "Avoid impulse",
+        health: "Relax your mind",
+        number: "3",
+        color: "Yellow"
+      },
+
+      ne: {
+        reading:
+          "आज संवाद तपाईंको शक्ति हो। एउटा कुराकानीले नयाँ र रोचक अवसरको ढोका खोल्न सक्छ।",
+        love: "खुलेर कुरा गर्नुहोस्",
+        career: "विचार बाँड्नुहोस्",
+        finance: "हतारमा खर्च नगर्नुहोस्",
+        health: "मनलाई आराम दिनुहोस्",
+        number: "३",
+        color: "पहेंलो"
+      }
+
+    },
+
+
+    Cancer: {
+
+      en: {
+        reading:
+          "Listen to your intuition today. Spending quality time with people you care about can bring emotional balance.",
+        love: "Be supportive",
+        career: "Trust yourself",
+        finance: "Save more",
+        health: "Stay balanced",
+        number: "2",
+        color: "Silver"
+      },
+
+      ne: {
+        reading:
+          "आज आफ्नो अन्तर्ज्ञानलाई सुन्नुहोस्। प्रिय मानिसहरूसँग समय बिताउँदा भावनात्मक सन्तुलन प्राप्त हुन सक्छ।",
+        love: "सहयोगी बन्नुहोस्",
+        career: "आफूमा विश्वास गर्नुहोस्",
+        finance: "बचत गर्नुहोस्",
+        health: "सन्तुलित रहनुहोस्",
+        number: "२",
+        color: "चाँदी"
+      }
+
+    },
+
+
+    Leo: {
+
+      en: {
+        reading:
+          "Your confidence can attract attention today. Use your energy wisely and help others shine along with you.",
+        love: "Be generous",
+        career: "Lead wisely",
+        finance: "Think long-term",
+        health: "Keep moving",
+        number: "1",
+        color: "Gold"
+      },
+
+      ne: {
+        reading:
+          "आज तपाईंको आत्मविश्वासले अरूको ध्यान आकर्षित गर्न सक्छ। आफ्नो ऊर्जा सही रूपमा प्रयोग गर्नुहोस् र अरूलाई पनि अगाडि बढ्न सहयोग गर्नुहोस्।",
+        love: "उदार बन्नुहोस्",
+        career: "बुद्धिमानी नेतृत्व गर्नुहोस्",
+        finance: "दीर्घकालीन सोच्नुहोस्",
+        health: "चलायमान रहनुहोस्",
+        number: "१",
+        color: "सुनौलो"
+      }
+
+    },
+
+
+    Virgo: {
+
+      en: {
+        reading:
+          "Small details matter today. Organize your priorities and you may finish something that has been waiting for your attention.",
+        love: "Be thoughtful",
+        career: "Organize well",
+        finance: "Check details",
+        health: "Keep a routine",
+        number: "5",
+        color: "Navy"
+      },
+
+      ne: {
+        reading:
+          "आज साना विवरणहरू महत्वपूर्ण छन्। आफ्ना प्राथमिकताहरू व्यवस्थित गर्नुहोस् र लामो समयदेखि बाँकी रहेको काम पूरा गर्न सक्नुहुन्छ।",
+        love: "विचारशील बन्नुहोस्",
+        career: "राम्रोसँग व्यवस्थित गर्नुहोस्",
+        finance: "विवरण जाँच गर्नुहोस्",
+        health: "नियमित दिनचर्या राख्नुहोस्",
+        number: "५",
+        color: "गाढा निलो"
+      }
+
+    },
+
+
+    Libra: {
+
+      en: {
+        reading:
+          "Balance is important today. Try to understand both sides before making a decision involving other people.",
+        love: "Find balance",
+        career: "Cooperate",
+        finance: "Be moderate",
+        health: "Slow down",
+        number: "6",
+        color: "Pink"
+      },
+
+      ne: {
+        reading:
+          "आज सन्तुलन महत्वपूर्ण छ। अरू मानिससँग सम्बन्धित निर्णय लिनुअघि दुवै पक्ष बुझ्ने प्रयास गर्नुहोस्।",
+        love: "सन्तुलन खोज्नुहोस्",
+        career: "सहकार्य गर्नुहोस्",
+        finance: "मध्यम बाटो अपनाउनुहोस्",
+        health: "अलि सुस्ताउनुहोस्",
+        number: "६",
+        color: "गुलाबी"
+      }
+
+    },
+
+
+    Scorpio: {
+
+      en: {
+        reading:
+          "Your determination is strong today. Focus that energy on one meaningful goal instead of spreading yourself too thin.",
+        love: "Be honest",
+        career: "Stay determined",
+        finance: "Avoid risk",
+        health: "Recharge",
+        number: "9",
+        color: "Maroon"
+      },
+
+      ne: {
+        reading:
+          "आज तपाईंको दृढ संकल्प बलियो छ। धेरै काममा ऊर्जा बाँड्नुभन्दा एउटा महत्वपूर्ण लक्ष्यमा ध्यान केन्द्रित गर्नुहोस्।",
+        love: "इमानदार बन्नुहोस्",
+        career: "दृढ रहनुहोस्",
+        finance: "जोखिमबाट बच्नुहोस्",
+        health: "ऊर्जा पुनः प्राप्त गर्नुहोस्",
+        number: "९",
+        color: "मरुन"
+      }
+
+    },
+
+
+    Sagittarius: {
+
+      en: {
+        reading:
+          "A fresh perspective can change your day. Stay curious and be willing to explore an idea outside your usual routine.",
+        love: "Have fun",
+        career: "Explore ideas",
+        finance: "Stay flexible",
+        health: "Get outdoors",
+        number: "8",
+        color: "Purple"
+      },
+
+      ne: {
+        reading:
+          "नयाँ दृष्टिकोणले तपाईंको दिन बदल्न सक्छ। जिज्ञासु रहनुहोस् र आफ्नो सामान्य दिनचर्याभन्दा बाहिरको विचार खोज्न तयार हुनुहोस्।",
+        love: "रमाइलो गर्नुहोस्",
+        career: "विचार खोज्नुहोस्",
+        finance: "लचिलो रहनुहोस्",
+        health: "बाहिर समय बिताउनुहोस्",
+        number: "८",
+        color: "बैजनी"
+      }
+
+    },
+
+
+    Capricorn: {
+
+      en: {
+        reading:
+          "Consistent effort is your advantage today. Keep working toward your long-term goals without getting distracted by short-term pressure.",
+        love: "Be dependable",
+        career: "Stay disciplined",
+        finance: "Build savings",
+        health: "Take breaks",
+        number: "10",
+        color: "Brown"
+      },
+
+      ne: {
+        reading:
+          "आज निरन्तर प्रयास तपाईंको शक्ति हो। छोटो समयको दबाबबाट विचलित नभई दीर्घकालीन लक्ष्यतर्फ अघि बढ्नुहोस्।",
+        love: "विश्वसनीय बन्नुहोस्",
+        career: "अनुशासित रहनुहोस्",
+        finance: "बचत बढाउनुहोस्",
+        health: "विश्राम लिनुहोस्",
+        number: "१०",
+        color: "खैरो"
+      }
+
+    },
+
+
+    Aquarius: {
+
+      en: {
+        reading:
+          "An original idea may be worth pursuing today. Share your thoughts with someone who can give you a different perspective.",
+        love: "Give space",
+        career: "Think differently",
+        finance: "Research first",
+        health: "Clear your mind",
+        number: "11",
+        color: "Blue"
+      },
+
+      ne: {
+        reading:
+          "आज तपाईंको नयाँ विचारलाई अघि बढाउन सकिन्छ। फरक दृष्टिकोण दिन सक्ने व्यक्तिसँग आफ्ना विचार बाँड्नुहोस्।",
+        love: "व्यक्तिगत ठाउँ दिनुहोस्",
+        career: "फरक सोच्नुहोस्",
+        finance: "पहिले अनुसन्धान गर्नुहोस्",
+        health: "मन शान्त राख्नुहोस्",
+        number: "११",
+        color: "निलो"
+      }
+
+    },
+
+
+    Pisces: {
+
+      en: {
+        reading:
+          "Your creativity and empathy are strong today. Give yourself some quiet time and let your imagination guide you.",
+        love: "Show empathy",
+        career: "Use creativity",
+        finance: "Stay practical",
+        health: "Rest your mind",
+        number: "12",
+        color: "Sea Green"
+      },
+
+      ne: {
+        reading:
+          "आज तपाईंको सिर्जनात्मकता र सहानुभूति बलियो छ। केही शान्त समय आफैंलाई दिनुहोस् र आफ्नो कल्पनालाई मार्गदर्शन गर्न दिनुहोस्।",
+        love: "सहानुभूति देखाउनुहोस्",
+        career: "सिर्जनात्मकता प्रयोग गर्नुहोस्",
+        finance: "व्यावहारिक रहनुहोस्",
+        health: "मनलाई आराम दिनुहोस्",
+        number: "१२",
+        color: "समुद्री हरियो"
+      }
+
+    }
+
+  };
+
+
+
+  /* =========================
+     CURRENT LANGUAGE
+  ========================= */
+
+  let currentLanguage =
+    localStorage.getItem(
+      "horoscopeLanguage"
+    ) || "en";
+
+
+
+  document
+    .getElementById("languageSelect")
+    .value =
+    currentLanguage;
+
+
+
+  /* =========================
+     LOAD SAVED RASHI
+  ========================= */
+
+  function loadSavedRashi() {
+
+    const saved =
+      localStorage.getItem(
+        "selectedRashi"
       );
 
 
+    if (!saved) {
 
-    /* =========================
-       RASHI DATA
-    ========================= */
+      return;
 
-    const rashiData = [
+    }
 
-      {
-        western: "Aries",
-        vedic: "Mesha",
-        symbol: "♈",
-        dates: "Mar 21 – Apr 19"
-      },
 
-      {
-        western: "Taurus",
-        vedic: "Vrishabha",
-        symbol: "♉",
-        dates: "Apr 20 – May 20"
-      },
+    try {
 
-      {
-        western: "Gemini",
-        vedic: "Mithuna",
-        symbol: "♊",
-        dates: "May 21 – Jun 20"
-      },
+      const data =
+        JSON.parse(saved);
 
-      {
-        western: "Cancer",
-        vedic: "Karka",
-        symbol: "♋",
-        dates: "Jun 21 – Jul 22"
-      },
 
-      {
-        western: "Leo",
-        vedic: "Simha",
-        symbol: "♌",
-        dates: "Jul 23 – Aug 22"
-      },
+      updateHoroscopeDisplay(
+        data
+      );
 
-      {
-        western: "Virgo",
-        vedic: "Kanya",
-        symbol: "♍",
-        dates: "Aug 23 – Sep 22"
-      },
+    }
 
-      {
-        western: "Libra",
-        vedic: "Tula",
-        symbol: "♎",
-        dates: "Sep 23 – Oct 22"
-      },
+    catch (error) {
 
-      {
-        western: "Scorpio",
-        vedic: "Vrishchika",
-        symbol: "♏",
-        dates: "Oct 23 – Nov 21"
-      },
+      console.log(
+        "Could not load saved Rashi."
+      );
 
-      {
-        western: "Sagittarius",
-        vedic: "Dhanu",
-        symbol: "♐",
-        dates: "Nov 22 – Dec 21"
-      },
+    }
 
-      {
-        western: "Capricorn",
-        vedic: "Makara",
-        symbol: "♑",
-        dates: "Dec 22 – Jan 19"
-      },
-
-      {
-        western: "Aquarius",
-        vedic: "Kumbha",
-        symbol: "♒",
-        dates: "Jan 20 – Feb 18"
-      },
-
-      {
-        western: "Pisces",
-        vedic: "Meena",
-        symbol: "♓",
-        dates: "Feb 19 – Mar 20"
-      }
-
-    ];
+  }
 
 
 
-    /* =========================
-       DEFAULT RASHI TEXT
-    ========================= */
+  /* =========================
+     UPDATE HOROSCOPE
+  ========================= */
 
-    const defaultRashiText =
-      "Today brings fresh energy and a chance to focus on something important.";
+  function updateHoroscopeDisplay(
+    data
+  ) {
 
-
-
-    /* =========================
-       LOAD SAVED RASHI
-    ========================= */
-
-    function loadSavedRashi() {
-
-      const saved =
-        localStorage.getItem("selectedRashi");
+    document
+      .getElementById("rashiName")
+      .innerText =
+      data.western;
 
 
-      if (!saved) {
+    document
+      .getElementById("vedicName")
+      .innerText =
+      `${data.vedic} · ${data.dates}`;
 
-        return;
 
-      }
+    document
+      .getElementById("rashiSymbol")
+      .innerText =
+      data.symbol;
 
+
+    const horoscope =
+      horoscopeData[data.western];
+
+
+    if (!horoscope) {
+
+      return;
+
+    }
+
+
+    const content =
+      horoscope[currentLanguage];
+
+
+    document
+      .getElementById("horoscopeReading")
+      .innerText =
+      content.reading;
+
+
+    document
+      .getElementById("loveText")
+      .innerText =
+      content.love;
+
+
+    document
+      .getElementById("careerText")
+      .innerText =
+      content.career;
+
+
+    document
+      .getElementById("financeText")
+      .innerText =
+      content.finance;
+
+
+    document
+      .getElementById("healthText")
+      .innerText =
+      content.health;
+
+
+    document
+      .getElementById("luckyNumber")
+      .innerText =
+      content.number;
+
+
+    document
+      .getElementById("luckyColor")
+      .innerText =
+      content.color;
+
+  }
+
+
+
+  /* =========================
+     OPEN RASHI SELECTOR
+  ========================= */
+
+  function openRashi() {
+
+
+    const existing =
+      document.getElementById(
+        "rashiModal"
+      );
+
+
+    if (existing) {
+
+      existing.remove();
+
+    }
+
+
+    const modal =
+      document.createElement(
+        "div"
+      );
+
+
+    modal.id =
+      "rashiModal";
+
+
+    modal.innerHTML = `
+
+      <div
+        class="rashi-modal-backdrop"
+        onclick="closeRashiModal(event)"
+      >
+
+        <div
+          class="rashi-modal"
+          onclick="event.stopPropagation()"
+        >
+
+          <div class="modal-top">
+
+            <div>
+
+              <small>
+                RASHI
+              </small>
+
+              <h2>
+                Choose your sign
+              </h2>
+
+            </div>
+
+
+            <button
+              class="modal-close"
+              onclick="closeRashiModal()"
+            >
+              ✕
+            </button>
+
+          </div>
+
+
+          <div class="rashi-system-label">
+
+            Vedic Rashi + Western Zodiac
+
+          </div>
+
+
+          <div class="rashi-grid">
+
+            ${rashiData.map(
+              (rashi, index) => `
+
+              <button
+                class="rashi-option"
+                onclick="selectRashi(${index})"
+              >
+
+                <span
+                  class="rashi-option-symbol"
+                >
+                  ${rashi.symbol}
+                </span>
+
+                <strong>
+                  ${rashi.western}
+                </strong>
+
+                <small>
+                  ${rashi.vedic}
+                </small>
+
+              </button>
+
+            `
+            ).join("")}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    document.body.appendChild(
+      modal
+    );
+
+  }
+
+
+
+  /* =========================
+     SELECT RASHI
+  ========================= */
+
+  function selectRashi(index) {
+
+    const selected =
+      rashiData[index];
+
+
+    localStorage.setItem(
+      "selectedRashi",
+      JSON.stringify(selected)
+    );
+
+
+    updateHoroscopeDisplay(
+      selected
+    );
+
+
+    closeRashiModal();
+
+
+    showToast(
+      `${selected.western} · ${selected.vedic} selected 🔮`
+    );
+
+  }
+
+
+
+  /* =========================
+     CLOSE MODAL
+  ========================= */
+
+  function closeRashiModal(
+    event
+  ) {
+
+    if (
+      event &&
+      event.target !==
+      event.currentTarget
+    ) {
+
+      return;
+
+    }
+
+
+    const modal =
+      document.getElementById(
+        "rashiModal"
+      );
+
+
+    if (modal) {
+
+      modal.remove();
+
+    }
+
+  }
+
+
+
+  /* =========================
+     CHANGE LANGUAGE
+  ========================= */
+
+  function changeLanguage() {
+
+    currentLanguage =
+      document
+        .getElementById(
+          "languageSelect"
+        )
+        .value;
+
+
+    localStorage.setItem(
+      "horoscopeLanguage",
+      currentLanguage
+    );
+
+
+    const saved =
+      localStorage.getItem(
+        "selectedRashi"
+      );
+
+
+    if (saved) {
 
       try {
 
-        const data =
-          JSON.parse(saved);
-
-
-        updateRashiDisplay(data);
+        updateHoroscopeDisplay(
+          JSON.parse(saved)
+        );
 
       }
 
       catch (error) {
 
         console.log(
-          "Could not load saved Rashi."
+          "Could not update language."
         );
 
       }
@@ -1451,485 +2465,344 @@
     }
 
 
+    showToast(
+      currentLanguage === "ne"
+        ? "भाषा नेपालीमा परिवर्तन भयो 🇳🇵"
+        : "Language changed to English 🇬🇧"
+    );
 
-    /* =========================
-       UPDATE RASHI DISPLAY
-    ========================= */
-
-    function updateRashiDisplay(data) {
-
-      document
-        .getElementById("rashiName")
-        .innerText =
-        data.western;
-
-
-      document
-        .getElementById("rashiSymbol")
-        .innerText =
-        data.symbol;
-
-
-      document
-        .getElementById("rashiText")
-        .innerText =
-        `${data.vedic} · ${data.western}\n\n${defaultRashiText}`;
-
-    }
+  }
 
 
 
-    /* =========================
-       OPEN RASHI SELECTOR
-    ========================= */
+  /* =========================
+     LISTEN HOROSCOPE
+  ========================= */
 
-    function openRashi() {
+  function listenHoroscope() {
 
-
-      const existing =
-        document.getElementById(
-          "rashiModal"
-        );
-
-
-      if (existing) {
-
-        existing.remove();
-
-      }
-
-
-      const modal =
-        document.createElement("div");
-
-
-      modal.id =
-        "rashiModal";
-
-
-      modal.innerHTML = `
-
-        <div
-          class="rashi-modal-backdrop"
-          onclick="closeRashiModal(event)"
-        >
-
-          <div
-            class="rashi-modal"
-            onclick="event.stopPropagation()"
-          >
-
-            <div class="modal-top">
-
-              <div>
-
-                <small>
-                  YOUR RASHI
-                </small>
-
-                <h2>
-                  Select your sign
-                </h2>
-
-              </div>
-
-
-              <button
-                class="modal-close"
-                onclick="closeRashiModal()"
-              >
-                ✕
-              </button>
-
-            </div>
-
-
-            <div class="rashi-system-label">
-
-              Vedic Rashi + Western Zodiac
-
-            </div>
-
-
-            <div class="rashi-grid">
-
-              ${rashiData.map(
-                (rashi, index) => `
-
-                <button
-                  class="rashi-option"
-                  onclick="selectRashi(${index})"
-                >
-
-                  <span
-                    class="rashi-option-symbol"
-                  >
-                    ${rashi.symbol}
-                  </span>
-
-                  <strong>
-                    ${rashi.western}
-                  </strong>
-
-                  <small>
-                    ${rashi.vedic}
-                  </small>
-
-                </button>
-
-              `
-              ).join("")}
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      document.body.appendChild(modal);
-
-    }
-
-
-
-    /* =========================
-       SELECT RASHI
-    ========================= */
-
-    function selectRashi(index) {
-
-      const selected =
-        rashiData[index];
-
-
-      localStorage.setItem(
-        "selectedRashi",
-        JSON.stringify(selected)
+    const saved =
+      localStorage.getItem(
+        "selectedRashi"
       );
 
 
-      updateRashiDisplay(
-        selected
-      );
-
-
-      closeRashiModal();
-
+    if (!saved) {
 
       showToast(
-        `${selected.western} · ${selected.vedic} saved 🔮`
+        "Choose your Rashi first 🔮"
       );
+
+      return;
 
     }
 
 
+    try {
 
-    /* =========================
-       CLOSE RASHI MODAL
-    ========================= */
+      const data =
+        JSON.parse(saved);
 
-    function closeRashiModal(event) {
 
-      if (
-        event &&
-        event.target !==
-        event.currentTarget
-      ) {
+      const horoscope =
+        horoscopeData[
+          data.western
+        ];
+
+
+      if (!horoscope) {
 
         return;
 
       }
 
 
-      const modal =
-        document.getElementById(
-          "rashiModal"
-        );
+      const content =
+        horoscope[
+          currentLanguage
+        ];
 
 
-      if (modal) {
+      const text =
 
-        modal.remove();
+        `${data.western}. ` +
 
-      }
+        `${content.reading}. ` +
 
-    }
+        `Love: ${content.love}. ` +
 
+        `Career: ${content.career}. ` +
 
+        `Finance: ${content.finance}. ` +
 
-    /* =========================
-       RASHI SPEECH
-    ========================= */
+        `Health: ${content.health}. ` +
 
-    function listenRashi() {
+        `Lucky number: ${content.number}. ` +
 
-      const rashi =
-        document.getElementById(
-          "rashiText"
-        ).innerText;
+        `Lucky color: ${content.color}.`;
 
 
-      if (
-        rashi.includes(
-          "Choose your Rashi"
-        )
-      ) {
-
-        showToast(
-          "Choose your Rashi first 🔮"
-        );
-
-        return;
-
-      }
-
-
-      speakText(rashi);
+      speakText(text);
 
     }
 
+    catch (error) {
 
-
-    /* =========================
-       SPEECH
-    ========================= */
-
-    function speakText(text) {
-
-      if (
-        !("speechSynthesis" in window)
-      ) {
-
-        showToast(
-          "Speech is not supported on this device"
-        );
-
-        return;
-
-      }
-
-
-      window.speechSynthesis.cancel();
-
-
-      const speech =
-        new SpeechSynthesisUtterance(
-          text
-        );
-
-
-      speech.lang =
-        "en-US";
-
-
-      speech.rate =
-        0.95;
-
-
-      speech.pitch =
-        1;
-
-
-      window.speechSynthesis.speak(
-        speech
+      showToast(
+        "Unable to read horoscope."
       );
 
     }
 
-
-
-    /* =========================
-       QUOTE SPEECH
-    ========================= */
-
-    function listenQuote() {
-
-      speakText(
-        "Small steps every day create big changes."
-      );
-
-    }
+  }
 
 
 
-    /* =========================
-       TOAST
-    ========================= */
+  /* =========================
+     SPEECH
+  ========================= */
 
-    let toastTimer;
+  function speakText(text) {
 
-
-    function showToast(message) {
-
-      const toast =
-        document.getElementById(
-          "toast"
-        );
-
-
-      toast.innerText =
-        message;
-
-
-      toast.classList.add(
-        "show"
-      );
-
-
-      clearTimeout(
-        toastTimer
-      );
-
-
-      toastTimer =
-        setTimeout(
-          () => {
-
-            toast.classList.remove(
-              "show"
-            );
-
-          },
-          2200
-        );
-
-    }
-
-
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    function setActive(
-      button,
-      page
+    if (
+      !(
+        "speechSynthesis"
+        in window
+      )
     ) {
 
-
-      document
-        .querySelectorAll(".nav-btn")
-        .forEach(
-          btn =>
-            btn.classList.remove(
-              "active"
-            )
-        );
-
-
-      button.classList.add(
-        "active"
-      );
-
-
-      if (
-        page !== "Home"
-      ) {
-
-        showToast(
-          page +
-          " section coming next 🚀"
-        );
-
-      }
-
-    }
-
-
-
-    /* =========================
-       NEWS
-    ========================= */
-
-    function openNews() {
-
       showToast(
-        "Full news page will be added next 📰"
+        "Speech is not supported on this device"
       );
+
+      return;
 
     }
 
 
-
-    /* =========================
-       NOTIFICATIONS
-    ========================= */
-
-    function toggleNotifications() {
-
-      const toggle =
-        document.getElementById(
-          "notificationToggle"
-        );
+    window.speechSynthesis.cancel();
 
 
-      toggle.classList.toggle(
-        "active"
+    const speech =
+      new SpeechSynthesisUtterance(
+        text
       );
 
 
-      const enabled =
-        toggle.classList.contains(
-          "active"
-        );
+    speech.lang =
+      currentLanguage === "ne"
+        ? "ne-NP"
+        : "en-US";
 
 
-      localStorage.setItem(
-        "morningRashiNotifications",
-        enabled
-          ? "true"
-          : "false"
+    speech.rate =
+      0.95;
+
+
+    speech.pitch =
+      1;
+
+
+    window.speechSynthesis.speak(
+      speech
+    );
+
+  }
+
+
+
+  /* =========================
+     QUOTE
+  ========================= */
+
+  function listenQuote() {
+
+    speakText(
+      "Small steps every day create big changes."
+    );
+
+  }
+
+
+
+  /* =========================
+     TOAST
+  ========================= */
+
+  let toastTimer;
+
+
+  function showToast(message) {
+
+    const toast =
+      document.getElementById(
+        "toast"
       );
 
 
-      showToast(
-        enabled
-          ? "Morning Rashi enabled 🔔"
-          : "Morning Rashi disabled"
+    toast.innerText =
+      message;
+
+
+    toast.classList.add(
+      "show"
+    );
+
+
+    clearTimeout(
+      toastTimer
+    );
+
+
+    toastTimer =
+      setTimeout(
+        () => {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        2200
       );
 
-    }
+  }
 
 
 
-    /* =========================
-       RESTORE NOTIFICATION STATE
-    ========================= */
+  /* =========================
+     NAVIGATION
+  ========================= */
 
-    const savedNotification =
-      localStorage.getItem(
-        "morningRashiNotifications"
+  function setActive(
+    button,
+    page
+  ) {
+
+    document
+      .querySelectorAll(
+        ".nav-btn"
+      )
+      .forEach(
+        btn =>
+          btn.classList.remove(
+            "active"
+          )
       );
+
+
+    button.classList.add(
+      "active"
+    );
 
 
     if (
-      savedNotification ===
-      "true"
+      page !== "Home"
     ) {
 
-      document
-        .getElementById(
-          "notificationToggle"
-        )
-        .classList.add(
-          "active"
-        );
+      showToast(
+        page +
+        " section coming next 🚀"
+      );
 
     }
 
+  }
 
 
-    /* =========================
-       START APP
-    ========================= */
 
-    loadSavedRashi();
+  /* =========================
+     NEWS
+  ========================= */
 
-  </script>
+  function openNews() {
+
+    showToast(
+      "Full news page will be added next 📰"
+    );
+
+  }
+
+
+
+  /* =========================
+     NOTIFICATIONS
+  ========================= */
+
+  function toggleNotifications() {
+
+    const toggle =
+      document.getElementById(
+        "notificationToggle"
+      );
+
+
+    toggle.classList.toggle(
+      "active"
+    );
+
+
+    const enabled =
+      toggle.classList.contains(
+        "active"
+      );
+
+
+    localStorage.setItem(
+      "morningHoroscopeNotifications",
+      enabled
+        ? "true"
+        : "false"
+    );
+
+
+    showToast(
+      enabled
+        ? "Morning Horoscope enabled 🔔"
+        : "Morning Horoscope disabled"
+    );
+
+  }
+
+
+
+  /* =========================
+     RESTORE NOTIFICATIONS
+  ========================= */
+
+  const savedNotification =
+    localStorage.getItem(
+      "morningHoroscopeNotifications"
+    );
+
+
+  if (
+    savedNotification ===
+    "true"
+  ) {
+
+    document
+      .getElementById(
+        "notificationToggle"
+      )
+      .classList.add(
+        "active"
+      );
+
+  }
+
+
+
+  /* =========================
+     START APP
+  ========================= */
+
+  loadSavedRashi();
+
+
+</script>
 
 </body>
+
 </html>
 ```
