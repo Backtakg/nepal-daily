@@ -1,17 +1,26 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta charset="UTF-8">
 
-  <meta name="theme-color" content="#0b0d12" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
+  <meta name="theme-color" content="#080a0f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
   <title>Nepal Daily</title>
 
   <style>
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
     * {
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
@@ -24,11 +33,22 @@
     body {
       margin: 0;
       min-height: 100vh;
+
       background:
-        radial-gradient(circle at 20% 0%, rgba(255, 0, 70, 0.12), transparent 30%),
-        radial-gradient(circle at 90% 15%, rgba(0, 160, 255, 0.10), transparent 30%),
+        radial-gradient(
+          circle at 20% 0%,
+          rgba(255, 0, 70, 0.12),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(0, 160, 255, 0.10),
+          transparent 30%
+        ),
         #080a0f;
+
       color: #f5f7fb;
+
       font-family:
         Inter,
         system-ui,
@@ -46,14 +66,20 @@
       width: 100%;
       max-width: 520px;
       min-height: 100vh;
+
       margin: auto;
-      padding-bottom: 95px;
+
+      padding-bottom: 100px;
     }
 
-    /* HEADER */
+
+    /* =========================
+       HEADER
+    ========================= */
 
     .header {
       padding: 22px 18px 10px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -68,40 +94,60 @@
     .flag {
       width: 42px;
       height: 42px;
+
       border-radius: 13px;
+
       display: grid;
       place-items: center;
+
       font-size: 24px;
+
       background: rgba(255,255,255,0.07);
+
       border: 1px solid rgba(255,255,255,0.10);
+
       backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
     }
 
     .brand-text h1 {
       margin: 0;
+
       font-size: 21px;
       font-weight: 900;
+
       letter-spacing: -0.6px;
     }
 
     .brand-text p {
       margin: 2px 0 0;
+
       font-size: 12px;
+
       color: #8f96a5;
     }
 
     .notification-btn {
       width: 42px;
       height: 42px;
+
       border: 1px solid rgba(255,255,255,0.10);
+
       border-radius: 14px;
+
       background: rgba(255,255,255,0.06);
+
       color: white;
+
       font-size: 19px;
+
       cursor: pointer;
     }
 
-    /* MAIN */
+
+    /* =========================
+       MAIN
+    ========================= */
 
     main {
       padding: 8px 15px;
@@ -113,55 +159,84 @@
 
     .welcome small {
       color: #858c9c;
+
       font-size: 13px;
     }
 
     .welcome h2 {
       margin: 4px 0 0;
+
       font-size: 27px;
+
       line-height: 1.15;
+
       letter-spacing: -1px;
     }
 
-    /* GLASS CARD */
+
+    /* =========================
+       GLASS CARD
+    ========================= */
 
     .card {
       position: relative;
+
       overflow: hidden;
+
       border: 1px solid rgba(255,255,255,0.09);
+
       background: rgba(255,255,255,0.055);
+
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
+
       border-radius: 23px;
+
       padding: 18px;
+
       margin-bottom: 15px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.20);
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,0.20);
     }
 
     .card::before {
       content: "";
+
       position: absolute;
+
       width: 130px;
       height: 130px;
+
       right: -65px;
       top: -65px;
+
       background: rgba(255,255,255,0.05);
+
       border-radius: 50%;
+
       pointer-events: none;
     }
 
     .section-head {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       margin-bottom: 13px;
     }
 
     .section-title {
       display: flex;
+
       align-items: center;
+
       gap: 8px;
+
       font-weight: 850;
+
       font-size: 16px;
     }
 
@@ -171,246 +246,107 @@
 
     .see-all {
       border: 0;
+
       background: transparent;
+
       color: #aeb5c4;
+
       font-size: 12px;
+
       cursor: pointer;
     }
 
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-  <meta name="theme-color" content="#0b0d12" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-
-  <title>Nepal Daily</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255, 0, 70, 0.12), transparent 30%),
-        radial-gradient(circle at 90% 15%, rgba(0, 160, 255, 0.10), transparent 30%),
-        #080a0f;
-      color: #f5f7fb;
-      font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .app {
-      width: 100%;
-      max-width: 520px;
-      min-height: 100vh;
-      margin: auto;
-      padding-bottom: 95px;
-    }
-
-    /* HEADER */
-
-    .header {
-      padding: 22px 18px 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .flag {
-      width: 42px;
-      height: 42px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      font-size: 24px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.10);
-      backdrop-filter: blur(15px);
-    }
-
-    .brand-text h1 {
-      margin: 0;
-      font-size: 21px;
-      font-weight: 900;
-      letter-spacing: -0.6px;
-    }
-
-    .brand-text p {
-      margin: 2px 0 0;
-      font-size: 12px;
-      color: #8f96a5;
-    }
-
-    .notification-btn {
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.06);
-      color: white;
-      font-size: 19px;
-      cursor: pointer;
-    }
-
-    /* MAIN */
-
-    main {
-      padding: 8px 15px;
-    }
-
-    .welcome {
-      margin: 10px 3px 18px;
-    }
-
-    .welcome small {
-      color: #858c9c;
-      font-size: 13px;
-    }
-
-    .welcome h2 {
-      margin: 4px 0 0;
-      font-size: 27px;
-      line-height: 1.15;
-      letter-spacing: -1px;
-    }
-
-    /* GLASS CARD */
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.09);
-      background: rgba(255,255,255,0.055);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      border-radius: 23px;
-      padding: 18px;
-      margin-bottom: 15px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.20);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      right: -65px;
-      top: -65px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 13px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 850;
-      font-size: 16px;
-    }
-
-    .section-icon {
-      font-size: 18px;
-    }
-
-    .see-all {
-      border: 0;
-      background: transparent;
-      color: #aeb5c4;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    /* RASHI */
+    /* =========================
+       RASHI CARD
+    ========================= */
 
     .rashi-card {
       background:
-        linear-gradient(135deg, rgba(120, 70, 255, 0.18), rgba(255,255,255,0.045));
+        linear-gradient(
+          135deg,
+          rgba(120,70,255,0.18),
+          rgba(255,255,255,0.045)
+        );
     }
 
     .rashi-content {
       display: flex;
+
       align-items: center;
+
       gap: 14px;
     }
 
     .rashi-symbol {
       width: 64px;
       height: 64px;
+
       flex-shrink: 0;
+
       border-radius: 19px;
+
       display: grid;
       place-items: center;
+
       font-size: 34px;
+
       background: rgba(255,255,255,0.08);
+
       border: 1px solid rgba(255,255,255,0.10);
     }
 
     .rashi-info {
       flex: 1;
+
+      min-width: 0;
     }
 
     .rashi-info small {
       color: #959cac;
-      font-size: 11px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.6px;
     }
 
     .rashi-info h3 {
-      margin: 2px 0 5px;
+      margin: 3px 0 5px;
+
       font-size: 20px;
     }
 
     .rashi-info p {
       margin: 0;
+
       color: #aeb4c1;
+
       font-size: 12px;
+
       line-height: 1.5;
+
+      white-space: pre-line;
     }
 
     .listen-btn {
       margin-top: 15px;
+
       width: 100%;
+
       height: 43px;
+
       border: 0;
+
       border-radius: 13px;
+
       background: rgba(255,255,255,0.09);
+
       color: white;
+
       font-weight: 750;
+
       cursor: pointer;
     }
 
@@ -418,50 +354,77 @@
       transform: scale(0.98);
     }
 
-    /* QUOTE */
+
+    /* =========================
+       QUOTE
+    ========================= */
 
     .quote-card {
       background:
-        linear-gradient(135deg, rgba(0, 160, 255, 0.12), rgba(255,255,255,0.04));
+        linear-gradient(
+          135deg,
+          rgba(0,160,255,0.12),
+          rgba(255,255,255,0.04)
+        );
     }
 
     .quote {
       font-size: 17px;
+
       line-height: 1.55;
+
       font-weight: 700;
+
       letter-spacing: -0.2px;
+
       margin: 4px 0 7px;
     }
 
     .quote-author {
       font-size: 12px;
+
       color: #858c9a;
     }
 
-    /* NEWS */
+
+    /* =========================
+       NEWS
+    ========================= */
 
     .news-item {
       display: flex;
+
       gap: 12px;
+
       padding: 13px 0;
-      border-top: 1px solid rgba(255,255,255,0.07);
+
+      border-top:
+        1px solid rgba(255,255,255,0.07);
     }
 
     .news-item:first-of-type {
       border-top: 0;
+
       padding-top: 0;
     }
 
     .news-number {
       width: 31px;
       height: 31px;
+
       flex-shrink: 0;
+
       border-radius: 10px;
+
       display: grid;
       place-items: center;
+
       background: rgba(255,255,255,0.07);
+
       color: #9da5b5;
+
       font-size: 12px;
+
       font-weight: 850;
     }
 
@@ -471,33 +434,48 @@
 
     .news-content h4 {
       margin: 0 0 5px;
+
       font-size: 14px;
+
       line-height: 1.4;
     }
 
     .news-meta {
       color: #777f8f;
+
       font-size: 10px;
     }
 
-    /* NOTIFICATION */
+
+    /* =========================
+       NOTIFICATION
+    ========================= */
 
     .notification-card {
       display: flex;
+
       align-items: center;
+
       gap: 13px;
+
       padding: 15px;
+
       background: rgba(255,255,255,0.035);
     }
 
     .notification-icon {
       width: 43px;
       height: 43px;
+
       display: grid;
       place-items: center;
+
       border-radius: 14px;
+
       background: rgba(255,255,255,0.07);
+
       font-size: 20px;
+
       flex-shrink: 0;
     }
 
@@ -507,31 +485,43 @@
 
     .notification-text strong {
       display: block;
+
       font-size: 13px;
+
       margin-bottom: 3px;
     }
 
     .notification-text span {
       font-size: 11px;
+
       color: #858c9a;
     }
 
     .toggle {
       width: 45px;
       height: 25px;
+
       border: 0;
+
       border-radius: 20px;
+
       background: #343945;
+
       padding: 3px;
+
       cursor: pointer;
     }
 
     .toggle span {
       display: block;
+
       width: 19px;
       height: 19px;
+
       border-radius: 50%;
+
       background: white;
+
       transition: 0.2s;
     }
 
@@ -543,40 +533,72 @@
       transform: translateX(20px);
     }
 
-    /* BOTTOM NAV */
+
+    /* =========================
+       BOTTOM NAV
+    ========================= */
 
     .bottom-nav {
       position: fixed;
+
       left: 50%;
       bottom: 12px;
+
       transform: translateX(-50%);
+
       width: min(490px, calc(100% - 24px));
+
       height: 68px;
+
       padding: 6px;
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 4px;
-      border: 1px solid rgba(255,255,255,0.10);
+
+      border:
+        1px solid rgba(255,255,255,0.10);
+
       border-radius: 22px;
-      background: rgba(17,19,26,0.84);
+
+      background:
+        rgba(17,19,26,0.84);
+
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
-      box-shadow: 0 15px 50px rgba(0,0,0,0.45);
+
+      box-shadow:
+        0 15px 50px rgba(0,0,0,0.45);
+
       z-index: 100;
     }
 
     .nav-btn {
       border: 0;
+
       border-radius: 17px;
+
       background: transparent;
+
       color: #777e8c;
+
       cursor: pointer;
+
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       justify-content: center;
+
       gap: 3px;
+
       font-size: 10px;
+
       font-weight: 700;
     }
 
@@ -586,946 +608,1328 @@
 
     .nav-btn.active {
       color: white;
-      background: rgba(255,255,255,0.09);
+
+      background:
+        rgba(255,255,255,0.09);
     }
 
-    /* TOAST */
+
+    /* =========================
+       TOAST
+    ========================= */
 
     .toast {
       position: fixed;
+
       left: 50%;
+
       bottom: 95px;
-      transform: translate(-50%, 20px);
+
+      transform:
+        translate(-50%, 20px);
+
       opacity: 0;
+
       pointer-events: none;
+
       background: #171a22;
-      border: 1px solid rgba(255,255,255,0.10);
+
+      border:
+        1px solid rgba(255,255,255,0.10);
+
       padding: 12px 16px;
+
       border-radius: 14px;
+
       font-size: 12px;
+
       transition: 0.25s;
-      z-index: 200;
+
+      z-index: 700;
+
       white-space: nowrap;
     }
 
     .toast.show {
-      transform: translate(-50%, 0);
+      transform:
+        translate(-50%, 0);
+
       opacity: 1;
     }
 
-    @media (min-width: 700px) {
-      body {
-        padding: 20px 0;
-      }
 
-      .app {
-        border-left: 1px solid rgba(255,255,255,0.05);
-        border-right: 1px solid rgba(255,255,255,0.05);
-      }
-    }
-  </style>
-</head>
+    /* =========================
+       RASHI MODAL
+    ========================= */
 
-<body>
+    .rashi-modal-backdrop {
+      position: fixed;
 
-<div class="app">
+      inset: 0;
 
-  <!-- HEADER -->
-  <header class="header">
+      z-index: 500;
 
-    <div class="brand">
-      <div class="flag">🇳🇵</div>
+      display: flex;
 
-      <div class="brand-text">
-        <h1>Nepal Daily</h1>
-        <p>Your daily Nepal update</p>
-      </div>
-    </div>
+      align-items: flex-end;
 
-    <button class="notification-btn" onclick="showToast('Notifications coming soon 🔔')">
-      🔔
-    </button>
+      justify-content: center;
 
-  </header>
+      padding: 12px;
 
-
-  <main>
-
-    <!-- WELCOME -->
-    <section class="welcome">
-      <small id="today"></small>
-      <h2>Good afternoon 👋</h2>
-    </section>
-
-
-    <!-- RASHI -->
-    <section class="card rashi-card">
-
-      <div class="section-head">
-        <div class="section-title">
-          <span class="section-icon">🔮</span>
-          Daily Rashi
-        </div>
-
-        <button class="see-all" onclick="openRashi()">
-          Change
-        </button>
-      </div>
-
-      <div class="rashi-content">
-
-        <div class="rashi-symbol">
-          ♈
-        </div>
-
-        <div class="rashi-info">
-          <small>YOUR RASHI</small>
-          <h3 id="rashiName">Aries</h3>
-
-          <p id="rashiText">
-            Today brings fresh energy and a chance
-            to focus on something important.
-          </p>
-        </div>
-
-      </div>
-
-      <button
-        class="listen-btn"
-        onclick="speakText(document.getElementById('rashiText').innerText)"
-      >
-        🔊 Listen to Rashi
-      </button>
-
-    </section>
-
-
-    <!-- QUOTE -->
-    <section class="card quote-card">
-
-      <div class="section-head">
-        <div class="section-title">
-          <span class="section-icon">✨</span>
-          Daily Quote
-        </div>
-      </div>
-
-      <div class="quote">
-        “Small steps every day create big changes.”
-      </div>
-
-      <div class="quote-author">
-        — Nepal Daily
-      </div>
-
-      <button
-        class="listen-btn"
-        onclick="speakText('Small steps every day create big changes.')"
-      >
-        🔊 Listen to Quote
-      </button>
-
-    </section>
-
-
-    <!-- NEWS -->
-    <section class="card">
-
-      <div class="section-head">
-
-        <div class="section-title">
-          <span class="section-icon">📰</span>
-          Top 10 Nepal News
-        </div>
-
-        <button class="see-all" onclick="openNews()">
-          See all
-        </button>
-
-      </div>
-
-
-      <div id="newsList">
-
-        <div class="news-item">
-          <div class="news-number">01</div>
-
-          <div class="news-content">
-            <h4>Latest Nepal news will appear here</h4>
-            <div class="news-meta">
-              Nepal Daily · Today
-            </div>
-          </div>
-        </div>
-
-
-        <div class="news-item">
-          <div class="news-number">02</div>
-
-          <div class="news-content">
-            <h4>Daily national updates in one place</h4>
-            <div class="news-meta">
-              Nepal Daily · Today
-            </div>
-          </div>
-        </div>
-
-
-        <div class="news-item">
-          <div class="news-number">03</div>
-
-          <div class="news-content">
-            <h4>Business, technology and important updates</h4>
-            <div class="news-meta">
-              Nepal Daily · Today
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- NOTIFICATIONS -->
-    <section class="card notification-card">
-
-      <div class="notification-icon">
-        🔔
-      </div>
-
-      <div class="notification-text">
-        <strong>Morning Rashi</strong>
-        <span>Get your daily Rashi every morning</span>
-      </div>
-
-      <button
-        class="toggle"
-        id="notificationToggle"
-        onclick="toggleNotifications()"
-      >
-        <span></span>
-      </button>
-
-    </section>
-
-  </main>
-
-
-  <!-- BOTTOM NAV -->
-
-  <nav class="bottom-nav">
-
-    <button class="nav-btn active" onclick="setActive(this, 'Home')">
-      <span class="nav-icon">⌂</span>
-      Home
-    </button>
-
-    <button class="nav-btn" onclick="setActive(this, 'News')">
-      <span class="nav-icon">📰</span>
-      News
-    </button>
-
-    <button class="nav-btn" onclick="setActive(this, 'Rashi')">
-      <span class="nav-icon">🔮</span>
-      Rashi
-    </button>
-
-    <button class="nav-btn" onclick="setActive(this, 'Settings')">
-      <span class="nav-icon">⚙️</span>
-      Settings
-    </button>
-
-  </nav>
-
-</div>
-
-
-<div class="toast" id="toast"></div>
-
-
-<script>
-
-  /* DATE */
-
-  const dateElement = document.getElementById("today");
-
-  const today = new Date();
-
-  dateElement.innerText = today.toLocaleDateString("en-NP", {
-    weekday: "long",
-    month: "long",
-    day: "numeric"
-  });
-
-
-  /* SPEECH */
-
-  function speakText(text) {
-
-    if (!("speechSynthesis" in window)) {
-      showToast("Speech is not supported on this device");
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-
-    const speech = new SpeechSynthesisUtterance(text);
-
-    speech.lang = "en-US";
-    speech.rate = 0.95;
-    speech.pitch = 1;
-
-    window.speechSynthesis.speak(speech);
-  }
-
-
-  /* TOAST */
-
-  let toastTimer;
-
-  function showToast(message) {
-
-    const toast = document.getElementById("toast");
-
-    toast.innerText = message;
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(() => {
-      toast.classList.remove("show");
-    }, 2200);
-  }
-
-
-  /* NAVIGATION */
-
-  function setActive(button, page) {
-
-    document
-      .querySelectorAll(".nav-btn")
-      .forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-
-    if (page !== "Home") {
-      showToast(page + " section coming next 🚀");
-    }
-  }
-
-
-  /* RASHI */
-
-  function openRashi() {
-
-    showToast("Rashi selection will be added next 🔮");
-
-  }
-
-
-  /* NEWS */
-
-  function openNews() {
-
-    showToast("Full news page will be added next 📰");
-
-  }
-
-
-  /* NOTIFICATIONS */
-
-  function toggleNotifications() {
-
-    const toggle =
-      document.getElementById("notificationToggle");
-
-    toggle.classList.toggle("active");
-
-    const enabled =
-      toggle.classList.contains("active");
-
-    localStorage.setItem(
-      "morningRashiNotifications",
-      enabled ? "true" : "false"
-    );
-
-    showToast(
-      enabled
-        ? "Morning Rashi enabled 🔔"
-        : "Morning Rashi disabled"
-    );
-  }
-
-
-  /* RESTORE NOTIFICATION STATE */
-
-  const savedNotification =
-    localStorage.getItem("morningRashiNotifications");
-
-  if (savedNotification === "true") {
-    document
-      .getElementById("notificationToggle")
-      .classList.add("active");
-  }
-
-</script>
-
-</body>
-</html>
-
-    /* QUOTE */
-
-    .quote-card {
       background:
-        linear-gradient(135deg, rgba(0, 160, 255, 0.12), rgba(255,255,255,0.04));
+        rgba(0,0,0,0.68);
+
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .quote {
-      font-size: 17px;
-      line-height: 1.55;
-      font-weight: 700;
-      letter-spacing: -0.2px;
-      margin: 4px 0 7px;
+    .rashi-modal {
+      width: min(500px, 100%);
+
+      max-height: 88vh;
+
+      overflow-y: auto;
+
+      padding: 20px;
+
+      border:
+        1px solid rgba(255,255,255,0.11);
+
+      border-radius: 27px;
+
+      background: #11141b;
+
+      box-shadow:
+        0 -15px 60px rgba(0,0,0,0.55);
+
+      animation:
+        rashiUp 0.22s ease-out;
     }
 
-    .quote-author {
-      font-size: 12px;
-      color: #858c9a;
+    @keyframes rashiUp {
+
+      from {
+        transform: translateY(40px);
+
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+
+        opacity: 1;
+      }
+
     }
 
-    /* NEWS */
-
-    .news-item {
+    .modal-top {
       display: flex;
-      gap: 12px;
-      padding: 13px 0;
-      border-top: 1px solid rgba(255,255,255,0.07);
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      margin-bottom: 15px;
     }
 
-    .news-item:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
+    .modal-top small {
+      color: #858c9c;
 
-    .news-number {
-      width: 31px;
-      height: 31px;
-      flex-shrink: 0;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.07);
-      color: #9da5b5;
-      font-size: 12px;
-      font-weight: 850;
-    }
-
-    .news-content {
-      flex: 1;
-    }
-
-    .news-content h4 {
-      margin: 0 0 5px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-
-    .news-meta {
-      color: #777f8f;
       font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
     }
 
-    /* NOTIFICATION */
+    .modal-top h2 {
+      margin: 4px 0 0;
 
-    .notification-card {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 15px;
-      background: rgba(255,255,255,0.035);
+      font-size: 23px;
     }
 
-    .notification-icon {
-      width: 43px;
-      height: 43px;
+    .modal-close {
+      width: 38px;
+      height: 38px;
+
+      border: 0;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      color: white;
+
+      cursor: pointer;
+    }
+
+    .rashi-system-label {
+      margin-bottom: 15px;
+
+      color: #858c9c;
+
+      font-size: 12px;
+    }
+
+    .rashi-grid {
       display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.07);
-      font-size: 20px;
-      flex-shrink: 0;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 9px;
     }
 
-    .notification-text {
-      flex: 1;
+    .rashi-option {
+      min-height: 105px;
+
+      padding: 12px 7px;
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      border-radius: 17px;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      color: white;
+
+      cursor: pointer;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 3px;
+
+      transition: 0.15s;
     }
 
-    .notification-text strong {
-      display: block;
-      font-size: 13px;
+    .rashi-option:active {
+      transform: scale(0.95);
+    }
+
+    .rashi-option:hover {
+      background:
+        rgba(255,255,255,0.09);
+    }
+
+    .rashi-option-symbol {
+      font-size: 27px;
+
       margin-bottom: 3px;
     }
 
-    .notification-text span {
-      font-size: 11px;
-      color: #858c9a;
-    }
-
-    .toggle {
-      width: 45px;
-      height: 25px;
-      border: 0;
-      border-radius: 20px;
-      background: #343945;
-      padding: 3px;
-      cursor: pointer;
-    }
-
-    .toggle span {
-      display: block;
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      background: white;
-      transition: 0.2s;
-    }
-
-    .toggle.active {
-      background: #4f46e5;
-    }
-
-    .toggle.active span {
-      transform: translateX(20px);
-    }
-
-    /* BOTTOM NAV */
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: 12px;
-      transform: translateX(-50%);
-      width: min(490px, calc(100% - 24px));
-      height: 68px;
-      padding: 6px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 22px;
-      background: rgba(17,19,26,0.84);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      box-shadow: 0 15px 50px rgba(0,0,0,0.45);
-      z-index: 100;
-    }
-
-    .nav-btn {
-      border: 0;
-      border-radius: 17px;
-      background: transparent;
-      color: #777e8c;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .nav-btn .nav-icon {
-      font-size: 19px;
-    }
-
-    .nav-btn.active {
-      color: white;
-      background: rgba(255,255,255,0.09);
-    }
-
-    /* TOAST */
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 95px;
-      transform: translate(-50%, 20px);
-      opacity: 0;
-      pointer-events: none;
-      background: #171a22;
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 12px 16px;
-      border-radius: 14px;
+    .rashi-option strong {
       font-size: 12px;
-      transition: 0.25s;
-      z-index: 200;
-      white-space: nowrap;
     }
 
-    .toast.show {
-      transform: translate(-50%, 0);
-      opacity: 1;
+    .rashi-option small {
+      color: #858c9c;
+
+      font-size: 9px;
     }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 350px) {
+
+      .rashi-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    /* =========================
+       DESKTOP
+    ========================= */
 
     @media (min-width: 700px) {
+
       body {
         padding: 20px 0;
       }
 
       .app {
-        border-left: 1px solid rgba(255,255,255,0.05);
-        border-right: 1px solid rgba(255,255,255,0.05);
+        border-left:
+          1px solid rgba(255,255,255,0.05);
+
+        border-right:
+          1px solid rgba(255,255,255,0.05);
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-<div class="app">
-
-  <!-- HEADER -->
-  <header class="header">
-
-    <div class="brand">
-      <div class="flag">🇳🇵</div>
-
-      <div class="brand-text">
-        <h1>Nepal Daily</h1>
-        <p>Your daily Nepal update</p>
-      </div>
-    </div>
-
-    <button class="notification-btn" onclick="showToast('Notifications coming soon 🔔')">
-      🔔
-    </button>
-
-  </header>
+  <div class="app">
 
 
-  <main>
+    <!-- =========================
+         HEADER
+    ========================= -->
 
-    <!-- WELCOME -->
-    <section class="welcome">
-      <small id="today"></small>
-      <h2>Good afternoon 👋</h2>
-    </section>
+    <header class="header">
 
+      <div class="brand">
 
-    <!-- RASHI -->
-    <section class="card rashi-card">
-
-      <div class="section-head">
-        <div class="section-title">
-          <span class="section-icon">🔮</span>
-          Daily Rashi
+        <div class="flag">
+          🇳🇵
         </div>
 
-        <button class="see-all" onclick="openRashi()">
-          Change
-        </button>
-      </div>
+        <div class="brand-text">
 
-      <div class="rashi-content">
+          <h1>
+            Nepal Daily
+          </h1>
 
-        <div class="rashi-symbol">
-          ♈
-        </div>
-
-        <div class="rashi-info">
-          <small>YOUR RASHI</small>
-          <h3 id="rashiName">Aries</h3>
-
-          <p id="rashiText">
-            Today brings fresh energy and a chance
-            to focus on something important.
+          <p>
+            Your daily Nepal update
           </p>
+
         </div>
 
       </div>
+
 
       <button
-        class="listen-btn"
-        onclick="speakText(document.getElementById('rashiText').innerText)"
+        class="notification-btn"
+        onclick="showToast('Notifications coming soon 🔔')"
+        aria-label="Notifications"
       >
-        🔊 Listen to Rashi
+        🔔
       </button>
 
-    </section>
+    </header>
 
 
-    <!-- QUOTE -->
-    <section class="card quote-card">
 
-      <div class="section-head">
-        <div class="section-title">
-          <span class="section-icon">✨</span>
-          Daily Quote
+    <main>
+
+
+      <!-- =========================
+           WELCOME
+      ========================= -->
+
+      <section class="welcome">
+
+        <small id="today">
+          Today
+        </small>
+
+        <h2>
+          Good afternoon 👋
+        </h2>
+
+      </section>
+
+
+
+      <!-- =========================
+           RASHI
+      ========================= -->
+
+      <section class="card rashi-card">
+
+
+        <div class="section-head">
+
+          <div class="section-title">
+
+            <span class="section-icon">
+              🔮
+            </span>
+
+            Daily Rashi
+
+          </div>
+
+
+          <button
+            class="see-all"
+            onclick="openRashi()"
+          >
+            Change
+          </button>
+
         </div>
-      </div>
-
-      <div class="quote">
-        “Small steps every day create big changes.”
-      </div>
-
-      <div class="quote-author">
-        — Nepal Daily
-      </div>
-
-      <button
-        class="listen-btn"
-        onclick="speakText('Small steps every day create big changes.')"
-      >
-        🔊 Listen to Quote
-      </button>
-
-    </section>
 
 
-    <!-- NEWS -->
-    <section class="card">
 
-      <div class="section-head">
+        <div class="rashi-content">
 
-        <div class="section-title">
-          <span class="section-icon">📰</span>
-          Top 10 Nepal News
+
+          <div
+            class="rashi-symbol"
+            id="rashiSymbol"
+          >
+            🔮
+          </div>
+
+
+          <div class="rashi-info">
+
+            <small>
+              YOUR RASHI
+            </small>
+
+            <h3 id="rashiName">
+              Choose your Rashi
+            </h3>
+
+            <p id="rashiText">
+              Choose your Rashi to see today's reading.
+            </p>
+
+          </div>
+
         </div>
 
-        <button class="see-all" onclick="openNews()">
-          See all
+
+
+        <button
+          class="listen-btn"
+          onclick="listenRashi()"
+        >
+          🔊 Listen to Rashi
         </button>
 
-      </div>
+      </section>
 
 
-      <div id="newsList">
 
-        <div class="news-item">
-          <div class="news-number">01</div>
+      <!-- =========================
+           DAILY QUOTE
+      ========================= -->
 
-          <div class="news-content">
-            <h4>Latest Nepal news will appear here</h4>
-            <div class="news-meta">
-              Nepal Daily · Today
-            </div>
+      <section class="card quote-card">
+
+
+        <div class="section-head">
+
+          <div class="section-title">
+
+            <span class="section-icon">
+              ✨
+            </span>
+
+            Daily Quote
+
           </div>
+
         </div>
 
 
-        <div class="news-item">
-          <div class="news-number">02</div>
-
-          <div class="news-content">
-            <h4>Daily national updates in one place</h4>
-            <div class="news-meta">
-              Nepal Daily · Today
-            </div>
-          </div>
+        <div class="quote">
+          “Small steps every day create big changes.”
         </div>
 
 
-        <div class="news-item">
-          <div class="news-number">03</div>
-
-          <div class="news-content">
-            <h4>Business, technology and important updates</h4>
-            <div class="news-meta">
-              Nepal Daily · Today
-            </div>
-          </div>
+        <div class="quote-author">
+          — Nepal Daily
         </div>
 
-      </div>
 
-    </section>
+        <button
+          class="listen-btn"
+          onclick="listenQuote()"
+        >
+          🔊 Listen to Quote
+        </button>
+
+      </section>
 
 
-    <!-- NOTIFICATIONS -->
-    <section class="card notification-card">
 
-      <div class="notification-icon">
-        🔔
-      </div>
+      <!-- =========================
+           TOP NEWS
+      ========================= -->
 
-      <div class="notification-text">
-        <strong>Morning Rashi</strong>
-        <span>Get your daily Rashi every morning</span>
-      </div>
+      <section class="card">
+
+
+        <div class="section-head">
+
+          <div class="section-title">
+
+            <span class="section-icon">
+              📰
+            </span>
+
+            Top 10 Nepal News
+
+          </div>
+
+
+          <button
+            class="see-all"
+            onclick="openNews()"
+          >
+            See all
+          </button>
+
+        </div>
+
+
+
+        <div id="newsList">
+
+
+          <div class="news-item">
+
+            <div class="news-number">
+              01
+            </div>
+
+            <div class="news-content">
+
+              <h4>
+                Latest Nepal news will appear here
+              </h4>
+
+              <div class="news-meta">
+                Nepal Daily · Today
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="news-item">
+
+            <div class="news-number">
+              02
+            </div>
+
+            <div class="news-content">
+
+              <h4>
+                Daily national updates in one place
+              </h4>
+
+              <div class="news-meta">
+                Nepal Daily · Today
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="news-item">
+
+            <div class="news-number">
+              03
+            </div>
+
+            <div class="news-content">
+
+              <h4>
+                Business, technology and important updates
+              </h4>
+
+              <div class="news-meta">
+                Nepal Daily · Today
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           MORNING RASHI
+      ========================= -->
+
+      <section class="card notification-card">
+
+
+        <div class="notification-icon">
+          🔔
+        </div>
+
+
+        <div class="notification-text">
+
+          <strong>
+            Morning Rashi
+          </strong>
+
+          <span>
+            Get your daily Rashi every morning
+          </span>
+
+        </div>
+
+
+        <button
+          class="toggle"
+          id="notificationToggle"
+          onclick="toggleNotifications()"
+          aria-label="Toggle morning Rashi notifications"
+        >
+
+          <span></span>
+
+        </button>
+
+      </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         BOTTOM NAVIGATION
+    ========================= -->
+
+    <nav class="bottom-nav">
+
 
       <button
-        class="toggle"
-        id="notificationToggle"
-        onclick="toggleNotifications()"
+        class="nav-btn active"
+        onclick="setActive(this, 'Home')"
       >
-        <span></span>
+
+        <span class="nav-icon">
+          ⌂
+        </span>
+
+        Home
+
       </button>
 
-    </section>
 
-  </main>
+      <button
+        class="nav-btn"
+        onclick="setActive(this, 'News')"
+      >
 
+        <span class="nav-icon">
+          📰
+        </span>
 
-  <!-- BOTTOM NAV -->
+        News
 
-  <nav class="bottom-nav">
-
-    <button class="nav-btn active" onclick="setActive(this, 'Home')">
-      <span class="nav-icon">⌂</span>
-      Home
-    </button>
-
-    <button class="nav-btn" onclick="setActive(this, 'News')">
-      <span class="nav-icon">📰</span>
-      News
-    </button>
-
-    <button class="nav-btn" onclick="setActive(this, 'Rashi')">
-      <span class="nav-icon">🔮</span>
-      Rashi
-    </button>
-
-    <button class="nav-btn" onclick="setActive(this, 'Settings')">
-      <span class="nav-icon">⚙️</span>
-      Settings
-    </button>
-
-  </nav>
-
-</div>
+      </button>
 
 
-<div class="toast" id="toast"></div>
+      <button
+        class="nav-btn"
+        onclick="setActive(this, 'Rashi')"
+      >
+
+        <span class="nav-icon">
+          🔮
+        </span>
+
+        Rashi
+
+      </button>
 
 
-<script>
+      <button
+        class="nav-btn"
+        onclick="setActive(this, 'Settings')"
+      >
 
-  /* DATE */
+        <span class="nav-icon">
+          ⚙️
+        </span>
 
-  const dateElement = document.getElementById("today");
+        Settings
 
-  const today = new Date();
-
-  dateElement.innerText = today.toLocaleDateString("en-NP", {
-    weekday: "long",
-    month: "long",
-    day: "numeric"
-  });
+      </button>
 
 
-  /* SPEECH */
+    </nav>
 
-  function speakText(text) {
 
-    if (!("speechSynthesis" in window)) {
-      showToast("Speech is not supported on this device");
-      return;
+  </div>
+
+
+
+  <!-- TOAST -->
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+
+  <script>
+
+    /* =========================
+       DATE
+    ========================= */
+
+    const dateElement =
+      document.getElementById("today");
+
+
+    const today =
+      new Date();
+
+
+    dateElement.innerText =
+      today.toLocaleDateString(
+        "en-NP",
+        {
+          weekday: "long",
+          month: "long",
+          day: "numeric"
+        }
+      );
+
+
+
+    /* =========================
+       RASHI DATA
+    ========================= */
+
+    const rashiData = [
+
+      {
+        western: "Aries",
+        vedic: "Mesha",
+        symbol: "♈",
+        dates: "Mar 21 – Apr 19"
+      },
+
+      {
+        western: "Taurus",
+        vedic: "Vrishabha",
+        symbol: "♉",
+        dates: "Apr 20 – May 20"
+      },
+
+      {
+        western: "Gemini",
+        vedic: "Mithuna",
+        symbol: "♊",
+        dates: "May 21 – Jun 20"
+      },
+
+      {
+        western: "Cancer",
+        vedic: "Karka",
+        symbol: "♋",
+        dates: "Jun 21 – Jul 22"
+      },
+
+      {
+        western: "Leo",
+        vedic: "Simha",
+        symbol: "♌",
+        dates: "Jul 23 – Aug 22"
+      },
+
+      {
+        western: "Virgo",
+        vedic: "Kanya",
+        symbol: "♍",
+        dates: "Aug 23 – Sep 22"
+      },
+
+      {
+        western: "Libra",
+        vedic: "Tula",
+        symbol: "♎",
+        dates: "Sep 23 – Oct 22"
+      },
+
+      {
+        western: "Scorpio",
+        vedic: "Vrishchika",
+        symbol: "♏",
+        dates: "Oct 23 – Nov 21"
+      },
+
+      {
+        western: "Sagittarius",
+        vedic: "Dhanu",
+        symbol: "♐",
+        dates: "Nov 22 – Dec 21"
+      },
+
+      {
+        western: "Capricorn",
+        vedic: "Makara",
+        symbol: "♑",
+        dates: "Dec 22 – Jan 19"
+      },
+
+      {
+        western: "Aquarius",
+        vedic: "Kumbha",
+        symbol: "♒",
+        dates: "Jan 20 – Feb 18"
+      },
+
+      {
+        western: "Pisces",
+        vedic: "Meena",
+        symbol: "♓",
+        dates: "Feb 19 – Mar 20"
+      }
+
+    ];
+
+
+
+    /* =========================
+       DEFAULT RASHI TEXT
+    ========================= */
+
+    const defaultRashiText =
+      "Today brings fresh energy and a chance to focus on something important.";
+
+
+
+    /* =========================
+       LOAD SAVED RASHI
+    ========================= */
+
+    function loadSavedRashi() {
+
+      const saved =
+        localStorage.getItem("selectedRashi");
+
+
+      if (!saved) {
+
+        return;
+
+      }
+
+
+      try {
+
+        const data =
+          JSON.parse(saved);
+
+
+        updateRashiDisplay(data);
+
+      }
+
+      catch (error) {
+
+        console.log(
+          "Could not load saved Rashi."
+        );
+
+      }
+
     }
 
-    window.speechSynthesis.cancel();
-
-    const speech = new SpeechSynthesisUtterance(text);
-
-    speech.lang = "en-US";
-    speech.rate = 0.95;
-    speech.pitch = 1;
-
-    window.speechSynthesis.speak(speech);
-  }
 
 
-  /* TOAST */
+    /* =========================
+       UPDATE RASHI DISPLAY
+    ========================= */
 
-  let toastTimer;
+    function updateRashiDisplay(data) {
 
-  function showToast(message) {
-
-    const toast = document.getElementById("toast");
-
-    toast.innerText = message;
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(() => {
-      toast.classList.remove("show");
-    }, 2200);
-  }
+      document
+        .getElementById("rashiName")
+        .innerText =
+        data.western;
 
 
-  /* NAVIGATION */
+      document
+        .getElementById("rashiSymbol")
+        .innerText =
+        data.symbol;
 
-  function setActive(button, page) {
 
-    document
-      .querySelectorAll(".nav-btn")
-      .forEach(btn => btn.classList.remove("active"));
+      document
+        .getElementById("rashiText")
+        .innerText =
+        `${data.vedic} · ${data.western}\n\n${defaultRashiText}`;
 
-    button.classList.add("active");
-
-    if (page !== "Home") {
-      showToast(page + " section coming next 🚀");
     }
-  }
 
 
-  /* RASHI */
 
-  function openRashi() {
+    /* =========================
+       OPEN RASHI SELECTOR
+    ========================= */
 
-    showToast("Rashi selection will be added next 🔮");
-
-  }
-
-
-  /* NEWS */
-
-  function openNews() {
-
-    showToast("Full news page will be added next 📰");
-
-  }
+    function openRashi() {
 
 
-  /* NOTIFICATIONS */
-
-  function toggleNotifications() {
-
-    const toggle =
-      document.getElementById("notificationToggle");
-
-    toggle.classList.toggle("active");
-
-    const enabled =
-      toggle.classList.contains("active");
-
-    localStorage.setItem(
-      "morningRashiNotifications",
-      enabled ? "true" : "false"
-    );
-
-    showToast(
-      enabled
-        ? "Morning Rashi enabled 🔔"
-        : "Morning Rashi disabled"
-    );
-  }
+      const existing =
+        document.getElementById(
+          "rashiModal"
+        );
 
 
-  /* RESTORE NOTIFICATION STATE */
+      if (existing) {
 
-  const savedNotification =
-    localStorage.getItem("morningRashiNotifications");
+        existing.remove();
 
-  if (savedNotification === "true") {
-    document
-      .getElementById("notificationToggle")
-      .classList.add("active");
-  }
+      }
 
-</script>
+
+      const modal =
+        document.createElement("div");
+
+
+      modal.id =
+        "rashiModal";
+
+
+      modal.innerHTML = `
+
+        <div
+          class="rashi-modal-backdrop"
+          onclick="closeRashiModal(event)"
+        >
+
+          <div
+            class="rashi-modal"
+            onclick="event.stopPropagation()"
+          >
+
+            <div class="modal-top">
+
+              <div>
+
+                <small>
+                  YOUR RASHI
+                </small>
+
+                <h2>
+                  Select your sign
+                </h2>
+
+              </div>
+
+
+              <button
+                class="modal-close"
+                onclick="closeRashiModal()"
+              >
+                ✕
+              </button>
+
+            </div>
+
+
+            <div class="rashi-system-label">
+
+              Vedic Rashi + Western Zodiac
+
+            </div>
+
+
+            <div class="rashi-grid">
+
+              ${rashiData.map(
+                (rashi, index) => `
+
+                <button
+                  class="rashi-option"
+                  onclick="selectRashi(${index})"
+                >
+
+                  <span
+                    class="rashi-option-symbol"
+                  >
+                    ${rashi.symbol}
+                  </span>
+
+                  <strong>
+                    ${rashi.western}
+                  </strong>
+
+                  <small>
+                    ${rashi.vedic}
+                  </small>
+
+                </button>
+
+              `
+              ).join("")}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      document.body.appendChild(modal);
+
+    }
+
+
+
+    /* =========================
+       SELECT RASHI
+    ========================= */
+
+    function selectRashi(index) {
+
+      const selected =
+        rashiData[index];
+
+
+      localStorage.setItem(
+        "selectedRashi",
+        JSON.stringify(selected)
+      );
+
+
+      updateRashiDisplay(
+        selected
+      );
+
+
+      closeRashiModal();
+
+
+      showToast(
+        `${selected.western} · ${selected.vedic} saved 🔮`
+      );
+
+    }
+
+
+
+    /* =========================
+       CLOSE RASHI MODAL
+    ========================= */
+
+    function closeRashiModal(event) {
+
+      if (
+        event &&
+        event.target !==
+        event.currentTarget
+      ) {
+
+        return;
+
+      }
+
+
+      const modal =
+        document.getElementById(
+          "rashiModal"
+        );
+
+
+      if (modal) {
+
+        modal.remove();
+
+      }
+
+    }
+
+
+
+    /* =========================
+       RASHI SPEECH
+    ========================= */
+
+    function listenRashi() {
+
+      const rashi =
+        document.getElementById(
+          "rashiText"
+        ).innerText;
+
+
+      if (
+        rashi.includes(
+          "Choose your Rashi"
+        )
+      ) {
+
+        showToast(
+          "Choose your Rashi first 🔮"
+        );
+
+        return;
+
+      }
+
+
+      speakText(rashi);
+
+    }
+
+
+
+    /* =========================
+       SPEECH
+    ========================= */
+
+    function speakText(text) {
+
+      if (
+        !("speechSynthesis" in window)
+      ) {
+
+        showToast(
+          "Speech is not supported on this device"
+        );
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      const speech =
+        new SpeechSynthesisUtterance(
+          text
+        );
+
+
+      speech.lang =
+        "en-US";
+
+
+      speech.rate =
+        0.95;
+
+
+      speech.pitch =
+        1;
+
+
+      window.speechSynthesis.speak(
+        speech
+      );
+
+    }
+
+
+
+    /* =========================
+       QUOTE SPEECH
+    ========================= */
+
+    function listenQuote() {
+
+      speakText(
+        "Small steps every day create big changes."
+      );
+
+    }
+
+
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    let toastTimer;
+
+
+    function showToast(message) {
+
+      const toast =
+        document.getElementById(
+          "toast"
+        );
+
+
+      toast.innerText =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      toastTimer =
+        setTimeout(
+          () => {
+
+            toast.classList.remove(
+              "show"
+            );
+
+          },
+          2200
+        );
+
+    }
+
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    function setActive(
+      button,
+      page
+    ) {
+
+
+      document
+        .querySelectorAll(".nav-btn")
+        .forEach(
+          btn =>
+            btn.classList.remove(
+              "active"
+            )
+        );
+
+
+      button.classList.add(
+        "active"
+      );
+
+
+      if (
+        page !== "Home"
+      ) {
+
+        showToast(
+          page +
+          " section coming next 🚀"
+        );
+
+      }
+
+    }
+
+
+
+    /* =========================
+       NEWS
+    ========================= */
+
+    function openNews() {
+
+      showToast(
+        "Full news page will be added next 📰"
+      );
+
+    }
+
+
+
+    /* =========================
+       NOTIFICATIONS
+    ========================= */
+
+    function toggleNotifications() {
+
+      const toggle =
+        document.getElementById(
+          "notificationToggle"
+        );
+
+
+      toggle.classList.toggle(
+        "active"
+      );
+
+
+      const enabled =
+        toggle.classList.contains(
+          "active"
+        );
+
+
+      localStorage.setItem(
+        "morningRashiNotifications",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      showToast(
+        enabled
+          ? "Morning Rashi enabled 🔔"
+          : "Morning Rashi disabled"
+      );
+
+    }
+
+
+
+    /* =========================
+       RESTORE NOTIFICATION STATE
+    ========================= */
+
+    const savedNotification =
+      localStorage.getItem(
+        "morningRashiNotifications"
+      );
+
+
+    if (
+      savedNotification ===
+      "true"
+    ) {
+
+      document
+        .getElementById(
+          "notificationToggle"
+        )
+        .classList.add(
+          "active"
+        );
+
+    }
+
+
+
+    /* =========================
+       START APP
+    ========================= */
+
+    loadSavedRashi();
+
+  </script>
 
 </body>
 </html>
+```
