@@ -623,6 +623,38 @@ select option {
         border-radius: 21px;
     }
 }
+
+/* PASSWORD REQUIREMENTS */
+.password-requirements{margin-top:10px;padding:11px 12px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.035);display:grid;gap:6px}
+.password-requirement{color:var(--muted);font-size:12px;line-height:1.35;transition:color .2s ease,transform .2s ease}
+.password-requirement span{display:inline-block;width:17px;font-weight:800}
+.password-requirement.valid,.password-requirement.valid span{color:var(--green)}
+.password-requirement.invalid,.password-requirement.invalid span{color:var(--danger)}
+#profilePassword.password-valid{border-color:rgba(34,197,94,.55);box-shadow:0 0 0 3px rgba(34,197,94,.08)}
+#profilePassword.password-invalid{border-color:rgba(239,68,68,.45)}
+@media(max-width:520px){.password-requirements{padding:10px;border-radius:12px}.password-requirement{font-size:11.5px}}
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* GEN-Z TYPOGRAPHY SYSTEM */
+:root{--font-display:"DM Serif Display",Georgia,serif;--font-sans:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{font-family:var(--font-sans);letter-spacing:-.012em}
+.logo,.hero h1,.section-title h2,.card h3,.tarot-name{font-family:var(--font-display);letter-spacing:-.035em}
+.logo{font-size:21px;font-weight:600}
+.hero .eyebrow,.tarot-label,.badge,.label{font-family:var(--font-sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:clamp(46px,9vw,72px);font-weight:400;line-height:.95}
+.hero p{font-size:clamp(15px,2.8vw,18px);line-height:1.65;max-width:620px}
+.section-title h2{font-size:clamp(25px,5vw,34px);font-weight:400;line-height:1.05}
+.section-title p,.card p{font-size:14px;line-height:1.7}
+.card h3{font-size:clamp(21px,4vw,28px);font-weight:400;line-height:1.08}
+.reading,.meaning,.advice,.quote-text{font-family:var(--font-sans);font-size:clamp(15px,3vw,17px);line-height:1.72}
+.tarot-name{font-size:clamp(25px,6vw,36px);font-weight:400}
+.nav button,.action,.bottom-inner button{font-family:var(--font-sans);font-weight:700;letter-spacing:.01em}
+@media(max-width:520px){.hero h1{font-size:clamp(42px,14vw,58px)}.section-title h2{font-size:27px}.card h3{font-size:23px}.card{padding:18px}.hero p{font-size:15px}.reading,.meaning,.advice,.quote-text{font-size:15px}}
 </style>
 </head>
 
@@ -1256,7 +1288,16 @@ select option {
             <input
                 id="profilePassword"
                 type="password"
-                placeholder="Password">
+                placeholder="Password"
+                autocomplete="new-password">
+
+            <div id="passwordRequirements" class="password-requirements">
+                <div class="password-requirement" data-rule="length"><span>○</span> At least 8 characters</div>
+                <div class="password-requirement" data-rule="upper"><span>○</span> One uppercase letter</div>
+                <div class="password-requirement" data-rule="lower"><span>○</span> One lowercase letter</div>
+                <div class="password-requirement" data-rule="number"><span>○</span> One number</div>
+                <div class="password-requirement" data-rule="symbol"><span>○</span> One symbol</div>
+            </div>
 
         </div>
 
@@ -1266,16 +1307,7 @@ select option {
             onclick="saveAccount()">
             Create / Save Account
         </button>
-
-
-        <button
-            class="action"
-            onclick="googleSignIn()">
-            Continue with Google
-        </button>
-
-
-        <button
+<button
             class="action danger"
             onclick="signOut()">
             Sign Out
@@ -2058,88 +2090,66 @@ function logMood() {
    ACCOUNT
    ========================================================= */
 
+function validatePassword(password) {
+    return {
+        length: password.length >= 8,
+        upper: /[A-Z]/.test(password),
+        lower: /[a-z]/.test(password),
+        number: /[0-9]/.test(password),
+        symbol: /[^A-Za-z0-9]/.test(password)
+    };
+}
+
+function updatePasswordRequirements() {
+    const input = document.getElementById("profilePassword");
+    const container = document.getElementById("passwordRequirements");
+    if (!input || !container) return false;
+
+    const rules = validatePassword(input.value);
+    Object.keys(rules).forEach(rule => {
+        const item = container.querySelector(`[data-rule="${rule}"]`);
+        if (!item) return;
+        item.classList.toggle("valid", rules[rule]);
+        item.classList.toggle("invalid", input.value.length > 0 && !rules[rule]);
+        item.querySelector("span").textContent = rules[rule] ? "✓" : (input.value.length ? "×" : "○");
+    });
+
+    const valid = Object.values(rules).every(Boolean);
+    input.classList.toggle("password-valid", valid && input.value.length > 0);
+    input.classList.toggle("password-invalid", input.value.length > 0 && !valid);
+    return valid;
+}
+
 function saveAccount() {
-
-    const name =
-        document.getElementById(
-            "profileName"
-        ).value.trim();
-
-    const email =
-        document.getElementById(
-            "profileEmail"
-        ).value.trim();
-
-    const password =
-        document.getElementById(
-            "profilePassword"
-        ).value;
+    const name = document.getElementById("profileName").value.trim();
+    const email = document.getElementById("profileEmail").value.trim();
+    const password = document.getElementById("profilePassword").value;
+    const status = document.getElementById("accountStatus");
 
     if (!name || !email || !password) {
-
-        document.getElementById(
-            "accountStatus"
-        ).textContent =
-            "Please complete all fields.";
-
-        document.getElementById(
-            "accountStatus"
-        ).className =
-            "status bad";
-
+        status.textContent = "Please complete all fields.";
+        status.className = "status bad";
         return;
     }
 
-    /*
-       IMPORTANT:
-       This is only frontend/local account storage.
-       Do NOT use this as real production authentication.
-       Real email/password and Google authentication
-       should later be connected to a proper auth backend.
-    */
+    if (!updatePasswordRequirements()) {
+        status.textContent = "Password must be at least 8 characters and include uppercase, lowercase, a number, and a symbol.";
+        status.className = "status bad";
+        return;
+    }
 
     const account = {
         name: name,
         email: email,
-        createdAt:
-            new Date().toISOString()
+        createdAt: new Date().toISOString()
     };
 
-    localStorage.setItem(
-        STORAGE.account,
-        JSON.stringify(account)
-    );
-
-    document.getElementById(
-        "accountStatus"
-    ).textContent =
-        "Account saved on this device.";
-
-    document.getElementById(
-        "accountStatus"
-    ).className =
-        "status good";
-
+    localStorage.setItem(STORAGE.account, JSON.stringify(account));
+    status.textContent = "Account saved on this device.";
+    status.className = "status good";
     loadAccount();
-
-    setTimeout(
-        () => closeModal("accountModal"),
-        900
-    );
+    setTimeout(() => closeModal("accountModal"), 900);
 }
-
-
-/* =========================================================
-   GOOGLE SIGN-IN PLACEHOLDER
-   ========================================================= */
-
-function googleSignIn() {
-
-    alert(
-        "Google Sign-In will be connected to the authentication backend later."
-    );
-}
-
 
 /* =========================================================
    LOAD ACCOUNT
@@ -2195,77 +2205,34 @@ function loadAccount() {
    SIGN OUT
    ========================================================= */
 
-function signOut(event) {
+function signOut() {
 
-    if (event) {
-        event.preventDefault();
-    }
+    localStorage.removeItem(
+        STORAGE.account
+    );
 
-    // Remove saved account
-    localStorage.removeItem(STORAGE.account);
+    document.getElementById(
+        "accountName"
+    ).textContent =
+        "Sign in to Daily Aura";
 
-    // Clear profile fields
-    const profileName =
-        document.getElementById("profileName");
+    document.getElementById(
+        "accountEmail"
+    ).textContent =
+        "Save your profile and app history.";
 
-    const profileEmail =
-        document.getElementById("profileEmail");
+    document.getElementById(
+        "accountStatus"
+    ).textContent =
+        "Signed out.";
 
-    const profilePassword =
-        document.getElementById("profilePassword");
-
-    if (profileName) {
-        profileName.value = "";
-    }
-
-    if (profileEmail) {
-        profileEmail.value = "";
-    }
-
-    if (profilePassword) {
-        profilePassword.value = "";
-    }
-
-    // Reset account display
-    const accountName =
-        document.getElementById("accountName");
-
-    const accountEmail =
-        document.getElementById("accountEmail");
-
-    if (accountName) {
-        accountName.textContent =
-            "Sign in to Daily Aura";
-    }
-
-    if (accountEmail) {
-        accountEmail.textContent =
-            "Save your profile and app history.";
-    }
-
-    // Show confirmation
-    const accountStatus =
-        document.getElementById("accountStatus");
-
-    if (accountStatus) {
-        accountStatus.textContent =
-            "✓ You have been signed out.";
-
-        accountStatus.className =
-            "status good";
-    }
-
-    // Close account modal after a short confirmation
-    setTimeout(() => {
-
-        if (typeof closeModal === "function") {
-            closeModal("accountModal");
-        }
-
-    }, 700);
-
-    console.log("Daily Aura: account signed out.");
+    document.getElementById(
+        "accountStatus"
+    ).className =
+        "status good";
 }
+
+
 /* =========================================================
    HISTORY
    ========================================================= */
@@ -2493,6 +2460,12 @@ document
             );
         }
     );
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const password = document.getElementById("profilePassword");
+    if (password) password.addEventListener("input", updatePasswordRequirements);
+});
 
 </script>
 
