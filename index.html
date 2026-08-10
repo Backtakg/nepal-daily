@@ -555,6 +555,55 @@ select option {
     border-bottom: 0;
 }
 
+/* MOBILE ANIMATIONS & RESPONSIVE POLISH */
+@keyframes auraIn {
+    from { opacity: 0; transform: translateY(14px) scale(.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 18px 55px rgba(139,92,246,.16); }
+    50% { box-shadow: 0 22px 70px rgba(236,72,153,.24); }
+}
+
+.page-section:not(.hidden) { animation: auraIn .42s ease both; }
+.card { transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 24px 65px rgba(0,0,0,.25); }
+.action, .icon-btn, .nav button, .sign-row button, .bottom-inner button { transition: transform .18s ease, opacity .18s ease, background .18s ease; }
+.action:active, .icon-btn:active, .nav button:active, .sign-row button:active { transform: scale(.97); }
+.tarot-card { animation: glowPulse 4s ease-in-out infinite; }
+.horoscope-card, .quote { animation: auraIn .5s ease both; }
+
+@media (max-width: 520px) {
+    body { overflow-x: hidden; }
+    .app { padding-bottom: 92px; }
+    .header-inner { padding: 10px 12px; }
+    .logo { font-size: 17px; }
+    .logo-icon, .icon-btn { width: 38px; height: 38px; }
+    .hero { padding: 26px 14px 16px; }
+    .hero h1 { font-size: 40px; }
+    .hero p { font-size: 14px; }
+    main { padding: 0 12px; }
+    .nav { padding-left: 12px; padding-right: 12px; }
+    .section { margin-top: 18px; }
+    .section-title h2 { font-size: 20px; }
+    .card { padding: 16px; border-radius: 20px; }
+    .sign-row { gap: 8px; margin-right: -4px; }
+    .sign-row button { min-width: 68px; padding: 10px 7px; font-size: 12px; }
+    .sign-symbol { font-size: 22px; }
+    .tarot-card { width: min(190px, 72vw); height: min(285px, 108vw); }
+    .tarot-symbol { font-size: 54px; }
+    .tarot-name { font-size: 19px; text-align: center; padding: 0 8px; }
+    .quote { padding: 22px 16px; }
+    .quote-text { font-size: 18px; }
+    .bottom-inner button { padding: 10px 3px; font-size: 10px; }
+    .bottom-inner button span { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 520px) {
@@ -1300,36 +1349,6 @@ select option {
         </div>
 
 
-        <div class="card">
-
-            <h3>🔔 Daily Notifications</h3>
-
-            <p style="margin-top:7px;">
-                Receive your Daily Aura notification each morning.
-            </p>
-
-            <button
-                id="subscribeBtn"
-                class="action primary"
-                onclick="subscribeNotifications()">
-                🔔 Subscribe
-            </button>
-
-            <button
-                id="unsubscribeBtn"
-                class="action danger"
-                onclick="unsubscribeNotifications()">
-                🔕 Unsubscribe
-            </button>
-
-            <div
-                id="notificationStatus"
-                class="status">
-            </div>
-
-        </div>
-
-
         <div
             class="card"
             style="margin-top:15px;">
@@ -1404,7 +1423,6 @@ const STORAGE = {
     language: "dailyAuraLanguage",
     account: "dailyAuraAccount",
     history: "dailyAuraHistory",
-    subscription: "dailyAuraPushSubscription"
 };
 
 
@@ -1794,10 +1812,11 @@ async function loadQuote() {
         const data =
             await response.json();
 
-        document.getElementById(
-            "quoteText"
-        ).textContent =
-            data.quote;
+        const quote = typeof data.quote === "string"
+            ? data.quote
+            : (data.quote && (data.quote.content || data.quote.text)) || "Every day is a new opportunity.";
+
+        document.getElementById("quoteText").textContent = quote;
 
     } catch (error) {
 
@@ -2372,313 +2391,6 @@ function saveLanguage() {
     alert(
         "Language preference saved."
     );
-}
-
-
-/* =========================================================
-   PUSH NOTIFICATIONS
-   ========================================================= */
-
-async function subscribeNotifications() {
-
-    const status =
-        document.getElementById(
-            "notificationStatus"
-        );
-
-    if (!("Notification" in window)) {
-
-        status.textContent =
-            "This browser does not support notifications.";
-
-        status.className =
-            "status bad";
-
-        return;
-    }
-
-    if (!("serviceWorker" in navigator)) {
-
-        status.textContent =
-            "Service workers are not supported.";
-
-        status.className =
-            "status bad";
-
-        return;
-    }
-
-    try {
-
-        /*
-           Ask the browser for notification permission.
-        */
-
-        const permission =
-            await Notification.requestPermission();
-
-        if (permission !== "granted") {
-
-            status.textContent =
-                "Notification permission was not granted.";
-
-            status.className =
-                "status bad";
-
-            return;
-        }
-
-
-        /*
-           Get VAPID public key from Render.
-
-           This will currently return 503 until
-           you configure VAPID_PUBLIC_KEY on Render.
-        */
-
-        const keyResponse =
-            await fetch(
-                `${API_URL}/vapid-public-key`
-            );
-
-        if (!keyResponse.ok) {
-
-            status.textContent =
-                "VAPID is not configured on the backend yet.";
-
-            status.className =
-                "status bad";
-
-            return;
-        }
-
-        const keyData =
-            await keyResponse.json();
-
-
-        /*
-           Register service worker.
-        */
-
-        const registration =
-            await navigator.serviceWorker.register(
-                "./service-worker.js"
-            );
-
-
-        /*
-           Create push subscription.
-        */
-
-        const subscription =
-            await registration.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey:
-                    urlBase64ToUint8Array(
-                        keyData.publicKey
-                    )
-            });
-
-
-        const sign =
-            localStorage.getItem(
-                STORAGE.sign
-            ) || "Aries";
-
-        const language =
-            localStorage.getItem(
-                STORAGE.language
-            ) || "en";
-
-
-        /*
-           Send subscription to Render backend.
-        */
-
-        const response =
-            await fetch(
-                `${API_URL}/subscribe`,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        subscription:
-                            subscription.toJSON(),
-
-                        horoscope:
-                            sign,
-
-                        language:
-                            language
-                    })
-                }
-            );
-
-
-        if (!response.ok) {
-            throw new Error(
-                "Backend subscription failed."
-            );
-        }
-
-
-        localStorage.setItem(
-            STORAGE.subscription,
-            JSON.stringify(
-                subscription.toJSON()
-            )
-        );
-
-
-        status.textContent =
-            "✓ Daily notifications enabled.";
-
-        status.className =
-            "status good";
-
-    } catch (error) {
-
-        console.error(
-            "Notification subscription error:",
-            error
-        );
-
-        status.textContent =
-            "Notifications are not configured yet.";
-
-        status.className =
-            "status bad";
-    }
-}
-
-
-/* =========================================================
-   UNSUBSCRIBE NOTIFICATIONS
-   ========================================================= */
-
-async function unsubscribeNotifications() {
-
-    const status =
-        document.getElementById(
-            "notificationStatus"
-        );
-
-    try {
-
-        const saved =
-            localStorage.getItem(
-                STORAGE.subscription
-            );
-
-        if (!saved) {
-
-            status.textContent =
-                "No notification subscription found.";
-
-            status.className =
-                "status";
-
-            return;
-        }
-
-        const subscription =
-            JSON.parse(saved);
-
-        await fetch(
-            `${API_URL}/unsubscribe`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-                    endpoint:
-                        subscription.endpoint
-                })
-            }
-        );
-
-
-        localStorage.removeItem(
-            STORAGE.subscription
-        );
-
-
-        status.textContent =
-            "✓ Daily notifications disabled.";
-
-        status.className =
-            "status good";
-
-    } catch (error) {
-
-        console.error(
-            "Unsubscribe error:",
-            error
-        );
-
-        status.textContent =
-            "Could not unsubscribe.";
-
-        status.className =
-            "status bad";
-    }
-}
-
-
-/* =========================================================
-   VAPID KEY CONVERTER
-   ========================================================= */
-
-function urlBase64ToUint8Array(
-    base64String
-) {
-
-    const padding =
-        "=".repeat(
-            (4 - base64String.length % 4) % 4
-        );
-
-    const base64 =
-        (
-            base64String +
-            padding
-        )
-            .replace(
-                /-/g,
-                "+"
-            )
-            .replace(
-                /_/g,
-                "/"
-            );
-
-    const rawData =
-        window.atob(base64);
-
-    const outputArray =
-        new Uint8Array(
-            rawData.length
-        );
-
-    for (
-        let i = 0;
-        i < rawData.length;
-        ++i
-    ) {
-        outputArray[i] =
-            rawData.charCodeAt(i);
-    }
-
-    return outputArray;
 }
 
 
