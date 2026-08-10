@@ -2208,33 +2208,77 @@ function loadAccount() {
    SIGN OUT
    ========================================================= */
 
-function signOut() {
+function signOut(event) {
 
-    localStorage.removeItem(
-        STORAGE.account
-    );
+    if (event) {
+        event.preventDefault();
+    }
 
-    document.getElementById(
-        "accountName"
-    ).textContent =
-        "Sign in to Daily Aura";
+    // Remove saved account
+    localStorage.removeItem(STORAGE.account);
 
-    document.getElementById(
-        "accountEmail"
-    ).textContent =
-        "Save your profile and app history.";
+    // Clear profile fields
+    const profileName =
+        document.getElementById("profileName");
 
-    document.getElementById(
-        "accountStatus"
-    ).textContent =
-        "Signed out.";
+    const profileEmail =
+        document.getElementById("profileEmail");
 
-    document.getElementById(
-        "accountStatus"
-    ).className =
-        "status good";
+    const profilePassword =
+        document.getElementById("profilePassword");
+
+    if (profileName) {
+        profileName.value = "";
+    }
+
+    if (profileEmail) {
+        profileEmail.value = "";
+    }
+
+    if (profilePassword) {
+        profilePassword.value = "";
+    }
+
+    // Reset account display
+    const accountName =
+        document.getElementById("accountName");
+
+    const accountEmail =
+        document.getElementById("accountEmail");
+
+    if (accountName) {
+        accountName.textContent =
+            "Sign in to Daily Aura";
+    }
+
+    if (accountEmail) {
+        accountEmail.textContent =
+            "Save your profile and app history.";
+    }
+
+    // Show confirmation
+    const accountStatus =
+        document.getElementById("accountStatus");
+
+    if (accountStatus) {
+        accountStatus.textContent =
+            "✓ You have been signed out.";
+
+        accountStatus.className =
+            "status good";
+    }
+
+    // Close account modal after a short confirmation
+    setTimeout(() => {
+
+        if (typeof closeModal === "function") {
+            closeModal("accountModal");
+        }
+
+    }, 700);
+
+    console.log("Daily Aura: account signed out.");
 }
-
 
 /* =========================================================
    HISTORY
