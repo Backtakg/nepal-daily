@@ -1,3139 +1,2728 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0d0b16">
-  <meta name="description" content="Daily Aura — Horoscope, daily quotes, tarot and personal insights.">
-  <title>Daily Aura ✨</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171327">
+<meta name="description" content="Daily Aura — horoscope, daily quotes, tarot, mood tracking and cosmic guidance.">
 
-  <link rel="manifest" href="manifest.json">
+<title>Daily Aura ✨</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+:root {
+    --bg: #0e0b18;
+    --card: #171327;
+    --card2: #211b35;
+    --text: #f8f5ff;
+    --muted: #aaa2bd;
+    --accent: #c8a7ff;
+    --accent2: #8f6de8;
+    --border: rgba(255,255,255,.09);
+    --danger: #ff7b91;
+    --success: #75d6a1;
+}
 
-    :root {
-      --bg: #0d0b16;
-      --bg2: #171326;
-      --card: rgba(255,255,255,.065);
-      --card2: rgba(255,255,255,.035);
-      --border: rgba(255,255,255,.09);
-      --text: #f7f3ff;
-      --muted: #a7a0b6;
-      --soft: #d9d3e5;
-      --purple: #a88be8;
-      --purple2: #765fc1;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+body {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(143,109,232,.18), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(200,167,255,.10), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
 
-    body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 15% 5%, rgba(170,135,255,.18), transparent 30%),
-        radial-gradient(circle at 90% 15%, rgba(255,190,170,.09), transparent 28%),
-        linear-gradient(145deg, #090811, #171326, #0b0911);
-      color: var(--text);
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      padding-bottom: 105px;
-    }
+button,
+input,
+select {
+    font: inherit;
+}
 
-    button,
-    select,
-    input {
-      font: inherit;
-    }
+button {
+    cursor: pointer;
+}
 
-    button {
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-    }
+.app {
+    max-width: 760px;
+    margin: auto;
+    padding-bottom: 100px;
+}
 
-    .app {
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-      padding: 17px 15px 30px;
-    }
+/* HEADER */
 
-    /* HEADER */
+header {
+    padding: 28px 18px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-    }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
+.brand-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #8f6de8, #c8a7ff);
+    font-size: 23px;
+    box-shadow: 0 8px 30px rgba(143,109,232,.25);
+}
 
-    .brand-icon {
-      width: 45px;
-      height: 45px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-size: 23px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(190,160,255,.24),
-          rgba(255,210,170,.07)
-        );
-      border: 1px solid var(--border);
-    }
+.brand h1 {
+    font-size: 22px;
+}
 
-    .brand h1 {
-      font-size: 22px;
-      letter-spacing: -.3px;
-    }
+.brand p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 2px;
+}
 
-    .brand p {
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 2px;
-    }
+.account-mini {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 14px;
+    padding: 9px 12px;
+    font-size: 13px;
+}
 
-    .notification-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      color: white;
-      font-size: 18px;
-    }
+/* NAV */
 
-    .notification-btn.active {
-      background: rgba(168,139,232,.2);
-      border-color: rgba(190,165,255,.45);
-    }
+.top-nav {
+    display: flex;
+    gap: 8px;
+    padding: 0 18px 14px;
+    overflow-x: auto;
+}
 
-    /* SCREENS */
+.top-nav button {
+    flex: 0 0 auto;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.035);
+    color: var(--muted);
+    padding: 9px 13px;
+    border-radius: 20px;
+}
 
-    .screen {
-      display: none;
-      animation: fadeIn .25s ease;
-    }
+.top-nav button.active {
+    background: var(--card2);
+    color: var(--text);
+    border-color: rgba(200,167,255,.35);
+}
 
-    .screen.active {
-      display: block;
-    }
+/* CONTENT */
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(5px);
-      }
+main {
+    padding: 0 18px;
+}
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.view {
+    display: none;
+}
 
-    /* GREETING */
+.view.active {
+    display: block;
+}
 
-    .greeting {
-      margin-bottom: 20px;
-    }
+.hero {
+    padding: 20px 0 16px;
+}
 
-    .greeting small {
-      color: var(--muted);
-      font-size: 12px;
-    }
+.hero h2 {
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+}
 
-    .greeting h2 {
-      margin-top: 5px;
-      font-size: 28px;
-      letter-spacing: -.6px;
-    }
+.hero p {
+    color: var(--muted);
+    line-height: 1.55;
+}
 
-    /* CARDS */
+/* CARDS */
 
-    .card {
-      position: relative;
-      overflow: hidden;
-      padding: 19px;
-      margin-bottom: 15px;
-      border-radius: 24px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.09),
-          rgba(255,255,255,.035)
-        );
-      border: 1px solid var(--border);
-      box-shadow: 0 18px 45px rgba(0,0,0,.22);
-      backdrop-filter: blur(18px);
-    }
+.card {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.025)
+    );
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.16);
+}
 
-    .card-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
 
-    .card-title-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.card-title h3 {
+    font-size: 17px;
+}
 
-    .section-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      background: rgba(180,150,255,.12);
-      font-size: 18px;
-    }
+.card-title span {
+    font-size: 22px;
+}
 
-    .card-title h3 {
-      font-size: 16px;
-    }
+/* HOME */
 
-    .card-title span {
-      display: block;
-      color: #9992aa;
-      font-size: 10px;
-      margin-top: 3px;
-    }
+.greeting {
+    padding-top: 12px;
+}
 
-    /* HOROSCOPE */
+.date {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
 
-    .horoscope-main {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 17px;
-    }
+.zodiac-card {
+    background:
+        radial-gradient(circle at 85% 15%, rgba(200,167,255,.22), transparent 35%),
+        var(--card);
+}
 
-    .zodiac-symbol {
-      width: 68px;
-      height: 68px;
-      border-radius: 21px;
-      display: grid;
-      place-items: center;
-      font-size: 36px;
-      background:
-        radial-gradient(
-          circle,
-          rgba(200,175,255,.22),
-          rgba(255,255,255,.03)
-        );
-      border: 1px solid var(--border);
-    }
+.zodiac-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 
-    .horoscope-name {
-      font-size: 23px;
-      font-weight: 750;
-    }
+.zodiac-symbol {
+    font-size: 55px;
+}
 
-    .vedic-name {
-      color: #aaa4b8;
-      font-size: 12px;
-      margin-top: 3px;
-    }
+.zodiac-name {
+    font-size: 21px;
+    font-weight: 800;
+}
 
-    .reading {
-      color: var(--soft);
-      line-height: 1.65;
-      font-size: 14px;
-    }
+.zodiac-sub {
+    color: var(--muted);
+    margin-top: 4px;
+}
 
-    .primary-btn {
-      width: 100%;
-      border: 0;
-      border-radius: 16px;
-      padding: 14px;
-      margin-top: 16px;
-      color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple2),
-          #a37caf
-        );
-      font-weight: 750;
-      box-shadow: 0 10px 25px rgba(80,50,130,.18);
-    }
+.reading {
+    margin-top: 17px;
+    line-height: 1.65;
+    color: #ddd7e8;
+}
 
-    .secondary-btn {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 13px;
-      margin-top: 11px;
-      color: var(--soft);
-      background: rgba(255,255,255,.045);
-      font-weight: 650;
-    }
+/* QUOTE */
 
-    /* QUOTE */
+.quote-card {
+    text-align: center;
+}
 
-    .quote-card {
-      text-align: center;
-    }
+.quote-mark {
+    font-size: 35px;
+    color: var(--accent);
+}
 
-    .quote-mark {
-      color: #bda7e8;
-      font-size: 30px;
-      opacity: .55;
-    }
+.quote-text {
+    font-size: 20px;
+    line-height: 1.55;
+    margin: 8px 0 14px;
+}
 
-    .quote-text {
-      font-size: 19px;
-      line-height: 1.55;
-      font-weight: 650;
-      padding: 4px;
-    }
+/* TAROT */
 
-    /* TAROT */
+.tarot-card {
+    text-align: center;
+}
 
-    .tarot-card {
-      text-align: center;
-    }
+.tarot-image {
+    width: 150px;
+    height: 220px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    background:
+        linear-gradient(145deg, rgba(200,167,255,.2), rgba(79,53,126,.35)),
+        #151022;
+    border: 1px solid rgba(200,167,255,.25);
+    display: grid;
+    place-items: center;
+    font-size: 62px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
 
-    .tarot-intro {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
+.tarot-name {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
 
-    .tarot-button {
-      width: 100%;
-      border: 0;
-      border-radius: 17px;
-      padding: 15px;
-      color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple2),
-          #aa7fb0
-        );
-      font-weight: 750;
-    }
+.tarot-description {
+    color: var(--muted);
+    line-height: 1.55;
+}
 
-    .tarot-button:disabled {
-      opacity: .55;
-    }
+.primary {
+    width: 100%;
+    border: 0;
+    border-radius: 15px;
+    padding: 14px;
+    margin-top: 16px;
+    background: linear-gradient(135deg, #8f6de8, #b896ff);
+    color: white;
+    font-weight: 800;
+}
 
-    .tarot-result {
-      display: none;
-      margin-top: 19px;
-      text-align: left;
-    }
+.secondary {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 13px;
+    margin-top: 10px;
+    background: rgba(255,255,255,.04);
+    color: var(--text);
+    font-weight: 700;
+}
 
-    .tarot-result.show {
-      display: block;
-    }
+/* FEATURE GRID */
 
-    .tarot-visual {
-      width: 145px;
-      height: 205px;
-      margin: 0 auto 18px;
-      border-radius: 19px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(178,145,255,.18),
-          transparent 55%
-        ),
-        linear-gradient(
-          145deg,
-          #2a213e,
-          #151220
-        );
-      border: 1px solid rgba(210,185,255,.3);
-    }
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
 
-    .tarot-symbol {
-      font-size: 45px;
-      margin-bottom: 12px;
-    }
+.feature {
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 19px;
+    padding: 18px;
+    min-height: 140px;
+}
 
-    .tarot-name {
-      font-size: 16px;
-      font-weight: 750;
-    }
+.feature-icon {
+    font-size: 27px;
+    margin-bottom: 14px;
+}
 
-    .tarot-section {
-      margin-top: 14px;
-    }
+.feature h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
 
-    .tarot-section strong {
-      color: #bea9e7;
-      display: block;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      margin-bottom: 5px;
-    }
+.feature p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
 
-    .tarot-section p {
-      color: #d7d2e1;
-      font-size: 14px;
-      line-height: 1.55;
-    }
+/* PREMIUM */
 
-    /* INSIGHTS */
+.premium {
+    background:
+        radial-gradient(circle at 80% 10%, rgba(200,167,255,.22), transparent 30%),
+        linear-gradient(145deg, #211936, #171327);
+    border-color: rgba(200,167,255,.2);
+}
 
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 10px;
+    background: rgba(200,167,255,.12);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.premium ul {
+    list-style: none;
+    color: #d9d2e6;
+    margin-top: 14px;
+}
+
+.premium li {
+    padding: 7px 0;
+}
+
+/* FORMS */
+
+label {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin: 13px 0 6px;
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.045);
+    color: var(--text);
+    border-radius: 13px;
+    padding: 13px;
+    outline: none;
+}
+
+select option {
+    background: #171327;
+    color: white;
+}
+
+/* MOOD */
+
+.mood-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+}
+
+.mood-btn {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    border-radius: 13px;
+    padding: 12px 4px;
+    color: white;
+    font-size: 23px;
+}
+
+.mood-btn.selected {
+    border-color: var(--accent);
+    background: rgba(200,167,255,.14);
+}
+
+/* SETTINGS */
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.setting-row:last-child {
+    border-bottom: 0;
+}
+
+.setting-row h4 {
+    font-size: 14px;
+}
+
+.setting-row p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.toggle {
+    width: 48px;
+    height: 27px;
+    border-radius: 20px;
+    border: 0;
+    background: #393246;
+    position: relative;
+}
+
+.toggle::after {
+    content: "";
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    top: 3px;
+    left: 4px;
+    background: white;
+    transition: .2s;
+}
+
+.toggle.on {
+    background: #8f6de8;
+}
+
+.toggle.on::after {
+    left: 23px;
+}
+
+/* ACCOUNT */
+
+.account-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #8f6de8, #c8a7ff);
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    margin-bottom: 14px;
+}
+
+.account-status {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.google-btn {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: white;
+    color: #222;
+    border-radius: 15px;
+    padding: 13px;
+    font-weight: 800;
+    margin-top: 10px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    margin: 18px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    background: var(--border);
+    flex: 1;
+}
+
+/* BILLING */
+
+.billing-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.billing-item:last-child {
+    border-bottom: 0;
+}
+
+.billing-item span:first-child {
+    color: var(--muted);
+}
+
+.coming {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 12px;
+    width: min(720px, calc(100% - 22px));
+    background: rgba(23,19,39,.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 7px;
+    z-index: 20;
+}
+
+.bottom-nav button {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 9px 4px;
+    border-radius: 15px;
+    font-size: 11px;
+}
+
+.bottom-nav button.active {
+    background: rgba(200,167,255,.12);
+    color: var(--text);
+}
+
+.bottom-nav span {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+/* TOAST */
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 90px;
+    transform: translateX(-50%) translateY(20px);
+    background: #262036;
+    border: 1px solid var(--border);
+    padding: 12px 17px;
+    border-radius: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .25s;
+    z-index: 50;
+    font-size: 13px;
+    max-width: calc(100% - 35px);
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 500px) {
     .feature-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .feature-card {
-      position: relative;
-      padding: 17px;
-      min-height: 190px;
-      border-radius: 22px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.08),
-          rgba(255,255,255,.035)
-        );
-      border: 1px solid var(--border);
-    }
-
-    .feature-icon {
-      font-size: 29px;
-      margin-bottom: 12px;
-    }
-
-    .feature-card h3 {
-      font-size: 15px;
-      margin-bottom: 7px;
-    }
-
-    .feature-card p {
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.5;
-    }
-
-    .feature-card button {
-      width: 100%;
-      margin-top: 13px;
-      padding: 9px;
-      border-radius: 11px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.05);
-      color: #eee9f8;
-      font-size: 11px;
-      font-weight: 650;
-    }
-
-    .premium-badge {
-      position: absolute;
-      top: 11px;
-      right: 11px;
-      font-size: 9px;
-      color: #dccaff;
-      background: rgba(170,140,255,.15);
-      border: 1px solid rgba(190,160,255,.25);
-      padding: 4px 7px;
-      border-radius: 20px;
-    }
-
-    .coming-badge {
-      display: inline-block;
-      margin-top: 9px;
-      color: #bcb4cb;
-      font-size: 9px;
-    }
-
-    /* MOOD */
-
-    .mood-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 7px;
-      margin-top: 15px;
-    }
-
-    .mood-btn {
-      padding: 10px 3px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
-      color: white;
-      font-size: 20px;
-    }
-
-    .mood-btn span {
-      display: block;
-      font-size: 8px;
-      color: #aaa4b7;
-      margin-top: 4px;
-    }
-
-    /* PREMIUM */
-
-    .premium-hero {
-      text-align: center;
-      padding: 29px 18px;
-      border-radius: 25px;
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(190,160,255,.2),
-          transparent 45%
-        ),
-        rgba(255,255,255,.05);
-      border: 1px solid rgba(210,185,255,.15);
-      margin-bottom: 15px;
-    }
-
-    .premium-hero-icon {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-
-    .premium-hero h2 {
-      font-size: 25px;
-    }
-
-    .premium-hero p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-      margin: 9px 0 17px;
-    }
-
-    .premium-feature-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .premium-feature {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 14px;
-      border-radius: 17px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.07);
-    }
-
-    .premium-feature-icon {
-      width: 43px;
-      height: 43px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: rgba(180,150,255,.11);
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    .premium-feature h4 {
-      font-size: 13px;
-    }
-
-    .premium-feature p {
-      color: var(--muted);
-      font-size: 10px;
-      margin-top: 3px;
-    }
-
-    /* SETTINGS */
-
-    .setting-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-
-    .setting-row:last-child {
-      border-bottom: 0;
-    }
-
-    .setting-info h4 {
-      font-size: 14px;
-    }
-
-    .setting-info p {
-      color: #918b9e;
-      font-size: 10px;
-      margin-top: 3px;
-    }
-
-    .setting-action {
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.05);
-      color: #eee9f8;
-      padding: 9px 12px;
-      border-radius: 11px;
-      font-size: 11px;
-      white-space: nowrap;
-    }
-
-    /* HOROSCOPE MODAL */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      background: rgba(0,0,0,.65);
-      padding: 10px;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 600px;
-      padding: 22px;
-      border-radius: 27px 27px 18px 18px;
-      background: linear-gradient(145deg,#1d192b,#100f17);
-      border: 1px solid var(--border);
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 17px;
-    }
-
-    .modal-header h3 {
-      font-size: 19px;
-    }
-
-    .close-btn {
-      border: 0;
-      background: transparent;
-      color: #aaa4b7;
-      font-size: 25px;
-    }
-
-    .sign-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 8px;
-    }
-
-    .sign-btn {
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
-      color: white;
-      border-radius: 14px;
-      padding: 11px 4px;
-    }
-
-    .sign-btn .symbol {
-      display: block;
-      font-size: 23px;
-      margin-bottom: 4px;
-    }
-
-    .sign-btn .name {
-      font-size: 10px;
-    }
-
-    /* TOAST */
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 88px;
-      transform: translate(-50%,20px);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 200;
-      width: max-content;
-      max-width: 90%;
-      text-align: center;
-      background: rgba(30,27,43,.96);
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 11px 17px;
-      border-radius: 13px;
-      font-size: 12px;
-      transition: .25s;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translate(-50%,0);
-    }
-
-    /* BOTTOM NAV */
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: 10px;
-      transform: translateX(-50%);
-      width: min(95%,590px);
-      display: flex;
-      justify-content: space-around;
-      padding: 9px;
-      border-radius: 22px;
-      background: rgba(19,17,29,.92);
-      border: 1px solid rgba(255,255,255,.09);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 15px 40px rgba(0,0,0,.35);
-      z-index: 50;
-    }
-
-    .nav-item {
-      border: 0;
-      background: transparent;
-      color: #777184;
-      padding: 7px 9px;
-      border-radius: 13px;
-      font-size: 9px;
-      min-width: 57px;
-    }
-
-    .nav-item span {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 2px;
-    }
-
-    .nav-item.active {
-      color: #d5c5ff;
-      background: rgba(170,145,255,.1);
-    }
-
-    @media (max-width: 390px) {
-      .feature-grid {
-        gap: 8px;
-      }
-
-      .feature-card {
-        padding: 14px;
-      }
-
-      .nav-item {
-        padding-left: 5px;
-        padding-right: 5px;
-        min-width: 52px;
-      }
-
-      .greeting h2 {
+    .hero h2 {
         font-size: 25px;
-      }
     }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-<main class="app">
+<div class="app">
 
-  <!-- HEADER -->
-
-  <header class="header">
-
+<header>
     <div class="brand">
-
-      <div class="brand-icon">✨</div>
-
-      <div>
-        <h1>Daily Aura</h1>
-        <p>Your daily moment of guidance</p>
-      </div>
-
-    </div>
-
-    <button
-      class="notification-btn"
-      id="notificationToggle"
-      onclick="toggleNotifications()"
-      aria-label="Notifications"
-    >
-      🔔
-    </button>
-
-  </header>
-
-
-  <!-- =====================================================
-       HOME
-  ====================================================== -->
-
-  <section
-    id="homeScreen"
-    class="screen active"
-  >
-
-    <div class="greeting">
-
-      <small id="todayText">Today</small>
-
-      <h2>Good morning ✨</h2>
-
-    </div>
-
-
-    <!-- HOROSCOPE -->
-
-    <div class="card">
-
-      <div class="card-title">
-
-        <div class="card-title-left">
-
-          <div class="section-icon">🔮</div>
-
-          <div>
-            <h3>Today's Horoscope</h3>
-            <span>Your daily cosmic guidance</span>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="horoscope-main">
-
-        <div
-          class="zodiac-symbol"
-          id="zodiacSymbol"
-        >
-          ♈
-        </div>
-
+        <div class="brand-icon">✨</div>
         <div>
-
-          <div
-            class="horoscope-name"
-            id="horoscopeName"
-          >
-            Aries
-          </div>
-
-          <div
-            class="vedic-name"
-            id="vedicName"
-          >
-            Mesha
-          </div>
-
+            <h1>Daily Aura</h1>
+            <p>Your daily cosmic guide</p>
         </div>
-
-      </div>
-
-
-      <p
-        class="reading"
-        id="horoscopeReading"
-      >
-        Select your Horoscope sign to receive
-        your daily guidance.
-      </p>
-
-
-      <button
-        class="primary-btn"
-        onclick="openHoroscopeSelector()"
-      >
-        Change Horoscope
-      </button>
-
     </div>
 
+    <button class="account-mini" onclick="showView('account')">
+        👤 Account
+    </button>
+</header>
 
-    <!-- DAILY QUOTE -->
+<nav class="top-nav">
+    <button class="active" data-view="home">Today</button>
+    <button data-view="horoscope">Horoscope</button>
+    <button data-view="tarot">🃏 Tarot</button>
+    <button data-view="features">Explore</button>
+</nav>
+
+<main>
+
+<!-- ======================================================
+HOME
+====================================================== -->
+
+<section id="home" class="view active">
+
+    <div class="hero greeting">
+        <div class="date" id="todayDate"></div>
+        <h2>Your daily aura ✨</h2>
+        <p>A little guidance for your day, whenever you need it.</p>
+    </div>
+
+    <div class="card zodiac-card">
+        <div class="card-title">
+            <h3>Today's Horoscope</h3>
+            <span>♈</span>
+        </div>
+
+        <div class="zodiac-main">
+            <div class="zodiac-symbol" id="homeZodiacSymbol">♈</div>
+
+            <div>
+                <div class="zodiac-name" id="homeZodiacName">Aries</div>
+                <div class="zodiac-sub" id="homeZodiacVedic">Mesha</div>
+            </div>
+        </div>
+
+        <div class="reading" id="homeHoroscope">
+            Today is a good day to take initiative. Trust your ideas and move forward with confidence.
+        </div>
+
+        <button class="secondary" onclick="showView('horoscope')">
+            View Horoscope →
+        </button>
+    </div>
 
     <div class="card quote-card">
-
-      <div class="card-title">
-
-        <div class="card-title-left">
-
-          <div class="section-icon">✨</div>
-
-          <div>
+        <div class="card-title">
             <h3>Daily Quote</h3>
-            <span>Today's inspiration</span>
-          </div>
-
+            <span>✨</span>
         </div>
 
-      </div>
-
-      <div class="quote-mark">“</div>
-
-      <div
-        class="quote-text"
-        id="quoteText"
-      >
-        Small steps every day create big changes.
-      </div>
-
-      <div class="quote-mark">”</div>
-
+        <div class="quote-mark">“</div>
+        <div class="quote-text" id="dailyQuote">
+            Small steps every day create big changes.
+        </div>
+        <div class="quote-mark">”</div>
     </div>
 
-
-    <!-- TAROT -->
-
     <div class="card tarot-card">
-
-      <div class="card-title">
-
-        <div class="card-title-left">
-
-          <div class="section-icon">🃏</div>
-
-          <div>
+        <div class="card-title">
             <h3>Daily Tarot</h3>
-            <span>One free card each day</span>
-          </div>
-
+            <span>🃏</span>
         </div>
 
-      </div>
+        <div class="tarot-image" id="homeTarotImage">🃏</div>
 
-      <p class="tarot-intro">
-        Focus on your day and reveal your
-        one-card guidance.
-      </p>
-
-      <button
-        class="tarot-button"
-        id="tarotButton"
-        onclick="pullTarot()"
-      >
-        Reveal Today's Card ✨
-      </button>
-
-      <div
-        class="tarot-result"
-        id="tarotResult"
-      >
-
-        <div class="tarot-visual">
-
-          <div
-            class="tarot-symbol"
-            id="tarotSymbol"
-          >
-            ✨
-          </div>
-
-          <div
-            class="tarot-name"
-            id="tarotName"
-          >
-            The Star
-          </div>
-
+        <div class="tarot-name" id="homeTarotName">
+            Your card is waiting
         </div>
 
-        <div class="tarot-section">
-
-          <strong>Meaning</strong>
-
-          <p id="tarotMeaning"></p>
-
+        <div class="tarot-description" id="homeTarotText">
+            Pull one free Tarot card for today's guidance.
         </div>
 
-        <div class="tarot-section">
-
-          <strong>Advice</strong>
-
-          <p id="tarotAdvice"></p>
-
-        </div>
-
-      </div>
-
+        <button class="primary" onclick="pullTarot()">
+            Pull Today's Card
+        </button>
     </div>
 
-  </section>
+    <div class="card premium">
+        <span class="badge">💎 PREMIUM</span>
 
+        <h3>Go deeper with Daily Aura</h3>
 
-  <!-- =====================================================
-       HOROSCOPE
-  ====================================================== -->
+        <ul>
+            <li>🃏 Full 3-card Tarot spreads</li>
+            <li>🌌 Detailed Birth Chart</li>
+            <li>💞 Unlimited Compatibility</li>
+            <li>😊 Advanced Mood Analytics</li>
+            <li>🔕 Ad-free experience</li>
+        </ul>
 
-  <section
-    id="horoscopeScreen"
-    class="screen"
-  >
-
-    <div class="greeting">
-
-      <small>Daily guidance</small>
-
-      <h2>Your Horoscope 🔮</h2>
-
+        <button class="primary" onclick="showView('premium')">
+            Explore Premium
+        </button>
     </div>
 
+</section>
+
+
+<!-- ======================================================
+HOROSCOPE
+====================================================== -->
+
+<section id="horoscope" class="view">
+
+    <div class="hero">
+        <h2>Horoscope ♈</h2>
+        <p>Your daily zodiac guidance.</p>
+    </div>
 
     <div class="card">
 
-      <div class="horoscope-main">
+        <label for="zodiacSelect">Your zodiac sign</label>
 
-        <div
-          class="zodiac-symbol"
-          id="zodiacSymbol2"
-        >
-          ♈
-        </div>
-
-        <div>
-
-          <div
-            class="horoscope-name"
-            id="horoscopeName2"
-          >
-            Aries
-          </div>
-
-          <div
-            class="vedic-name"
-            id="vedicName2"
-          >
-            Mesha
-          </div>
-
-        </div>
-
-      </div>
-
-      <p
-        class="reading"
-        id="horoscopeReading2"
-      ></p>
-
-      <button
-        class="primary-btn"
-        onclick="openHoroscopeSelector()"
-      >
-        Choose Horoscope
-      </button>
+        <select id="zodiacSelect" onchange="changeZodiac()">
+            <option value="Aries">♈ Aries — Mesha</option>
+            <option value="Taurus">♉ Taurus — Vrishabha</option>
+            <option value="Gemini">♊ Gemini — Mithuna</option>
+            <option value="Cancer">♋ Cancer — Karka</option>
+            <option value="Leo">♌ Leo — Simha</option>
+            <option value="Virgo">♍ Virgo — Kanya</option>
+            <option value="Libra">♎ Libra — Tula</option>
+            <option value="Scorpio">♏ Scorpio — Vrishchika</option>
+            <option value="Sagittarius">♐ Sagittarius — Dhanu</option>
+            <option value="Capricorn">♑ Capricorn — Makara</option>
+            <option value="Aquarius">♒ Aquarius — Kumbha</option>
+            <option value="Pisces">♓ Pisces — Meena</option>
+        </select>
 
     </div>
 
+    <div class="card zodiac-card">
+
+        <div class="zodiac-main">
+
+            <div class="zodiac-symbol" id="zodiacSymbol">♈</div>
+
+            <div>
+                <div class="zodiac-name" id="zodiacName">Aries</div>
+                <div class="zodiac-sub" id="zodiacVedic">Mesha</div>
+            </div>
+
+        </div>
+
+        <div class="reading" id="horoscopeReading">
+            Today is a good day to take initiative. Trust your ideas and move forward with confidence.
+        </div>
+
+    </div>
 
     <div class="card">
 
-      <div class="card-title">
-
-        <div class="card-title-left">
-
-          <div class="section-icon">✨</div>
-
-          <div>
-            <h3>Daily Quote</h3>
-            <span>A little inspiration for today</span>
-          </div>
-
+        <div class="card-title">
+            <h3>Morning Horoscope Notification</h3>
+            <span>🔔</span>
         </div>
 
-      </div>
+        <p style="color:var(--muted);line-height:1.5;font-size:13px;">
+            Turn on notifications to receive your daily horoscope in the morning.
+        </p>
 
-      <p
-        class="quote-text"
-        id="quoteText2"
-      ></p>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       TAROT
-  ====================================================== -->
-
-  <section
-    id="tarotScreen"
-    class="screen"
-  >
-
-    <div class="greeting">
-
-      <small>Daily guidance</small>
-
-      <h2>Today's Tarot 🃏</h2>
+        <button class="primary" onclick="enableNotifications()">
+            Enable Morning Notification
+        </button>
 
     </div>
 
+</section>
+
+
+<!-- ======================================================
+TAROT
+====================================================== -->
+
+<section id="tarot" class="view">
+
+    <div class="hero">
+        <h2>Daily Tarot 🃏</h2>
+        <p>One free card every day for a little guidance.</p>
+    </div>
 
     <div class="card tarot-card">
 
-      <p class="tarot-intro">
-        You get one free Tarot card every day.
-        Your card is selected for today's guidance.
-      </p>
+        <div class="tarot-image" id="tarotImage">🃏</div>
 
-      <button
-        class="tarot-button"
-        id="tarotButton2"
-        onclick="pullTarot()"
-      >
-        Reveal Today's Card ✨
-      </button>
-
-
-      <div
-        class="tarot-result"
-        id="tarotResult2"
-      >
-
-        <div class="tarot-visual">
-
-          <div
-            class="tarot-symbol"
-            id="tarotSymbol2"
-          ></div>
-
-          <div
-            class="tarot-name"
-            id="tarotName2"
-          ></div>
-
+        <div class="tarot-name" id="tarotName">
+            Today's card
         </div>
 
-        <div class="tarot-section">
-
-          <strong>Meaning</strong>
-
-          <p id="tarotMeaning2"></p>
-
+        <div class="tarot-description" id="tarotMeaning">
+            Your one free card is waiting.
         </div>
 
-        <div class="tarot-section">
+        <div id="tarotAdvice" style="margin-top:12px;color:#ddd7e8;line-height:1.55;"></div>
 
-          <strong>Advice</strong>
-
-          <p id="tarotAdvice2"></p>
-
-        </div>
-
-      </div>
+        <button class="primary" id="tarotButton" onclick="pullTarot()">
+            Pull One Free Card
+        </button>
 
     </div>
 
+    <div class="card premium">
 
-    <!-- PREMIUM TAROT -->
+        <span class="badge">💎 PREMIUM</span>
 
-    <div class="feature-card"
-         style="margin-bottom:15px;">
+        <h3>Three-card Tarot spread</h3>
 
-      <div class="premium-badge">
-        💎 Premium
-      </div>
+        <p style="color:var(--muted);line-height:1.55;margin-top:8px;">
+            Explore your past, present and future with a full three-card reading.
+        </p>
 
-      <div class="feature-icon">🃏</div>
-
-      <h3>Three-Card Tarot</h3>
-
-      <p>
-        Past · Present · Future.
-        Unlock a deeper Tarot reading.
-      </p>
-
-      <span class="coming-badge">
-        Coming Soon
-      </span>
-
-      <button
-        onclick="showPremiumComingSoon()"
-      >
-        💎 Premium Coming Soon
-      </button>
+        <button class="primary" onclick="showView('premium')">
+            Available Soon
+        </button>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =====================================================
-       INSIGHTS
-  ====================================================== -->
+<!-- ======================================================
+EXPLORE
+====================================================== -->
 
-  <section
-    id="insightsScreen"
-    class="screen"
-  >
+<section id="features" class="view">
 
-    <div class="greeting">
-
-      <small>Explore your personal insights</small>
-
-      <h2>Discover More 🌙</h2>
-
+    <div class="hero">
+        <h2>Explore ✨</h2>
+        <p>Tools for reflection, connection and self-discovery.</p>
     </div>
-
 
     <div class="feature-grid">
 
-
-      <!-- BIRTH CHART -->
-
-      <div class="feature-card">
-
-        <div class="premium-badge">
-          💎 Premium
+        <div class="feature" onclick="showView('birthchart')">
+            <div class="feature-icon">🌌</div>
+            <h3>Birth Chart</h3>
+            <p>Discover your planetary placements.</p>
         </div>
 
-        <div class="feature-icon">🌌</div>
-
-        <h3>Birth Chart</h3>
-
-        <p>
-          Explore planetary placements,
-          personality patterns and cosmic influences.
-        </p>
-
-        <span class="coming-badge">
-          Premium Coming Soon
-        </span>
-
-        <button
-          onclick="showPremiumComingSoon()"
-        >
-          View Birth Chart
-        </button>
-
-      </div>
-
-
-      <!-- COMPATIBILITY -->
-
-      <div class="feature-card">
-
-        <div class="premium-badge">
-          💎 Premium
+        <div class="feature" onclick="showView('compatibility')">
+            <div class="feature-icon">💞</div>
+            <h3>Compatibility</h3>
+            <p>Compare your cosmic connection.</p>
         </div>
 
-        <div class="feature-icon">💞</div>
-
-        <h3>Compatibility</h3>
-
-        <p>
-          Discover romantic and friendship
-          compatibility between signs.
-        </p>
-
-        <span class="coming-badge">
-          Premium Coming Soon
-        </span>
-
-        <button
-          onclick="showPremiumComingSoon()"
-        >
-          Compare Signs
-        </button>
-
-      </div>
-
-
-      <!-- MOOD -->
-
-      <div class="feature-card">
-
-        <div class="feature-icon">😊</div>
-
-        <h3>Mood Analytics</h3>
-
-        <p>
-          Log your daily mood and build
-          a personal emotional journal.
-        </p>
-
-        <button
-          onclick="openMood()"
-        >
-          Track Mood
-        </button>
-
-      </div>
-
-
-      <!-- PREMIUM -->
-
-      <div class="feature-card">
-
-        <div class="premium-badge">
-          💎 Premium
+        <div class="feature" onclick="showView('mood')">
+            <div class="feature-icon">😊</div>
+            <h3>Mood Analytics</h3>
+            <p>Track how you feel each day.</p>
         </div>
 
-        <div class="feature-icon">✨</div>
-
-        <h3>Daily Aura+</h3>
-
-        <p>
-          Unlock deeper readings and
-          advanced personal insights.
-        </p>
-
-        <span class="coming-badge">
-          Premium Coming Soon
-        </span>
-
-        <button
-          onclick="openPremium()"
-        >
-          Explore Premium
-        </button>
-
-      </div>
+        <div class="feature" onclick="showView('tarot')">
+            <div class="feature-icon">🃏</div>
+            <h3>Daily Tarot</h3>
+            <p>One free card every day.</p>
+        </div>
 
     </div>
 
-
-    <!-- MOOD TRACKER -->
-
-    <div
-      id="moodArea"
-      class="card"
-      style="display:none; margin-top:15px;"
-    >
-
-      <div class="card-title">
-
-        <div class="card-title-left">
-
-          <div class="section-icon">😊</div>
-
-          <div>
-            <h3>Daily Mood</h3>
-            <span>How are you feeling today?</span>
-          </div>
-
-        </div>
-
-      </div>
-
-      <p class="reading">
-        Choose the mood that best matches
-        your day.
-      </p>
+</section>
 
 
-      <div class="mood-grid">
+<!-- ======================================================
+BIRTH CHART
+====================================================== -->
 
-        <button
-          class="mood-btn"
-          onclick="saveMood('😊','Happy')"
-        >
-          😊
-          <span>Happy</span>
-        </button>
+<section id="birthchart" class="view">
 
-        <button
-          class="mood-btn"
-          onclick="saveMood('😌','Calm')"
-        >
-          😌
-          <span>Calm</span>
-        </button>
-
-        <button
-          class="mood-btn"
-          onclick="saveMood('😐','Okay')"
-        >
-          😐
-          <span>Okay</span>
-        </button>
-
-        <button
-          class="mood-btn"
-          onclick="saveMood('😔','Sad')"
-        >
-          😔
-          <span>Sad</span>
-        </button>
-
-        <button
-          class="mood-btn"
-          onclick="saveMood('😤','Stressed')"
-        >
-          😤
-          <span>Stressed</span>
-        </button>
-
-      </div>
-
-
-      <p
-        id="moodStatus"
-        style="margin-top:15px;"
-      ></p>
-
-
-      <button
-        class="secondary-btn"
-        onclick="showPremiumComingSoon()"
-      >
-        💎 Weekly & Monthly Trends — Coming Soon
-      </button>
-
+    <div class="hero">
+        <h2>Birth Chart 🌌</h2>
+        <p>Explore the cosmic blueprint of your birth.</p>
     </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       PREMIUM
-  ====================================================== -->
-
-  <section
-    id="premiumScreen"
-    class="screen"
-  >
-
-    <div class="premium-hero">
-
-      <div class="premium-hero-icon">
-        💎
-      </div>
-
-      <h2>Daily Aura Premium</h2>
-
-      <p>
-        We're preparing deeper experiences
-        for your daily journey.
-      </p>
-
-      <button
-        class="primary-btn"
-        onclick="showPremiumComingSoon()"
-      >
-        Premium Coming Soon
-      </button>
-
-    </div>
-
 
     <div class="card">
 
-      <div class="card-title">
+        <label>Birth date</label>
+        <input type="date" id="birthDate">
 
-        <div class="card-title-left">
+        <label>Birth time</label>
+        <input type="time" id="birthTime">
 
-          <div class="section-icon">
-            💎
-          </div>
+        <label>Birth place</label>
+        <input type="text" id="birthPlace" placeholder="City, Country">
 
-          <div>
-            <h3>What's coming?</h3>
-            <span>Premium features</span>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="premium-feature-list">
-
-
-        <div class="premium-feature">
-
-          <div class="premium-feature-icon">
-            🃏
-          </div>
-
-          <div>
-
-            <h4>Three-Card Tarot</h4>
-
-            <p>
-              Past, Present and Future spread.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="premium-feature">
-
-          <div class="premium-feature-icon">
-            🌌
-          </div>
-
-          <div>
-
-            <h4>Full Birth Chart</h4>
-
-            <p>
-              Detailed planetary analysis.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="premium-feature">
-
-          <div class="premium-feature-icon">
-            💞
-          </div>
-
-          <div>
-
-            <h4>Detailed Compatibility</h4>
-
-            <p>
-              Deeper relationship insights and comparisons.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="premium-feature">
-
-          <div class="premium-feature-icon">
-            😊
-          </div>
-
-          <div>
-
-            <h4>Advanced Mood Analytics</h4>
-
-            <p>
-              Weekly and monthly mood trends.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
+        <button class="primary" onclick="saveBirthChart()">
+            Save Birth Information
+        </button>
 
     </div>
 
+    <div class="card premium">
 
-    <button
-      class="secondary-btn"
-      onclick="showScreen('insightsScreen')"
-    >
-      ← Back to Insights
-    </button>
+        <span class="badge">💎 PREMIUM</span>
 
-  </section>
+        <h3>Full Birth Chart Analysis</h3>
 
+        <p style="color:var(--muted);line-height:1.55;margin-top:8px;">
+            Get a detailed interpretation of your planets, houses, signs and
+            cosmic patterns.
+        </p>
 
-  <!-- =====================================================
-       SETTINGS
-  ====================================================== -->
-
-  <section
-    id="settingsScreen"
-    class="screen"
-  >
-
-    <div class="greeting">
-
-      <small>Personalize Daily Aura</small>
-
-      <h2>Settings ⚙️</h2>
+        <button class="primary" onclick="showView('premium')">
+            Available Soon
+        </button>
 
     </div>
 
+</section>
+
+
+<!-- ======================================================
+COMPATIBILITY
+====================================================== -->
+
+<section id="compatibility" class="view">
+
+    <div class="hero">
+        <h2>Compatibility 💞</h2>
+        <p>Explore the energy between two zodiac signs.</p>
+    </div>
 
     <div class="card">
 
+        <label>Your sign</label>
 
-      <div class="setting-row">
+        <select id="compatibilityOne">
+            <option>Aries</option>
+            <option>Taurus</option>
+            <option>Gemini</option>
+            <option>Cancer</option>
+            <option>Leo</option>
+            <option>Virgo</option>
+            <option>Libra</option>
+            <option>Scorpio</option>
+            <option>Sagittarius</option>
+            <option>Capricorn</option>
+            <option>Aquarius</option>
+            <option>Pisces</option>
+        </select>
 
-        <div class="setting-info">
+        <label>Other sign</label>
 
-          <h4>🔔 Morning Notifications</h4>
+        <select id="compatibilityTwo">
+            <option>Aries</option>
+            <option>Taurus</option>
+            <option>Gemini</option>
+            <option>Cancer</option>
+            <option>Leo</option>
+            <option>Virgo</option>
+            <option>Libra</option>
+            <option>Scorpio</option>
+            <option>Sagittarius</option>
+            <option>Capricorn</option>
+            <option>Aquarius</option>
+            <option>Pisces</option>
+        </select>
 
-          <p>
-            Daily horoscope and quote notifications.
-          </p>
-
-        </div>
-
-        <button
-          class="setting-action"
-          onclick="toggleNotifications()"
-        >
-          Toggle
+        <button class="primary" onclick="checkCompatibility()">
+            Check Compatibility
         </button>
-
-      </div>
-
-
-      <div class="setting-row">
-
-        <div class="setting-info">
-
-          <h4>🔮 Horoscope</h4>
-
-          <p id="settingsHoroscope">
-            Aries
-          </p>
-
-        </div>
-
-        <button
-          class="setting-action"
-          onclick="openHoroscopeSelector()"
-        >
-          Change
-        </button>
-
-      </div>
-
-
-      <div class="setting-row">
-
-        <div class="setting-info">
-
-          <h4>🌐 Language</h4>
-
-          <p>
-            English
-          </p>
-
-        </div>
-
-        <button
-          class="setting-action"
-          onclick="showToast('More languages coming soon.')"
-        >
-          English
-        </button>
-
-      </div>
-
-
-      <div class="setting-row">
-
-        <div class="setting-info">
-
-          <h4>👤 Account</h4>
-
-          <p>
-            Sign in once to save your preferences.
-          </p>
-
-        </div>
-
-        <button
-          class="setting-action"
-          onclick="showToast('Account system coming soon.')"
-        >
-          Sign In
-        </button>
-
-      </div>
-
-
-      <div class="setting-row">
-
-        <div class="setting-info">
-
-          <h4>💎 Premium</h4>
-
-          <p>
-            Premium features are coming soon.
-          </p>
-
-        </div>
-
-        <button
-          class="setting-action"
-          onclick="openPremium()"
-        >
-          View
-        </button>
-
-      </div>
-
-
-      <div class="setting-row">
-
-        <div class="setting-info">
-
-          <h4>📲 Install App</h4>
-
-          <p>
-            Add Daily Aura to your home screen.
-          </p>
-
-        </div>
-
-        <button
-          class="setting-action"
-          onclick="installApp()"
-        >
-          Install
-        </button>
-
-      </div>
-
-
-      <div class="setting-row">
-
-        <div class="setting-info">
-
-          <h4>ℹ️ About</h4>
-
-          <p>
-            Daily Aura ✨
-          </p>
-
-        </div>
-
-        <button
-          class="setting-action"
-          onclick="showAbout()"
-        >
-          About
-        </button>
-
-      </div>
 
     </div>
 
-  </section>
+    <div class="card" id="compatibilityResult" style="display:none;"></div>
+
+    <div class="card premium">
+
+        <span class="badge">💎 PREMIUM</span>
+
+        <h3>Unlimited Compatibility Reports</h3>
+
+        <p style="color:var(--muted);line-height:1.55;margin-top:8px;">
+            Unlock detailed romantic and friendship compatibility reports.
+        </p>
+
+        <button class="primary" onclick="showView('premium')">
+            Available Soon
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+MOOD
+====================================================== -->
+
+<section id="mood" class="view">
+
+    <div class="hero">
+        <h2>Mood Analytics 😊</h2>
+        <p>Check in with yourself and notice your patterns.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="card-title">
+            <h3>How are you feeling today?</h3>
+            <span>😊</span>
+        </div>
+
+        <div class="mood-grid">
+
+            <button class="mood-btn" onclick="selectMood(this,'😄')">😄</button>
+            <button class="mood-btn" onclick="selectMood(this,'🙂')">🙂</button>
+            <button class="mood-btn" onclick="selectMood(this,'😐')">😐</button>
+            <button class="mood-btn" onclick="selectMood(this,'😔')">😔</button>
+            <button class="mood-btn" onclick="selectMood(this,'😣')">😣</button>
+
+        </div>
+
+        <button class="primary" onclick="saveMood()">
+            Save Today's Mood
+        </button>
+
+    </div>
+
+    <div class="card">
+        <h3>Your Recent Mood</h3>
+        <p id="moodHistory" style="color:var(--muted);margin-top:10px;">
+            No mood entries yet.
+        </p>
+    </div>
+
+    <div class="card premium">
+
+        <span class="badge">💎 PREMIUM</span>
+
+        <h3>Advanced Mood Analytics</h3>
+
+        <p style="color:var(--muted);line-height:1.55;margin-top:8px;">
+            Unlock weekly and monthly mood trends and deeper insights.
+        </p>
+
+        <button class="primary" onclick="showView('premium')">
+            Available Soon
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+ACCOUNT
+====================================================== -->
+
+<section id="account" class="view">
+
+    <div class="hero">
+        <h2>Account 👤</h2>
+        <p>Save your Daily Aura profile and history.</p>
+    </div>
+
+    <div id="signedOutAccount">
+
+        <div class="card">
+
+            <div class="account-avatar">✨</div>
+
+            <h3>Sign in to Daily Aura</h3>
+
+            <p class="account-status">
+                Sign in to save your profile, Tarot history,
+                moods, preferences and other app data.
+            </p>
+
+            <label>Email</label>
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="you@example.com"
+                autocomplete="email"
+            >
+
+            <label>Password</label>
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Your password"
+                autocomplete="current-password"
+            >
+
+            <button class="primary" onclick="emailLogin()">
+                Sign In
+            </button>
+
+            <button class="secondary" onclick="createAccount()">
+                Create Account
+            </button>
+
+            <div class="divider">
+                OR
+            </div>
+
+            <button class="google-btn" onclick="googleLogin()">
+                🔵 Continue with Google
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="signedInAccount" style="display:none;">
+
+        <div class="card">
+
+            <div class="account-avatar">👤</div>
+
+            <h3 id="accountName">Daily Aura User</h3>
+
+            <p class="account-status" id="accountEmail"></p>
+
+            <div class="billing-item">
+                <span>Plan</span>
+                <strong id="accountPlan">Free</strong>
+            </div>
+
+            <div class="billing-item">
+                <span>Horoscope</span>
+                <strong id="accountSign">Aries</strong>
+            </div>
+
+            <div class="billing-item">
+                <span>Language</span>
+                <strong id="accountLanguage">English</strong>
+            </div>
+
+            <button class="secondary" onclick="showView('billing')">
+                💳 Billing & Subscription
+            </button>
+
+            <button class="secondary" onclick="logout()">
+                Sign Out
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-title">
+                <h3>Saved App History</h3>
+                <span>📚</span>
+            </div>
+
+            <p style="color:var(--muted);line-height:1.6;">
+                Your Tarot pulls, mood entries, compatibility activity
+                and saved preferences will appear here after backend
+                storage is connected.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+BILLING
+====================================================== -->
+
+<section id="billing" class="view">
+
+    <div class="hero">
+        <h2>Billing & Subscription 💳</h2>
+        <p>Manage your Daily Aura membership.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="billing-item">
+            <span>Current plan</span>
+            <strong>Free</strong>
+        </div>
+
+        <div class="billing-item">
+            <span>Subscription</span>
+            <span class="coming">AVAILABLE SOON</span>
+        </div>
+
+        <div class="billing-item">
+            <span>Payment provider</span>
+            <span>Stripe — Coming Soon</span>
+        </div>
+
+        <button class="primary" onclick="showToast('Stripe billing will be available soon.')">
+            Upgrade — Coming Soon
+        </button>
+
+    </div>
+
+    <div class="card premium">
+
+        <span class="badge">💎 PREMIUM</span>
+
+        <h3>Daily Aura Premium</h3>
+
+        <ul>
+            <li>🃏 3-card Tarot spreads</li>
+            <li>🌌 Full Birth Chart</li>
+            <li>💞 Unlimited Compatibility</li>
+            <li>😊 Advanced Mood Analytics</li>
+            <li>🔕 Ad-free experience</li>
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+PREMIUM
+====================================================== -->
+
+<section id="premium" class="view">
+
+    <div class="hero">
+        <h2>Daily Aura Premium 💎</h2>
+        <p>Go deeper into your daily cosmic journey.</p>
+    </div>
+
+    <div class="card premium">
+
+        <span class="badge">COMING SOON</span>
+
+        <h3>Premium is on the way ✨</h3>
+
+        <p style="color:var(--muted);line-height:1.65;margin-top:10px;">
+            Premium subscriptions and Stripe payments will be available soon.
+            You can continue using all available free Daily Aura features.
+        </p>
+
+        <ul>
+            <li>🃏 Full 3-card Tarot spreads</li>
+            <li>🌌 Full Birth Chart Analysis</li>
+            <li>💞 Unlimited Compatibility Reports</li>
+            <li>😊 Weekly & Monthly Mood Analytics</li>
+            <li>🔕 Ad-free experience</li>
+        </ul>
+
+        <button class="primary" onclick="showToast('Premium subscriptions are coming soon.')">
+            Notify Me — Coming Soon
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+SETTINGS
+====================================================== -->
+
+<section id="settings" class="view">
+
+    <div class="hero">
+        <h2>Settings ⚙️</h2>
+        <p>Customize your Daily Aura experience.</p>
+    </div>
+
+    <div class="card">
+
+        <div class="setting-row">
+
+            <div>
+                <h4>Language 🌍</h4>
+                <p>Choose your preferred language.</p>
+            </div>
+
+            <select
+                id="languageSelect"
+                onchange="changeLanguage()"
+                style="width:145px;"
+            >
+                <option value="en">English</option>
+                <option value="ne">नेपाली</option>
+                <option value="hi">हिन्दी</option>
+                <option value="bn">বাংলা</option>
+                <option value="ur">اردو</option>
+                <option value="id">Bahasa Indonesia</option>
+                <option value="ms">Malay</option>
+                <option value="th">ไทย</option>
+                <option value="vi">Tiếng Việt</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="uk">Українська</option>
+                <option value="tr">Türkçe</option>
+                <option value="ar">العربية</option>
+                <option value="he">עברית</option>
+                <option value="fa">فارسی</option>
+                <option value="el">Ελληνικά</option>
+                <option value="nl">Nederlands</option>
+                <option value="sv">Svenska</option>
+                <option value="no">Norsk</option>
+                <option value="da">Dansk</option>
+                <option value="fi">Suomi</option>
+                <option value="pl">Polski</option>
+                <option value="cs">Čeština</option>
+                <option value="ro">Română</option>
+                <option value="hu">Magyar</option>
+                <option value="ta">தமிழ்</option>
+                <option value="te">తెలుగు</option>
+                <option value="mr">मराठी</option>
+                <option value="gu">ગુજરાતી</option>
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="ml">മലയാളം</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+            </select>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div>
+                <h4>Morning Horoscope 🔔</h4>
+                <p>Receive your horoscope each morning.</p>
+            </div>
+
+            <button
+                class="toggle"
+                id="horoscopeToggle"
+                onclick="toggleSetting('horoscopeToggle')"
+            ></button>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div>
+                <h4>Daily Quote 🔔</h4>
+                <p>Receive your daily quote each morning.</p>
+            </div>
+
+            <button
+                class="toggle"
+                id="quoteToggle"
+                onclick="toggleSetting('quoteToggle')"
+            ></button>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div>
+                <h4>Daily Tarot 🔔</h4>
+                <p>Receive your daily Tarot notification.</p>
+            </div>
+
+            <button
+                class="toggle"
+                id="tarotToggle"
+                onclick="toggleSetting('tarotToggle')"
+            ></button>
+
+        </div>
+
+    </div>
+
+</section>
 
 </main>
 
 
-<!-- =====================================================
-     HOROSCOPE SELECTOR
-====================================================== -->
-
-<div
-  class="modal"
-  id="horoscopeModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-header">
-
-      <h3>Choose your Horoscope</h3>
-
-      <button
-        class="close-btn"
-        onclick="closeHoroscopeSelector()"
-        aria-label="Close"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <div
-      class="sign-grid"
-      id="signGrid"
-    ></div>
-
-  </div>
-
-</div>
-
-
-<!-- TOAST -->
-
-<div
-  class="toast"
-  id="toast"
-></div>
-
-
-<!-- =====================================================
-     BOTTOM NAVIGATION
+<!-- ======================================================
+BOTTOM NAVIGATION
 ====================================================== -->
 
 <nav class="bottom-nav">
 
-  <button
-    class="nav-item active"
-    onclick="navigate('homeScreen',this)"
-  >
-    <span>✨</span>
-    Home
-  </button>
+    <button class="active" data-view="home">
+        <span>✨</span>
+        Home
+    </button>
 
-  <button
-    class="nav-item"
-    onclick="navigate('horoscopeScreen',this)"
-  >
-    <span>🔮</span>
-    Horoscope
-  </button>
+    <button data-view="horoscope">
+        <span>♈</span>
+        Horoscope
+    </button>
 
-  <button
-    class="nav-item"
-    onclick="navigate('tarotScreen',this)"
-  >
-    <span>🃏</span>
-    Tarot
-  </button>
+    <button data-view="tarot">
+        <span>🃏</span>
+        Tarot
+    </button>
 
-  <button
-    class="nav-item"
-    onclick="navigate('insightsScreen',this)"
-  >
-    <span>🌙</span>
-    Insights
-  </button>
+    <button data-view="features">
+        <span>🌌</span>
+        Explore
+    </button>
 
-  <button
-    class="nav-item"
-    onclick="navigate('settingsScreen',this)"
-  >
-    <span>⚙️</span>
-    Settings
-  </button>
+    <button data-view="settings">
+        <span>⚙️</span>
+        Settings
+    </button>
 
 </nav>
+
+</div>
+
+<div class="toast" id="toast"></div>
 
 
 <script>
 
-/* =====================================================
-   DAILY AURA
-   FRONTEND LOGIC
-====================================================== */
+/* =========================================================
+DAILY AURA FRONTEND
+========================================================= */
+
+const API_URL = window.DAILY_AURA_API_URL || "";
 
 
-/*
-  BACKEND CONNECTION
-
-  Leave this empty while testing the frontend.
-
-  Later, when Render is ready, change it to:
-
-  const API_URL =
-    "https://YOUR-RENDER-APP.onrender.com";
-*/
-
-const API_URL = "";
-
-
-/* =====================================================
-   HOROSCOPES
-====================================================== */
+/* =========================================================
+HOROSCOPES
+========================================================= */
 
 const HOROSCOPES = {
 
-  Aries: {
-    symbol: "♈",
-    vedic: "Mesha",
-    reading:
-      "Today is a good day to take initiative. Trust your ideas and move forward with confidence."
-  },
+    Aries: {
+        symbol: "♈",
+        vedic: "Mesha",
+        reading: "Today is a good day to take initiative. Trust your ideas and move forward with confidence."
+    },
 
-  Taurus: {
-    symbol: "♉",
-    vedic: "Vrishabha",
-    reading:
-      "Patience can bring better results today. Focus on steady progress."
-  },
+    Taurus: {
+        symbol: "♉",
+        vedic: "Vrishabha",
+        reading: "Patience can bring better results today. Focus on steady progress."
+    },
 
-  Gemini: {
-    symbol: "♊",
-    vedic: "Mithuna",
-    reading:
-      "Communication is your strength today. A conversation may open a new opportunity."
-  },
+    Gemini: {
+        symbol: "♊",
+        vedic: "Mithuna",
+        reading: "Communication is your strength today. A conversation may open a new opportunity."
+    },
 
-  Cancer: {
-    symbol: "♋",
-    vedic: "Karka",
-    reading:
-      "Listen to your intuition today. Spend quality time with people you care about."
-  },
+    Cancer: {
+        symbol: "♋",
+        vedic: "Karka",
+        reading: "Listen to your intuition today. Spend some quality time with people you care about."
+    },
 
-  Leo: {
-    symbol: "♌",
-    vedic: "Simha",
-    reading:
-      "Your confidence can attract attention today. Use your energy wisely."
-  },
+    Leo: {
+        symbol: "♌",
+        vedic: "Simha",
+        reading: "Your confidence can attract attention today. Use your energy wisely."
+    },
 
-  Virgo: {
-    symbol: "♍",
-    vedic: "Kanya",
-    reading:
-      "Small details matter today. Organize your priorities and stay focused."
-  },
+    Virgo: {
+        symbol: "♍",
+        vedic: "Kanya",
+        reading: "Small details matter today. Organize your priorities and stay focused."
+    },
 
-  Libra: {
-    symbol: "♎",
-    vedic: "Tula",
-    reading:
-      "Balance is important today. Think carefully before making decisions."
-  },
+    Libra: {
+        symbol: "♎",
+        vedic: "Tula",
+        reading: "Balance is important today. Think carefully before making decisions."
+    },
 
-  Scorpio: {
-    symbol: "♏",
-    vedic: "Vrishchika",
-    reading:
-      "Your determination is strong today. Focus that energy on one meaningful goal."
-  },
+    Scorpio: {
+        symbol: "♏",
+        vedic: "Vrishchika",
+        reading: "Your determination is strong today. Focus that energy on one meaningful goal."
+    },
 
-  Sagittarius: {
-    symbol: "♐",
-    vedic: "Dhanu",
-    reading:
-      "A fresh perspective can change your day. Stay curious and explore new ideas."
-  },
+    Sagittarius: {
+        symbol: "♐",
+        vedic: "Dhanu",
+        reading: "A fresh perspective can change your day. Stay curious and explore new ideas."
+    },
 
-  Capricorn: {
-    symbol: "♑",
-    vedic: "Makara",
-    reading:
-      "Consistent effort is your advantage today. Keep working toward your long-term goals."
-  },
+    Capricorn: {
+        symbol: "♑",
+        vedic: "Makara",
+        reading: "Consistent effort is your advantage today. Keep working toward your long-term goals."
+    },
 
-  Aquarius: {
-    symbol: "♒",
-    vedic: "Kumbha",
-    reading:
-      "An original idea may be worth pursuing today. Share your thoughts with others."
-  },
+    Aquarius: {
+        symbol: "♒",
+        vedic: "Kumbha",
+        reading: "An original idea may be worth pursuing today. Share your thoughts with others."
+    },
 
-  Pisces: {
-    symbol: "♓",
-    vedic: "Meena",
-    reading:
-      "Your creativity and empathy are strong today. Give yourself some quiet time."
-  }
+    Pisces: {
+        symbol: "♓",
+        vedic: "Meena",
+        reading: "Your creativity and empathy are strong today. Give yourself some quiet time."
+    }
 
 };
 
 
-/* =====================================================
-   DAILY QUOTES
-====================================================== */
+/* =========================================================
+QUOTES
+========================================================= */
 
 const QUOTES = [
 
-  "Small steps every day create big changes.",
+    "Small steps every day create big changes.",
 
-  "Your future is created by what you do today.",
+    "Your future is created by what you do today.",
 
-  "A calm mind can find a way forward.",
+    "A calm mind can find a way forward.",
 
-  "Believe in the progress you cannot yet see.",
+    "Believe in the progress you cannot yet see.",
 
-  "Start where you are. Make today count.",
+    "Start where you are. Make today count.",
 
-  "You don't need to be perfect. Just keep moving.",
+    "You don't need to be perfect. Just keep moving.",
 
-  "Every morning is another chance to begin again.",
+    "Every morning is another chance to begin again.",
 
-  "Your energy today becomes your momentum tomorrow.",
+    "Protect your peace and trust your journey.",
 
-  "Protect your peace and trust your journey.",
+    "You are allowed to grow at your own pace.",
 
-  "Good things can grow from small beginnings."
+    "Today can be softer than yesterday."
 
 ];
 
 
-/* =====================================================
-   TAROT
-====================================================== */
+/* =========================================================
+TAROT
+========================================================= */
 
 const TAROT_CARDS = [
 
-  {
-    name: "The Fool",
-    symbol: "🌟",
-    meaning:
-      "A new beginning is opening before you. Stay curious and trust yourself.",
-    advice:
-      "Don't be afraid to start something new."
-  },
+    {
+        name: "The Star",
+        emoji: "⭐",
+        meaning: "Hope, renewal and a sense of direction are surrounding you.",
+        advice: "Keep believing in the path ahead. Small positive actions can restore your confidence."
+    },
 
-  {
-    name: "The Magician",
-    symbol: "✨",
-    meaning:
-      "You have the skills and resources needed to turn an idea into reality.",
-    advice:
-      "Use what you already have and take action."
-  },
+    {
+        name: "The Sun",
+        emoji: "☀️",
+        meaning: "Joy, clarity and positive energy are highlighted today.",
+        advice: "Let yourself enjoy the good moments and share your positive energy."
+    },
 
-  {
-    name: "The High Priestess",
-    symbol: "🌙",
-    meaning:
-      "Your intuition is especially strong today.",
-    advice:
-      "Slow down and listen to your intuition."
-  },
+    {
+        name: "The Moon",
+        emoji: "🌙",
+        meaning: "Your intuition is active, but not everything may be clear yet.",
+        advice: "Take your time. Trust your intuition without rushing into conclusions."
+    },
 
-  {
-    name: "The Empress",
-    symbol: "🌸",
-    meaning:
-      "Growth, creativity and abundance surround you.",
-    advice:
-      "Nurture yourself and what matters to you."
-  },
+    {
+        name: "The Fool",
+        emoji: "🌟",
+        meaning: "A new beginning or fresh opportunity may be appearing.",
+        advice: "Be open to something new, while keeping your feet grounded."
+    },
 
-  {
-    name: "The Emperor",
-    symbol: "👑",
-    meaning:
-      "Structure and discipline can help you create stability.",
-    advice:
-      "Take control of what you can."
-  },
+    {
+        name: "The Magician",
+        emoji: "✨",
+        meaning: "You have more ability and resources than you may realize.",
+        advice: "Focus your energy and turn one idea into action."
+    },
 
-  {
-    name: "The Lovers",
-    symbol: "💞",
-    meaning:
-      "Connection and important choices are highlighted today.",
-    advice:
-      "Choose with honesty and intention."
-  },
+    {
+        name: "The Empress",
+        emoji: "🌸",
+        meaning: "Creativity, growth and nurturing energy surround you.",
+        advice: "Give attention to what you want to grow in your life."
+    },
 
-  {
-    name: "The Chariot",
-    symbol: "🏆",
-    meaning:
-      "Determination can move you forward.",
-    advice:
-      "Stay focused on your direction."
-  },
+    {
+        name: "Strength",
+        emoji: "🦁",
+        meaning: "Inner courage and emotional strength are highlighted.",
+        advice: "You do not need force. Calm confidence can be your strongest tool."
+    },
 
-  {
-    name: "Strength",
-    symbol: "🦁",
-    meaning:
-      "Real strength comes from patience, compassion and confidence.",
-    advice:
-      "Be patient with yourself and others."
-  },
+    {
+        name: "The Hermit",
+        emoji: "🕯️",
+        meaning: "Reflection and quiet thinking may bring useful answers.",
+        advice: "Give yourself some peaceful space before making an important decision."
+    },
 
-  {
-    name: "The Star",
-    symbol: "⭐",
-    meaning:
-      "Hope and renewal are highlighted today.",
-    advice:
-      "Let hope guide your next step."
-  },
+    {
+        name: "Wheel of Fortune",
+        emoji: "🎡",
+        meaning: "Change and movement may be entering your life.",
+        advice: "Stay flexible and notice opportunities created by unexpected changes."
+    },
 
-  {
-    name: "The Sun",
-    symbol: "☀️",
-    meaning:
-      "Positive energy, clarity and confidence are around you.",
-    advice:
-      "Let yourself enjoy today's good moments."
-  },
-
-  {
-    name: "The Moon",
-    symbol: "🌙",
-    meaning:
-      "Not everything is clear yet. Give yourself time.",
-    advice:
-      "Look beyond first impressions."
-  },
-
-  {
-    name: "The World",
-    symbol: "🌎",
-    meaning:
-      "A cycle may be reaching completion.",
-    advice:
-      "Celebrate progress and prepare for what's next."
-  }
+    {
+        name: "The World",
+        emoji: "🌍",
+        meaning: "Completion, growth and a new chapter are highlighted.",
+        advice: "Recognize how far you have come before beginning the next chapter."
+    }
 
 ];
 
 
-/* =====================================================
-   INITIALIZATION
-====================================================== */
+/* =========================================================
+STATE
+========================================================= */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+let selectedMood = null;
 
-    updateDate();
+let signedIn = false;
 
-    buildHoroscopeSelector();
+let currentUser = null;
 
-    loadSavedHoroscope();
+let settings = JSON.parse(
+    localStorage.getItem("dailyAuraSettings") || "{}"
+);
 
-    loadQuote();
-
-    loadTarot();
-
-    loadSavedMood();
-
-    loadNotificationState();
-
-    registerServiceWorker();
-
-  }
+let savedHistory = JSON.parse(
+    localStorage.getItem("dailyAuraHistory") || "{}"
 );
 
 
-/* =====================================================
-   NAVIGATION
-====================================================== */
+/* =========================================================
+INITIALIZATION
+========================================================= */
 
-function navigate(screenId, button) {
+document.addEventListener("DOMContentLoaded", () => {
 
-  showScreen(screenId);
+    initializeDate();
 
-  document
-    .querySelectorAll(".nav-item")
-    .forEach(item => {
-      item.classList.remove("active");
-    });
+    initializeQuote();
 
-  if (button) {
-    button.classList.add("active");
-  }
+    initializeZodiac();
+
+    initializeSettings();
+
+    initializeHistory();
+
+    setupNavigation();
+
+});
+
+
+/* =========================================================
+DATE
+========================================================= */
+
+function initializeDate() {
+
+    const now = new Date();
+
+    document.getElementById("todayDate").textContent =
+        now.toLocaleDateString(
+            undefined,
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
 
 }
 
 
-function showScreen(screenId) {
+/* =========================================================
+QUOTE
+========================================================= */
 
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-      screen.classList.remove("active");
-    });
+function initializeQuote() {
 
-  const screen =
-    document.getElementById(screenId);
+    const now = new Date();
 
-  if (screen) {
-    screen.classList.add("active");
-  }
+    const day =
+        Math.floor(
+            (
+                Date.UTC(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate()
+                )
+                -
+                Date.UTC(
+                    now.getFullYear(),
+                    0,
+                    0
+                )
+            ) / 86400000
+        );
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+    const quote =
+        QUOTES[
+            (day - 1) % QUOTES.length
+        ];
+
+    document.getElementById("dailyQuote").textContent =
+        quote;
 
 }
 
 
-/* =====================================================
-   DATE
-====================================================== */
+/* =========================================================
+ZODIAC
+========================================================= */
 
-function updateDate() {
+function initializeZodiac() {
 
-  const date = new Date();
+    const saved =
+        localStorage.getItem(
+            "dailyAuraHoroscope"
+        ) || "Aries";
 
-  document.getElementById(
-    "todayText"
-  ).textContent =
-    date.toLocaleDateString(
-      "en-US",
-      {
-        weekday: "long",
-        month: "long",
-        day: "numeric"
-      }
+    document.getElementById(
+        "zodiacSelect"
+    ).value = saved;
+
+    updateZodiac(saved);
+
+}
+
+
+function changeZodiac() {
+
+    const sign =
+        document.getElementById(
+            "zodiacSelect"
+        ).value;
+
+    localStorage.setItem(
+        "dailyAuraHoroscope",
+        sign
+    );
+
+    updateZodiac(sign);
+
+    showToast(
+        `${sign} saved as your horoscope.`
     );
 
 }
 
 
-/* =====================================================
-   HOROSCOPE SELECTOR
-====================================================== */
+function updateZodiac(sign) {
 
-function buildHoroscopeSelector() {
+    const data =
+        HOROSCOPES[sign];
 
-  const grid =
-    document.getElementById("signGrid");
+    if (!data) return;
 
-  grid.innerHTML = "";
+    document.getElementById(
+        "zodiacSymbol"
+    ).textContent = data.symbol;
 
-  Object.entries(HOROSCOPES)
-    .forEach(([name, data]) => {
+    document.getElementById(
+        "zodiacName"
+    ).textContent = sign;
 
-      const button =
-        document.createElement("button");
+    document.getElementById(
+        "zodiacVedic"
+    ).textContent = data.vedic;
 
-      button.className = "sign-btn";
-
-      button.innerHTML = `
-        <span class="symbol">
-          ${data.symbol}
-        </span>
-
-        <span class="name">
-          ${name}
-        </span>
-      `;
-
-      button.onclick = () =>
-        selectHoroscope(name);
-
-      grid.appendChild(button);
-
-    });
-
-}
+    document.getElementById(
+        "horoscopeReading"
+    ).textContent = data.reading;
 
 
-function openHoroscopeSelector() {
+    document.getElementById(
+        "homeZodiacSymbol"
+    ).textContent = data.symbol;
 
-  document
-    .getElementById("horoscopeModal")
-    .classList.add("show");
+    document.getElementById(
+        "homeZodiacName"
+    ).textContent = sign;
+
+    document.getElementById(
+        "homeZodiacVedic"
+    ).textContent = data.vedic;
+
+    document.getElementById(
+        "homeHoroscope"
+    ).textContent = data.reading;
 
 }
 
 
-function closeHoroscopeSelector() {
-
-  document
-    .getElementById("horoscopeModal")
-    .classList.remove("show");
-
-}
-
-
-function selectHoroscope(name) {
-
-  const data =
-    HOROSCOPES[name];
-
-  if (!data) {
-    return;
-  }
-
-
-  const elements = [
-
-    ["zodiacSymbol", data.symbol],
-    ["horoscopeName", name],
-    ["vedicName", data.vedic],
-    ["horoscopeReading", data.reading],
-
-    ["zodiacSymbol2", data.symbol],
-    ["horoscopeName2", name],
-    ["vedicName2", data.vedic],
-    ["horoscopeReading2", data.reading],
-
-    ["settingsHoroscope", name]
-
-  ];
-
-
-  elements.forEach(([id, value]) => {
-
-    const element =
-      document.getElementById(id);
-
-    if (element) {
-      element.textContent = value;
-    }
-
-  });
-
-
-  localStorage.setItem(
-    "dailyAuraHoroscope",
-    name
-  );
-
-
-  closeHoroscopeSelector();
-
-  showToast(
-    `${data.symbol} ${name} selected`
-  );
-
-
-  if (
-    localStorage.getItem(
-      "dailyAuraNotifications"
-    ) === "true"
-  ) {
-    syncBackendSubscription();
-  }
-
-}
-
-
-function loadSavedHoroscope() {
-
-  const saved =
-    localStorage.getItem(
-      "dailyAuraHoroscope"
-    );
-
-  if (
-    saved &&
-    HOROSCOPES[saved]
-  ) {
-
-    selectHoroscope(saved);
-
-  } else {
-
-    openHoroscopeSelector();
-
-  }
-
-}
-
-
-/* =====================================================
-   QUOTES
-====================================================== */
-
-function getDayOfYear() {
-
-  const now = new Date();
-
-  const start =
-    new Date(
-      now.getFullYear(),
-      0,
-      0
-    );
-
-  return Math.floor(
-    (now - start) / 86400000
-  );
-
-}
-
-
-function loadQuote() {
-
-  const index =
-    (getDayOfYear() - 1)
-    % QUOTES.length;
-
-  const quote =
-    QUOTES[index];
-
-  document.getElementById(
-    "quoteText"
-  ).textContent = quote;
-
-  document.getElementById(
-    "quoteText2"
-  ).textContent = `“${quote}”`;
-
-}
-
-
-/* =====================================================
-   TAROT
-====================================================== */
-
-function todayKey() {
-
-  const date = new Date();
-
-  const year =
-    date.getFullYear();
-
-  const month =
-    String(
-      date.getMonth() + 1
-    ).padStart(2, "0");
-
-  const day =
-    String(
-      date.getDate()
-    ).padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
-
-}
-
-
-function getDailyTarot() {
-
-  return TAROT_CARDS[
-    (getDayOfYear() - 1)
-    % TAROT_CARDS.length
-  ];
-
-}
-
+/* =========================================================
+TAROT
+========================================================= */
 
 function pullTarot() {
 
-  const today =
-    todayKey();
+    const today =
+        new Date().toISOString().slice(0,10);
 
-  const savedDate =
-    localStorage.getItem(
-      "dailyAuraTarotDate"
+    const savedDate =
+        localStorage.getItem(
+            "dailyAuraTarotDate"
+        );
+
+    if (savedDate === today) {
+
+        showToast(
+            "You've already pulled today's free card."
+        );
+
+        restoreTarot();
+
+        return;
+    }
+
+
+    const index =
+        Math.floor(
+            Math.random() *
+            TAROT_CARDS.length
+        );
+
+    const card =
+        TAROT_CARDS[index];
+
+
+    localStorage.setItem(
+        "dailyAuraTarotDate",
+        today
+    );
+
+    localStorage.setItem(
+        "dailyAuraTarot",
+        JSON.stringify(card)
     );
 
 
-  if (savedDate === today) {
-
-    loadTarot();
+    displayTarot(card);
 
     showToast(
-      "Today's card is already revealed ✨"
+        "Your daily Tarot card has been revealed ✨"
     );
 
-    return;
-
-  }
+}
 
 
-  const card =
-    getDailyTarot();
+function restoreTarot() {
 
+    const saved =
+        localStorage.getItem(
+            "dailyAuraTarot"
+        );
 
-  localStorage.setItem(
-    "dailyAuraTarotDate",
-    today
-  );
+    if (!saved) return;
 
-  localStorage.setItem(
-    "dailyAuraTarot",
-    JSON.stringify(card)
-  );
+    try {
 
+        displayTarot(
+            JSON.parse(saved)
+        );
 
-  displayTarot(card);
+    } catch (error) {
 
-  showToast(
-    `${card.symbol} ${card.name}`
-  );
+        console.error(error);
+
+    }
 
 }
 
 
 function displayTarot(card) {
 
-  const pairs = [
-
-    ["tarotSymbol", card.symbol],
-    ["tarotName", card.name],
-    ["tarotMeaning", card.meaning],
-    ["tarotAdvice", card.advice],
-
-    ["tarotSymbol2", card.symbol],
-    ["tarotName2", card.name],
-    ["tarotMeaning2", card.meaning],
-    ["tarotAdvice2", card.advice]
-
-  ];
-
-
-  pairs.forEach(([id, value]) => {
-
-    const element =
-      document.getElementById(id);
-
-    if (element) {
-      element.textContent = value;
-    }
-
-  });
-
-
-  [
-    "tarotResult",
-    "tarotResult2"
-  ].forEach(id => {
-
-    const element =
-      document.getElementById(id);
-
-    if (element) {
-      element.classList.add("show");
-    }
-
-  });
-
-
-  [
-    "tarotButton",
-    "tarotButton2"
-  ].forEach(id => {
-
-    const button =
-      document.getElementById(id);
-
-    if (button) {
-
-      button.disabled = true;
-
-      button.textContent =
-        "Today's Card Revealed ✓";
-
-    }
-
-  });
-
-}
-
-
-function loadTarot() {
-
-  const date =
-    localStorage.getItem(
-      "dailyAuraTarotDate"
-    );
-
-  const saved =
-    localStorage.getItem(
-      "dailyAuraTarot"
-    );
-
-
-  if (
-    date === todayKey() &&
-    saved
-  ) {
-
-    try {
-
-      displayTarot(
-        JSON.parse(saved)
-      );
-
-    } catch (error) {
-
-      console.error(
-        "Tarot loading error:",
-        error
-      );
-
-    }
-
-  }
-
-}
-
-
-/* =====================================================
-   MOOD TRACKER
-====================================================== */
-
-function openMood() {
-
-  const area =
     document.getElementById(
-      "moodArea"
-    );
+        "tarotImage"
+    ).textContent = card.emoji;
 
-  area.style.display = "block";
+    document.getElementById(
+        "tarotName"
+    ).textContent = card.name;
 
-  area.scrollIntoView({
-    behavior: "smooth"
-  });
+    document.getElementById(
+        "tarotMeaning"
+    ).textContent = card.meaning;
+
+    document.getElementById(
+        "tarotAdvice"
+    ).textContent =
+        "Advice: " + card.advice;
+
+
+    document.getElementById(
+        "homeTarotImage"
+    ).textContent = card.emoji;
+
+    document.getElementById(
+        "homeTarotName"
+    ).textContent = card.name;
+
+    document.getElementById(
+        "homeTarotText"
+    ).textContent = card.meaning;
+
+    document.getElementById(
+        "tarotButton"
+    ).textContent =
+        "Today's Card Revealed";
 
 }
 
 
-function saveMood(emoji, name) {
+/* =========================================================
+MOOD
+========================================================= */
 
-  const mood = {
-    date: todayKey(),
-    emoji: emoji,
-    name: name
-  };
+function selectMood(button, mood) {
 
-
-  localStorage.setItem(
-    "dailyAuraMood",
-    JSON.stringify(mood)
-  );
-
-
-  document.getElementById(
-    "moodStatus"
-  ).textContent =
-    `${emoji} Today's mood: ${name}`;
-
-
-  showToast("Mood saved 💜");
-
-}
-
-
-function loadSavedMood() {
-
-  const saved =
-    localStorage.getItem(
-      "dailyAuraMood"
-    );
-
-  if (!saved) {
-    return;
-  }
-
-
-  try {
-
-    const mood =
-      JSON.parse(saved);
-
-    if (
-      mood.date === todayKey()
-    ) {
-
-      const status =
-        document.getElementById(
-          "moodStatus"
+    document
+        .querySelectorAll(".mood-btn")
+        .forEach(
+            item =>
+                item.classList.remove(
+                    "selected"
+                )
         );
 
-      if (status) {
+    button.classList.add("selected");
 
-        status.textContent =
-          `${mood.emoji} Today's mood: ${mood.name}`;
-
-      }
-
-    }
-
-  } catch (error) {
-
-    console.error(
-      "Mood loading error:",
-      error
-    );
-
-  }
+    selectedMood = mood;
 
 }
 
 
-/* =====================================================
-   PREMIUM
-====================================================== */
+function saveMood() {
 
-function openPremium() {
+    if (!selectedMood) {
 
-  showScreen(
-    "premiumScreen"
-  );
+        showToast(
+            "Choose a mood first."
+        );
 
-  document
-    .querySelectorAll(".nav-item")
-    .forEach(item => {
-      item.classList.remove("active");
+        return;
+    }
+
+
+    const date =
+        new Date().toISOString().slice(0,10);
+
+
+    if (!savedHistory.moods) {
+
+        savedHistory.moods = {};
+
+    }
+
+
+    savedHistory.moods[date] =
+        selectedMood;
+
+
+    saveHistory();
+
+    initializeHistory();
+
+    showToast(
+        "Today's mood has been saved."
+    );
+
+}
+
+
+function initializeHistory() {
+
+    const moods =
+        savedHistory.moods || {};
+
+    const entries =
+        Object.entries(moods)
+            .slice(-7)
+            .reverse();
+
+
+    const output =
+        entries.length
+            ? entries
+                .map(
+                    ([date, mood]) =>
+                        `${date} — ${mood}`
+                )
+                .join("<br>")
+            : "No mood entries yet.";
+
+
+    document.getElementById(
+        "moodHistory"
+    ).innerHTML = output;
+
+}
+
+
+function saveHistory() {
+
+    localStorage.setItem(
+        "dailyAuraHistory",
+        JSON.stringify(
+            savedHistory
+        )
+    );
+
+}
+
+
+/* =========================================================
+BIRTH CHART
+========================================================= */
+
+function saveBirthChart() {
+
+    const data = {
+
+        date:
+            document.getElementById(
+                "birthDate"
+            ).value,
+
+        time:
+            document.getElementById(
+                "birthTime"
+            ).value,
+
+        place:
+            document.getElementById(
+                "birthPlace"
+            ).value
+
+    };
+
+
+    localStorage.setItem(
+        "dailyAuraBirthData",
+        JSON.stringify(data)
+    );
+
+
+    showToast(
+        "Birth information saved."
+    );
+
+}
+
+
+/* =========================================================
+COMPATIBILITY
+========================================================= */
+
+function checkCompatibility() {
+
+    const one =
+        document.getElementById(
+            "compatibilityOne"
+        ).value;
+
+    const two =
+        document.getElementById(
+            "compatibilityTwo"
+        ).value;
+
+
+    const score =
+        one === two
+            ? 75
+            : 82;
+
+
+    const result =
+        document.getElementById(
+            "compatibilityResult"
+        );
+
+
+    result.style.display = "block";
+
+    result.innerHTML = `
+        <h3>${one} 💞 ${two}</h3>
+        <p style="color:var(--muted);margin-top:10px;line-height:1.6;">
+            Your current compatibility reading is
+            <strong style="color:var(--accent);">${score}%</strong>.
+            Use this as a fun reflection rather than a fixed prediction.
+        </p>
+    `;
+
+}
+
+
+/* =========================================================
+SETTINGS
+========================================================= */
+
+function initializeSettings() {
+
+    const language =
+        localStorage.getItem(
+            "dailyAuraLanguage"
+        ) || "en";
+
+
+    document.getElementById(
+        "languageSelect"
+    ).value = language;
+
+
+    [
+        "horoscopeToggle",
+        "quoteToggle",
+        "tarotToggle"
+    ].forEach(id => {
+
+        if (settings[id]) {
+
+            document
+                .getElementById(id)
+                .classList.add("on");
+
+        }
+
     });
 
 }
 
 
-function showPremiumComingSoon() {
+function toggleSetting(id) {
 
-  showToast(
-    "💎 Daily Aura Premium is coming soon."
-  );
+    const button =
+        document.getElementById(id);
 
-}
+    button.classList.toggle("on");
 
+    settings[id] =
+        button.classList.contains("on");
 
-/* =====================================================
-   ABOUT
-====================================================== */
-
-function showAbout() {
-
-  showToast(
-    "Daily Aura ✨ — Your daily moment of guidance."
-  );
-
-}
-
-
-/* =====================================================
-   NOTIFICATIONS
-====================================================== */
-
-async function toggleNotifications() {
-
-  const button =
-    document.getElementById(
-      "notificationToggle"
-    );
-
-
-  const enabled =
-    localStorage.getItem(
-      "dailyAuraNotifications"
-    ) === "true";
-
-
-  if (enabled) {
 
     localStorage.setItem(
-      "dailyAuraNotifications",
-      "false"
+        "dailyAuraSettings",
+        JSON.stringify(settings)
     );
-
-    button.classList.remove(
-      "active"
-    );
-
-    showToast(
-      "Morning notifications turned off."
-    );
-
-    return;
-
-  }
-
-
-  if (
-    !("Notification" in window)
-  ) {
-
-    showToast(
-      "Notifications are not supported by this browser."
-    );
-
-    return;
-
-  }
-
-
-  try {
-
-    const permission =
-      await Notification.requestPermission();
 
 
     if (
-      permission !== "granted"
+        id === "horoscopeToggle" ||
+        id === "quoteToggle" ||
+        id === "tarotToggle"
     ) {
 
-      showToast(
-        "Please allow notifications in your browser settings."
-      );
+        if (button.classList.contains("on")) {
 
-      return;
+            enableNotifications();
+
+        }
+
+    }
+
+}
+
+
+function changeLanguage() {
+
+    const language =
+        document.getElementById(
+            "languageSelect"
+        ).value;
+
+
+    localStorage.setItem(
+        "dailyAuraLanguage",
+        language
+    );
+
+
+    showToast(
+        "Language preference saved."
+    );
+
+}
+
+
+/* =========================================================
+NOTIFICATIONS
+========================================================= */
+
+async function enableNotifications() {
+
+    if (!("Notification" in window)) {
+
+        showToast(
+            "This browser does not support notifications."
+        );
+
+        return;
+
+    }
+
+
+    const permission =
+        await Notification.requestPermission();
+
+
+    if (permission !== "granted") {
+
+        showToast(
+            "Notification permission was not granted."
+        );
+
+        return;
 
     }
 
 
     localStorage.setItem(
-      "dailyAuraNotifications",
-      "true"
+        "dailyAuraNotifications",
+        "enabled"
     );
 
 
-    button.classList.add(
-      "active"
-    );
+    if (API_URL) {
+
+        try {
+
+            await connectPushSubscription();
+
+        } catch (error) {
+
+            console.error(
+                "Push connection failed:",
+                error
+            );
+
+        }
+
+    }
 
 
     showToast(
-      "Morning notifications enabled 🔔"
+        "Morning Daily Aura notifications enabled 🔔"
     );
-
-
-    await syncBackendSubscription();
-
-
-  } catch (error) {
-
-    console.error(
-      "Notification permission error:",
-      error
-    );
-
-    showToast(
-      "Unable to enable notifications."
-    );
-
-  }
 
 }
 
 
-function loadNotificationState() {
+/*
+ * Backend connection hook.
+ *
+ * Your Render backend will eventually provide:
+ *
+ * GET  /vapid-public-key
+ * POST /subscribe
+ *
+ * Keep this function here for backend integration.
+ */
 
-  const enabled =
-    localStorage.getItem(
-      "dailyAuraNotifications"
-    ) === "true";
+async function connectPushSubscription() {
 
+    if (!("serviceWorker" in navigator)) {
 
-  if (enabled) {
+        return;
 
-    document
-      .getElementById(
-        "notificationToggle"
-      )
-      .classList.add("active");
-
-  }
-
-}
-
-
-/* =====================================================
-   BACKEND PUSH NOTIFICATION CONNECTION
-====================================================== */
-
-async function syncBackendSubscription() {
-
-  /*
-    Backend is intentionally disabled while
-    API_URL is empty.
-  */
-
-  if (!API_URL) {
-
-    console.log(
-      "Daily Aura backend URL not configured yet."
-    );
-
-    return;
-
-  }
+    }
 
 
-  if (
-    !("serviceWorker" in navigator)
-  ) {
-    return;
-  }
-
-
-  try {
+    /*
+     * Register your service worker here when
+     * sw.js is added to the frontend.
+     */
 
     const registration =
-      await navigator
-        .serviceWorker
-        .ready;
+        await navigator.serviceWorker.register(
+            "/sw.js"
+        );
 
 
-    const keyResponse =
-      await fetch(
-        `${API_URL}/vapid-public-key`
-      );
+    const publicKeyResponse =
+        await fetch(
+            `${API_URL}/vapid-public-key`
+        );
 
 
-    if (!keyResponse.ok) {
-      throw new Error(
-        "Unable to get VAPID public key."
-      );
-    }
+    const publicKeyData =
+        await publicKeyResponse.json();
 
 
-    const keyData =
-      await keyResponse.json();
+    const subscription =
+        await registration.pushManager.subscribe({
 
-
-    const serverKey =
-      urlBase64ToUint8Array(
-        keyData.publicKey
-      );
-
-
-    let subscription =
-      await registration
-        .pushManager
-        .getSubscription();
-
-
-    if (!subscription) {
-
-      subscription =
-        await registration
-          .pushManager
-          .subscribe({
             userVisibleOnly: true,
+
             applicationServerKey:
-              serverKey
-          });
+                urlBase64ToUint8Array(
+                    publicKeyData.publicKey
+                )
 
-    }
+        });
 
 
-    const response =
-      await fetch(
+    const horoscope =
+        localStorage.getItem(
+            "dailyAuraHoroscope"
+        ) || "Aries";
+
+
+    const language =
+        localStorage.getItem(
+            "dailyAuraLanguage"
+        ) || "en";
+
+
+    await fetch(
         `${API_URL}/subscribe`,
         {
 
-          method: "POST",
+            method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-          body: JSON.stringify({
+            body: JSON.stringify({
 
-            subscription:
-              subscription.toJSON(),
+                subscription:
+                    subscription.toJSON(),
 
-            horoscope:
-              localStorage.getItem(
-                "dailyAuraHoroscope"
-              ),
+                horoscope,
+                language
 
-            language: "en"
-
-          })
+            })
 
         }
-      );
+    );
+
+}
 
 
-    if (!response.ok) {
+function urlBase64ToUint8Array(base64String) {
 
-      throw new Error(
-        "Backend subscription failed."
-      );
+    const padding =
+        "=".repeat(
+            (4 - base64String.length % 4) % 4
+        );
+
+    const base64 =
+        (
+            base64String
+            + padding
+        )
+        .replace(
+            /-/g,
+            "+"
+        )
+        .replace(
+            /_/g,
+            "/"
+        );
+
+
+    const rawData =
+        window.atob(base64);
+
+
+    return Uint8Array.from(
+        [...rawData].map(
+            char => char.charCodeAt(0)
+        )
+    );
+
+}
+
+
+/* =========================================================
+ACCOUNT
+========================================================= */
+
+function emailLogin() {
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    if (!email || !password) {
+
+        showToast(
+            "Enter your email and password."
+        );
+
+        return;
 
     }
 
 
-    console.log(
-      "Daily Aura push subscription saved."
-    );
+    /*
+     * REAL AUTHENTICATION SHOULD BE CONNECTED
+     * TO YOUR BACKEND HERE.
+     */
+
+    currentUser = {
+
+        name:
+            email.split("@")[0],
+
+        email
+
+    };
 
 
-  } catch (error) {
+    signedIn = true;
 
-    console.error(
-      "Notification backend error:",
-      error
-    );
-
-  }
-
-}
-
-
-function urlBase64ToUint8Array(
-  base64String
-) {
-
-  const padding =
-    "=".repeat(
-      (4 - base64String.length % 4) % 4
-    );
-
-  const base64 =
-    (
-      base64String +
-      padding
-    )
-      .replace(/-/g, "+")
-      .replace(/_/g, "/");
-
-
-  const rawData =
-    atob(base64);
-
-
-  return Uint8Array.from(
-    [...rawData].map(
-      character =>
-        character.charCodeAt(0)
-    )
-  );
-
-}
-
-
-/* =====================================================
-   SERVICE WORKER
-====================================================== */
-
-async function registerServiceWorker() {
-
-  if (
-    !("serviceWorker" in navigator)
-  ) {
-    return;
-  }
-
-
-  try {
-
-    await navigator.serviceWorker.register(
-      "./sw.js"
-    );
-
-    console.log(
-      "Daily Aura service worker registered."
-    );
-
-  } catch (error) {
-
-    console.error(
-      "Service worker registration error:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   PWA INSTALL
-====================================================== */
-
-let deferredInstallPrompt = null;
-
-
-window.addEventListener(
-  "beforeinstallprompt",
-  event => {
-
-    event.preventDefault();
-
-    deferredInstallPrompt =
-      event;
-
-  }
-);
-
-
-async function installApp() {
-
-  if (
-    !deferredInstallPrompt
-  ) {
+    updateAccountUI();
 
     showToast(
-      "Open your browser menu and choose 'Add to Home screen'."
+        "Demo account signed in."
     );
-
-    return;
-
-  }
-
-
-  deferredInstallPrompt.prompt();
-
-  await deferredInstallPrompt.userChoice;
-
-  deferredInstallPrompt = null;
 
 }
 
 
-/* =====================================================
-   TOAST
-====================================================== */
+function createAccount() {
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    if (!email || !password) {
+
+        showToast(
+            "Enter an email and password."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * REAL ACCOUNT CREATION WILL BE CONNECTED
+     * TO YOUR BACKEND.
+     */
+
+    currentUser = {
+
+        name:
+            email.split("@")[0],
+
+        email
+
+    };
+
+
+    signedIn = true;
+
+    updateAccountUI();
+
+    showToast(
+        "Account created. Backend connection required for real authentication."
+    );
+
+}
+
+
+function googleLogin() {
+
+    /*
+     * REAL GOOGLE OAUTH WILL BE CONNECTED HERE.
+     */
+
+    showToast(
+        "Google Sign-In will be connected to the backend."
+    );
+
+}
+
+
+function logout() {
+
+    signedIn = false;
+
+    currentUser = null;
+
+    updateAccountUI();
+
+    showToast(
+        "You have been signed out."
+    );
+
+}
+
+
+function updateAccountUI() {
+
+    const signedOut =
+        document.getElementById(
+            "signedOutAccount"
+        );
+
+    const signedInSection =
+        document.getElementById(
+            "signedInAccount"
+        );
+
+
+    if (signedIn) {
+
+        signedOut.style.display =
+            "none";
+
+        signedInSection.style.display =
+            "block";
+
+
+        document.getElementById(
+            "accountName"
+        ).textContent =
+            currentUser.name;
+
+
+        document.getElementById(
+            "accountEmail"
+        ).textContent =
+            currentUser.email;
+
+
+        document.getElementById(
+            "accountSign"
+        ).textContent =
+            localStorage.getItem(
+                "dailyAuraHoroscope"
+            ) || "Aries";
+
+
+        document.getElementById(
+            "accountLanguage"
+        ).textContent =
+            document.getElementById(
+                "languageSelect"
+            ).selectedOptions[0].text;
+
+    } else {
+
+        signedOut.style.display =
+            "block";
+
+        signedInSection.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
+NAVIGATION
+========================================================= */
+
+function setupNavigation() {
+
+    document
+        .querySelectorAll(
+            "[data-view]"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    showView(
+                        button.dataset.view
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+function showView(viewId) {
+
+    document
+        .querySelectorAll(".view")
+        .forEach(
+            view =>
+                view.classList.remove(
+                    "active"
+                )
+        );
+
+
+    const target =
+        document.getElementById(
+            viewId
+        );
+
+
+    if (!target) return;
+
+    target.classList.add("active");
+
+
+    document
+        .querySelectorAll(
+            "[data-view]"
+        )
+        .forEach(
+            button => {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.view === viewId
+                );
+
+            }
+        );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+TOAST
+========================================================= */
 
 let toastTimer;
 
-
 function showToast(message) {
 
-  const toast =
-    document.getElementById(
-      "toast"
-    );
-
-
-  toast.textContent =
-    message;
-
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  clearTimeout(
-    toastTimer
-  );
-
-
-  toastTimer =
-    setTimeout(
-      () => {
-
-        toast.classList.remove(
-          "show"
+    const toast =
+        document.getElementById(
+            "toast"
         );
 
-      },
-      2800
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
     );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2800
+        );
 
 }
 
 
-/* =====================================================
-   HOROSCOPE MODAL
-====================================================== */
+/* =========================================================
+RESTORE TAROT
+========================================================= */
 
-document
-  .getElementById("horoscopeModal")
-  .addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target.id ===
-        "horoscopeModal"
-      ) {
-
-        closeHoroscopeSelector();
-
-      }
-
-    }
-  );
+restoreTarot();
 
 </script>
 
 </body>
 </html>
-```
