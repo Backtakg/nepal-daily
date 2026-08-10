@@ -1324,84 +1324,206 @@ body{font-family:var(--font-sans);letter-spacing:-.012em}
 </div>
 
 
+```html
 <!-- SETTINGS MODAL -->
 
-<div
-    id="settingsModal"
-    class="modal">
+<div class="modal-box">
 
-    <div class="modal-box">
+    <div class="modal-header">
 
-        <div class="modal-header">
-
+        <div>
             <h2>⚙️ Settings</h2>
-
-            <button
-                class="close"
-                onclick="closeModal('settingsModal')">
-                ✕
-            </button>
-
         </div>
 
+        <button
+            class="close"
+            onclick="closeModal('settingsModal')">
+            ✕
+        </button>
 
-        <div class="form-group">
+    </div>
 
-            <label>🌐 Language</label>
 
-            <select
-                id="languageSelector"
-                onchange="saveLanguage()">
+    <!-- APP INFO -->
 
-                <option value="en">English</option>
-                <option value="ne">नेपाली</option>
-                <option value="hi">हिन्दी</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-                <option value="pt">Português</option>
-                <option value="ru">Русский</option>
-                <option value="ja">日本語</option>
-                <option value="ko">한국어</option>
-                <option value="zh">中文</option>
-                <option value="ar">العربية</option>
-                <option value="bn">বাংলা</option>
-                <option value="ur">اردو</option>
-                <option value="pa">ਪੰਜਾਬੀ</option>
-                <option value="ta">தமிழ்</option>
-                <option value="te">తెలుగు</option>
-                <option value="mr">मराठी</option>
-                <option value="gu">ગુજરાતી</option>
-                <option value="id">Bahasa Indonesia</option>
-                <option value="tr">Türkçe</option>
+    <div class="settings-app-info">
 
-            </select>
+        <div class="settings-logo">
+            ✨
+        </div>
+
+        <h3>Daily Aura</h3>
+
+        <p class="settings-version">
+            Version 3.0.0 · Daily reflection & discovery
+        </p>
+
+        <p>
+            A calm daily space for horoscope readings,
+            tarot guidance and fresh inspirational content.
+        </p>
+
+    </div>
+
+
+    <!-- LANGUAGE -->
+
+    <div class="form-group">
+
+        <label>🌐 Language</label>
+
+        <select
+            id="languageSelector"
+            onchange="saveLanguage()">
+
+            <option value="en">English</option>
+            <option value="ne">नेपाली</option>
+            <option value="hi">हिन्दी</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Português</option>
+            <option value="ru">Русский</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="zh">中文</option>
+            <option value="ar">العربية</option>
+            <option value="bn">বাংলা</option>
+            <option value="ur">اردو</option>
+            <option value="pa">ਪੰਜਾਬੀ</option>
+            <option value="ta">தமிழ்</option>
+            <option value="te">తెలుగు</option>
+            <option value="mr">मराठी</option>
+            <option value="gu">ગુજરાતી</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="tr">Türkçe</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- PREMIUM -->
+
+    <div
+        class="card premium"
+        style="margin-top:18px;">
+
+        <div class="premium-icon">
+            💎
+        </div>
+
+        <h3>Premium</h3>
+
+        <p>
+            Unlock the premium Daily Aura experience
+            when billing is connected.
+        </p>
+
+        <button
+            class="action gold"
+            onclick="openPremium()">
+
+            View Premium
+
+        </button>
+
+    </div>
+
+
+    <!-- SETTINGS LINKS -->
+
+    <div
+        class="settings-links"
+        style="margin-top:18px;">
+
+        <div
+            class="settings-link"
+            onclick="openFeature('About Daily Aura')">
+
+            <div class="settings-link-icon">
+                ✨
+            </div>
+
+            <div>
+                <strong>About Daily Aura</strong>
+
+                <p>
+                    Learn what the app does and how
+                    daily content works.
+                </p>
+            </div>
 
         </div>
 
 
         <div
-            class="card"
-            style="margin-top:15px;">
+            class="settings-link"
+            onclick="openFeature('Privacy Policy')">
 
-            <h3>💎 Premium</h3>
+            <div class="settings-link-icon">
+                🔒
+            </div>
 
-            <p style="margin-top:7px;">
-                Premium billing will be connected to Stripe later.
-            </p>
+            <div>
+                <strong>Privacy Policy</strong>
 
-            <button
-                class="action gold"
-                onclick="openPremium()">
-                View Premium
-            </button>
+                <p>
+                    How Daily Aura handles information
+                    and app data.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div
+            class="settings-link"
+            onclick="openFeature('Terms of Use')">
+
+            <div class="settings-link-icon">
+                📄
+            </div>
+
+            <div>
+                <strong>Terms of Use</strong>
+
+                <p>
+                    Guidelines for using Daily Aura
+                    and its content.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="settings-link"
+            onclick="openFeature('Contact')">
+
+            <div class="settings-link-icon">
+                💬
+            </div>
+
+            <div>
+                <strong>Contact</strong>
+
+                <p>
+                    Get in touch about feedback,
+                    support or questions.
+                </p>
+
+            </div>
 
         </div>
 
     </div>
 
 </div>
+```
+
 
 
 <!-- FEATURE MODAL -->
