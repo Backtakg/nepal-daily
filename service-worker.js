@@ -1,0 +1,2745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171225">
+<meta name="description" content="Daily Aura — horoscope, tarot, quotes, birth chart, compatibility and mood insights.">
+
+<title>Daily Aura ✨</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0f0b19;
+    --bg2: #171225;
+    --card: rgba(255,255,255,.07);
+    --card2: rgba(255,255,255,.10);
+    --text: #fff;
+    --muted: #bcb5ca;
+    --purple: #a78bfa;
+    --pink: #f0abfc;
+    --gold: #f5d58a;
+    --green: #86efac;
+    --danger: #fca5a5;
+    --border: rgba(255,255,255,.12);
+}
+
+body {
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    background:
+        radial-gradient(circle at top left, #332052 0, transparent 35%),
+        radial-gradient(circle at top right, #251942 0, transparent 30%),
+        linear-gradient(180deg, #0f0b19, #171225 60%, #0d0915);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+button,
+select,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.app {
+    width: 100%;
+    max-width: 1180px;
+    margin: auto;
+    padding-bottom: 110px;
+}
+
+/* HEADER */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(18px);
+    background: rgba(15,11,25,.82);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg,#8b5cf6,#ec4899);
+    box-shadow: 0 10px 30px rgba(139,92,246,.25);
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: white;
+    border-radius: 14px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 40px 18px 22px;
+    text-align: center;
+}
+
+.hero .eyebrow {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 8vw, 64px);
+    margin-top: 8px;
+    line-height: 1;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: 15px auto 0;
+    line-height: 1.7;
+}
+
+/* NAV */
+
+.nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px 18px 18px;
+    scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav button {
+    white-space: nowrap;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--card);
+    border-radius: 999px;
+    padding: 10px 15px;
+}
+
+.nav button.active {
+    color: white;
+    background: linear-gradient(135deg,#7c3aed,#db2777);
+    border-color: transparent;
+}
+
+/* MAIN */
+
+main {
+    padding: 0 18px;
+}
+
+.section {
+    margin-top: 25px;
+}
+
+.section-title {
+    margin-bottom: 14px;
+}
+
+.section-title h2 {
+    font-size: 23px;
+}
+
+.section-title p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px;
+}
+
+@media (min-width: 800px) {
+    .grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+/* CARDS */
+
+.card {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.09),
+        rgba(255,255,255,.045)
+    );
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.18);
+}
+
+.card h3 {
+    margin-bottom: 7px;
+}
+
+.card p {
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.feature-card {
+    min-height: 160px;
+}
+
+.feature-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.action {
+    margin-top: 15px;
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 12px;
+    color: white;
+    font-weight: 800;
+    background: rgba(255,255,255,.09);
+}
+
+.primary {
+    background: linear-gradient(135deg,#7c3aed,#db2777);
+}
+
+.gold {
+    background: linear-gradient(135deg,#b7791f,#f5d58a);
+    color: #21150a;
+}
+
+.success {
+    background: rgba(34,197,94,.15);
+    border: 1px solid rgba(134,239,172,.25);
+}
+
+.danger {
+    background: rgba(239,68,68,.15);
+    border: 1px solid rgba(252,165,165,.25);
+}
+
+/* HOROSCOPE */
+
+.horoscope-card {
+    grid-column: 1 / -1;
+}
+
+.sign-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 5px 0 15px;
+}
+
+.sign-row button {
+    min-width: 74px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: white;
+    padding: 12px 9px;
+    border-radius: 16px;
+}
+
+.sign-row button.selected {
+    background: linear-gradient(135deg,#7c3aed,#db2777);
+    border-color: transparent;
+}
+
+.sign-symbol {
+    font-size: 24px;
+    display: block;
+}
+
+/* DAILY TAROT */
+
+.tarot {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.tarot::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: #8b5cf6;
+    filter: blur(90px);
+    opacity: .25;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tarot-card {
+    width: 180px;
+    height: 270px;
+    margin: 18px auto;
+    border-radius: 22px;
+    border: 2px solid rgba(245,213,138,.6);
+    background:
+        radial-gradient(circle at 50% 30%, rgba(245,213,138,.25), transparent 25%),
+        linear-gradient(145deg,#24183c,#120d20);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 25px 70px rgba(0,0,0,.35);
+}
+
+.tarot-symbol {
+    font-size: 60px;
+}
+
+.tarot-name {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.tarot-label {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* QUOTE */
+
+.quote {
+    text-align: center;
+    padding: 28px;
+}
+
+.quote-mark {
+    font-size: 45px;
+    color: var(--gold);
+}
+
+.quote-text {
+    font-size: 21px;
+    line-height: 1.6;
+    font-weight: 700;
+}
+
+/* PREMIUM */
+
+.premium {
+    border: 1px solid rgba(245,213,138,.28);
+    background:
+        radial-gradient(circle at top right, rgba(245,213,138,.14), transparent 35%),
+        linear-gradient(145deg,rgba(245,213,138,.08),rgba(255,255,255,.04));
+}
+
+.premium-icon {
+    font-size: 38px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(245,213,138,.12);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+/* FORMS */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--muted);
+    margin-bottom: 7px;
+    font-size: 13px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(0,0,0,.2);
+    color: white;
+    outline: none;
+}
+
+select option {
+    background: #171225;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(12px);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 12px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #171225;
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 23px;
+    box-shadow: 0 -20px 80px rgba(0,0,0,.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close {
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--card);
+    color: white;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background: rgba(15,11,25,.92);
+    backdrop-filter: blur(18px);
+    border-top: 1px solid var(--border);
+}
+
+.bottom-inner {
+    max-width: 700px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+
+.bottom-inner button {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 12px 5px;
+    font-size: 11px;
+}
+
+.bottom-inner button span {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.bottom-inner button.active {
+    color: white;
+}
+
+/* STATUS */
+
+.status {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.status.good {
+    color: var(--green);
+}
+
+.status.bad {
+    color: var(--danger);
+}
+
+/* ACCOUNT */
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 24px;
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+    background: linear-gradient(135deg,#7c3aed,#db2777);
+    margin-bottom: 15px;
+}
+
+.history-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.history-item:last-child {
+    border-bottom: 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 520px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        min-height: auto;
+    }
+
+    .hero {
+        padding-top: 30px;
+    }
+
+    .card {
+        border-radius: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <div class="logo">
+            <div class="logo-icon">✦</div>
+            <span>Daily Aura</span>
+        </div>
+
+        <div class="header-actions">
+            <button
+                class="icon-btn"
+                onclick="openModal('settingsModal')"
+                aria-label="Settings">
+                ⚙️
+            </button>
+
+            <button
+                class="icon-btn"
+                onclick="openModal('accountModal')"
+                aria-label="Account">
+                👤
+            </button>
+        </div>
+
+    </div>
+</header>
+
+
+<div class="app">
+
+    <section class="hero">
+        <div class="eyebrow">Your daily cosmic guide</div>
+        <h1>Daily Aura ✨</h1>
+        <p>
+            A calm space for your horoscope, daily tarot,
+            inspiration, relationships and personal reflection.
+        </p>
+    </section>
+
+
+    <!-- NAV -->
+
+    <nav class="nav">
+        <button class="active" onclick="showSection('home',this)">Home</button>
+        <button onclick="showSection('tarotSection',this)">🃏 Tarot</button>
+        <button onclick="showSection('exploreSection',this)">Explore</button>
+        <button onclick="showSection('accountSection',this)">Account</button>
+    </nav>
+
+
+    <main>
+
+        <!-- HOME -->
+
+        <section id="home" class="page-section">
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>Your Daily Reading</h2>
+                    <p>What the day has in store for you.</p>
+                </div>
+
+                <div class="card horoscope-card">
+
+                    <div class="sign-row" id="signRow"></div>
+
+                    <div id="horoscopeResult">
+
+                        <div class="feature-icon">🔮</div>
+
+                        <h3>Select your zodiac sign</h3>
+
+                        <p>
+                            Choose your sign above to see today's reading.
+                        </p>
+
+                    </div>
+
+                    <div
+                        id="backendStatus"
+                        class="status">
+                        Connecting to Daily Aura...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TAROT -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>🃏 Daily Tarot</h2>
+                    <p>One free card every day.</p>
+                </div>
+
+                <div class="card tarot">
+
+                    <div class="tarot-label">
+                        Today's Card
+                    </div>
+
+                    <div class="tarot-card">
+
+                        <div
+                            id="tarotSymbol"
+                            class="tarot-symbol">
+                            🃏
+                        </div>
+
+                        <div
+                            id="tarotName"
+                            class="tarot-name">
+                            Daily Tarot
+                        </div>
+
+                    </div>
+
+                    <p id="tarotMeaning">
+                        Your daily card will appear here.
+                    </p>
+
+                    <p
+                        id="tarotAdvice"
+                        style="margin-top:10px;">
+                    </p>
+
+                    <button
+                        class="action primary"
+                        onclick="loadTarot()">
+                        Reveal Today's Card
+                    </button>
+
+                    <button
+                        class="action gold"
+                        onclick="openPremium()">
+                        🃏 Unlock 3-Card Spread — Premium
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUOTE -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>✨ Daily Quote</h2>
+                </div>
+
+                <div class="card quote">
+
+                    <div class="quote-mark">“</div>
+
+                    <div
+                        id="quoteText"
+                        class="quote-text">
+                        Loading today's quote...
+                    </div>
+
+                    <div class="quote-mark">”</div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEATURES -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>Explore Your Aura</h2>
+                    <p>More ways to understand yourself.</p>
+                </div>
+
+                <div class="grid">
+
+                    <div class="card feature-card">
+                        <div class="feature-icon">🌌</div>
+                        <h3>Birth Chart</h3>
+                        <p>
+                            Get a basic overview for free.
+                            Unlock the complete report with Premium.
+                        </p>
+                        <button
+                            class="action"
+                            onclick="openFeature('Birth Chart')">
+                            Explore
+                        </button>
+                    </div>
+
+
+                    <div class="card feature-card">
+                        <div class="feature-icon">💞</div>
+                        <h3>Compatibility</h3>
+                        <p>
+                            Compare your energy with someone special.
+                            Unlimited comparisons are Premium.
+                        </p>
+                        <button
+                            class="action"
+                            onclick="openFeature('Compatibility')">
+                            Compare
+                        </button>
+                    </div>
+
+
+                    <div class="card feature-card">
+                        <div class="feature-icon">😊</div>
+                        <h3>Mood Analytics</h3>
+                        <p>
+                            Track your mood daily.
+                            Premium unlocks weekly and monthly trends.
+                        </p>
+                        <button
+                            class="action"
+                            onclick="openFeature('Mood Analytics')">
+                            Track Mood
+                        </button>
+                    </div>
+
+
+                    <div class="card feature-card premium">
+                        <div class="premium-icon">💎</div>
+                        <span class="badge">
+                            PREMIUM
+                        </span>
+
+                        <h3>Daily Aura Premium</h3>
+
+                        <p>
+                            Unlock deeper readings, full birth charts,
+                            unlimited compatibility and advanced mood trends.
+                        </p>
+
+                        <button
+                            class="action gold"
+                            onclick="openPremium()">
+                            View Premium
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TAROT PAGE -->
+
+        <section
+            id="tarotSection"
+            class="page-section hidden">
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>🃏 Tarot</h2>
+                    <p>Your daily one-card reading.</p>
+                </div>
+
+                <div class="card tarot">
+
+                    <div class="tarot-card">
+
+                        <div
+                            id="tarotPageSymbol"
+                            class="tarot-symbol">
+                            🃏
+                        </div>
+
+                        <div
+                            id="tarotPageName"
+                            class="tarot-name">
+                            Daily Card
+                        </div>
+
+                    </div>
+
+                    <h3 id="tarotPageMeaning">
+                        Reveal your card.
+                    </h3>
+
+                    <p
+                        id="tarotPageAdvice"
+                        style="margin-top:10px;">
+                    </p>
+
+                    <button
+                        class="action primary"
+                        onclick="loadTarot()">
+                        Reveal Card
+                    </button>
+
+                    <button
+                        class="action gold"
+                        onclick="openPremium()">
+                        🃏 Unlock Full 3-Card Spread
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPLORE -->
+
+        <section
+            id="exploreSection"
+            class="page-section hidden">
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>Explore</h2>
+                    <p>Discover more Daily Aura features.</p>
+                </div>
+
+                <div class="grid">
+
+                    <div class="card feature-card">
+                        <div class="feature-icon">🌌</div>
+                        <h3>Birth Chart</h3>
+                        <p>
+                            Basic overview available now.
+                            Full report coming with Premium.
+                        </p>
+                        <button
+                            class="action"
+                            onclick="openFeature('Birth Chart')">
+                            Open
+                        </button>
+                    </div>
+
+                    <div class="card feature-card">
+                        <div class="feature-icon">💞</div>
+                        <h3>Compatibility</h3>
+                        <p>
+                            Explore relationship energy and
+                            compatibility.
+                        </p>
+                        <button
+                            class="action"
+                            onclick="openFeature('Compatibility')">
+                            Open
+                        </button>
+                    </div>
+
+                    <div class="card feature-card">
+                        <div class="feature-icon">😊</div>
+                        <h3>Mood Analytics</h3>
+                        <p>
+                            Log your daily mood and build your
+                            personal history.
+                        </p>
+                        <button
+                            class="action"
+                            onclick="openFeature('Mood Analytics')">
+                            Open
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACCOUNT -->
+
+        <section
+            id="accountSection"
+            class="page-section hidden">
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>👤 Account</h2>
+                    <p>Your Daily Aura profile and history.</p>
+                </div>
+
+                <div class="card">
+
+                    <div class="avatar">✨</div>
+
+                    <h3 id="accountName">
+                        Sign in to Daily Aura
+                    </h3>
+
+                    <p id="accountEmail">
+                        Save your profile and app history.
+                    </p>
+
+                    <button
+                        class="action primary"
+                        onclick="openModal('accountModal')">
+                        Sign In / Create Account
+                    </button>
+
+                    <button
+                        class="action"
+                        onclick="openPremium()">
+                        💎 Premium & Billing
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="section">
+
+                <div class="section-title">
+                    <h2>📜 Your History</h2>
+                </div>
+
+                <div
+                    id="historyList"
+                    class="card">
+                    No history yet.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+    <div class="bottom-inner">
+
+        <button
+            class="active"
+            onclick="showSection('home',this)">
+            <span>✨</span>
+            Home
+        </button>
+
+        <button
+            onclick="showSection('tarotSection',this)">
+            <span>🃏</span>
+            Tarot
+        </button>
+
+        <button
+            onclick="showSection('exploreSection',this)">
+            <span>🌌</span>
+            Explore
+        </button>
+
+        <button
+            onclick="showSection('accountSection',this)">
+            <span>👤</span>
+            Account
+        </button>
+
+        <button
+            onclick="openModal('settingsModal')">
+            <span>⚙️</span>
+            Settings
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PREMIUM MODAL -->
+
+<div
+    id="premiumModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>💎 Daily Aura Premium</h2>
+                <p style="color:var(--muted);margin-top:5px;">
+                    Premium subscriptions will be available soon.
+                </p>
+            </div>
+
+            <button
+                class="close"
+                onclick="closeModal('premiumModal')">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="card premium">
+
+            <h3>🃏 Tarot Premium</h3>
+
+            <p>
+                Unlock full 3-card Tarot spreads.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card premium"
+            style="margin-top:12px;">
+
+            <h3>🌌 Birth Chart Premium</h3>
+
+            <p>
+                Unlock the complete birth chart report.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card premium"
+            style="margin-top:12px;">
+
+            <h3>💞 Compatibility Premium</h3>
+
+            <p>
+                Unlock unlimited friend and partner comparisons.
+            </p>
+
+        </div>
+
+
+        <div
+            class="card premium"
+            style="margin-top:12px;">
+
+            <h3>😊 Mood Analytics Premium</h3>
+
+            <p>
+                Unlock weekly and monthly mood trends.
+            </p>
+
+        </div>
+
+
+        <button
+            class="action gold"
+            style="margin-top:18px;"
+            onclick="alert('Premium subscriptions will be available soon.')">
+            💎 Available Soon
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ACCOUNT MODAL -->
+
+<div
+    id="accountModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>👤 Daily Aura Account</h2>
+                <p style="color:var(--muted);margin-top:5px;">
+                    Save your profile and app history.
+                </p>
+            </div>
+
+            <button
+                class="close"
+                onclick="closeModal('accountModal')">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Name</label>
+
+            <input
+                id="profileName"
+                type="text"
+                placeholder="Your name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                id="profileEmail"
+                type="email"
+                placeholder="you@example.com">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <input
+                id="profilePassword"
+                type="password"
+                placeholder="Password">
+
+        </div>
+
+
+        <button
+            class="action primary"
+            onclick="saveAccount()">
+            Create / Save Account
+        </button>
+
+
+        <button
+            class="action"
+            onclick="googleSignIn()">
+            Continue with Google
+        </button>
+
+
+        <button
+            class="action danger"
+            onclick="signOut()">
+            Sign Out
+        </button>
+
+
+        <div
+            id="accountStatus"
+            class="status">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SETTINGS MODAL -->
+
+<div
+    id="settingsModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>⚙️ Settings</h2>
+
+            <button
+                class="close"
+                onclick="closeModal('settingsModal')">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>🌐 Language</label>
+
+            <select
+                id="languageSelector"
+                onchange="saveLanguage()">
+
+                <option value="en">English</option>
+                <option value="ne">नेपाली</option>
+                <option value="hi">हिन्दी</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="zh">中文</option>
+                <option value="ar">العربية</option>
+                <option value="bn">বাংলা</option>
+                <option value="ur">اردو</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+                <option value="ta">தமிழ்</option>
+                <option value="te">తెలుగు</option>
+                <option value="mr">मराठी</option>
+                <option value="gu">ગુજરાતી</option>
+                <option value="id">Bahasa Indonesia</option>
+                <option value="tr">Türkçe</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>🔔 Daily Notifications</h3>
+
+            <p style="margin-top:7px;">
+                Receive your Daily Aura notification each morning.
+            </p>
+
+            <button
+                id="subscribeBtn"
+                class="action primary"
+                onclick="subscribeNotifications()">
+                🔔 Subscribe
+            </button>
+
+            <button
+                id="unsubscribeBtn"
+                class="action danger"
+                onclick="unsubscribeNotifications()">
+                🔕 Unsubscribe
+            </button>
+
+            <div
+                id="notificationStatus"
+                class="status">
+            </div>
+
+        </div>
+
+
+        <div
+            class="card"
+            style="margin-top:15px;">
+
+            <h3>💎 Premium</h3>
+
+            <p style="margin-top:7px;">
+                Premium billing will be connected to Stripe later.
+            </p>
+
+            <button
+                class="action gold"
+                onclick="openPremium()">
+                View Premium
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- FEATURE MODAL -->
+
+<div
+    id="featureModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="featureTitle">
+                Feature
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal('featureModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            id="featureContent"
+            class="card">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DAILY AURA FRONTEND CONFIGURATION
+   ========================================================= */
+
+const API_URL =
+    "https://daily-aura-backend.onrender.com";
+
+
+/* =========================================================
+   LOCAL STORAGE KEYS
+   ========================================================= */
+
+const STORAGE = {
+    sign: "dailyAuraSign",
+    language: "dailyAuraLanguage",
+    account: "dailyAuraAccount",
+    history: "dailyAuraHistory",
+    subscription: "dailyAuraPushSubscription"
+};
+
+
+/* =========================================================
+   ZODIAC SIGNS
+   ========================================================= */
+
+const SIGNS = [
+    ["Aries","♈"],
+    ["Taurus","♉"],
+    ["Gemini","♊"],
+    ["Cancer","♋"],
+    ["Leo","♌"],
+    ["Virgo","♍"],
+    ["Libra","♎"],
+    ["Scorpio","♏"],
+    ["Sagittarius","♐"],
+    ["Capricorn","♑"],
+    ["Aquarius","♒"],
+    ["Pisces","♓"]
+];
+
+
+/* =========================================================
+   INIT
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        createSignButtons();
+
+        loadSavedSettings();
+
+        loadAccount();
+
+        loadHistory();
+
+        await checkBackend();
+
+        const savedSign =
+            localStorage.getItem(
+                STORAGE.sign
+            ) || "Aries";
+
+        selectSign(savedSign);
+
+        await loadTarot();
+
+        await loadQuote();
+    }
+);
+
+
+/* =========================================================
+   BACKEND CHECK
+   ========================================================= */
+
+async function checkBackend() {
+
+    const status =
+        document.getElementById(
+            "backendStatus"
+        );
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/health`
+            );
+
+        if (!response.ok) {
+            throw new Error();
+        }
+
+        const data =
+            await response.json();
+
+        status.textContent =
+            "● Daily Aura backend connected";
+
+        status.className =
+            "status good";
+
+        console.log(
+            "Daily Aura backend:",
+            data
+        );
+
+    } catch (error) {
+
+        status.textContent =
+            "● Backend temporarily unavailable";
+
+        status.className =
+            "status bad";
+
+        console.error(
+            "Backend connection error:",
+            error
+        );
+    }
+}
+
+
+/* =========================================================
+   CREATE SIGN BUTTONS
+   ========================================================= */
+
+function createSignButtons() {
+
+    const row =
+        document.getElementById(
+            "signRow"
+        );
+
+    row.innerHTML = "";
+
+    SIGNS.forEach(
+        ([name, symbol]) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.id =
+                `sign-${name}`;
+
+            button.innerHTML =
+                `<span class="sign-symbol">${symbol}</span>${name}`;
+
+            button.onclick =
+                () => selectSign(name);
+
+            row.appendChild(button);
+        }
+    );
+}
+
+
+/* =========================================================
+   SELECT SIGN
+   ========================================================= */
+
+async function selectSign(sign) {
+
+    localStorage.setItem(
+        STORAGE.sign,
+        sign
+    );
+
+    document
+        .querySelectorAll(
+            "#signRow button"
+        )
+        .forEach(
+            button => {
+                button.classList.remove(
+                    "selected"
+                );
+            }
+        );
+
+    const selected =
+        document.getElementById(
+            `sign-${sign}`
+        );
+
+    if (selected) {
+        selected.classList.add(
+            "selected"
+        );
+    }
+
+    await loadDailyContent(sign);
+}
+
+
+/* =========================================================
+   LOAD DAILY CONTENT
+   ========================================================= */
+
+async function loadDailyContent(sign) {
+
+    const result =
+        document.getElementById(
+            "horoscopeResult"
+        );
+
+    result.innerHTML =
+        `
+        <div class="feature-icon">✨</div>
+        <h3>Loading your reading...</h3>
+        <p>Please wait.</p>
+        `;
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/daily-content/${encodeURIComponent(sign)}`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Daily content request failed"
+            );
+        }
+
+        const data =
+            await response.json();
+
+        const horoscope =
+            data.horoscope;
+
+        result.innerHTML =
+            `
+            <div class="feature-icon">
+                ${horoscope.symbol}
+            </div>
+
+            <h3>
+                ${horoscope.name}
+            </h3>
+
+            <p style="margin-top:5px;">
+                Vedic: ${horoscope.vedic}
+            </p>
+
+            <p style="margin-top:15px;">
+                ${horoscope.reading}
+            </p>
+            `;
+
+        if (data.tarot) {
+            updateTarotUI(
+                data.tarot
+            );
+        }
+
+        if (data.quote) {
+            document.getElementById(
+                "quoteText"
+            ).textContent =
+                data.quote;
+        }
+
+        saveHistory({
+            type: "Daily Reading",
+            date: data.date,
+            sign: sign
+        });
+
+    } catch (error) {
+
+        result.innerHTML =
+            `
+            <div class="feature-icon">⚠️</div>
+            <h3>Unable to load reading</h3>
+            <p>
+                Please check your internet connection
+                and try again.
+            </p>
+            `;
+
+        console.error(error);
+    }
+}
+
+
+/* =========================================================
+   LOAD TAROT
+   ========================================================= */
+
+async function loadTarot() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/daily-tarot`
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Tarot request failed"
+            );
+        }
+
+        const data =
+            await response.json();
+
+        updateTarotUI(
+            data.tarot
+        );
+
+        saveHistory({
+            type: "Daily Tarot",
+            date: data.date,
+            card: data.tarot.name
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Tarot error:",
+            error
+        );
+
+        document.getElementById(
+            "tarotName"
+        ).textContent =
+            "Unable to load";
+
+    }
+}
+
+
+/* =========================================================
+   UPDATE TAROT UI
+   ========================================================= */
+
+function updateTarotUI(tarot) {
+
+    document.getElementById(
+        "tarotSymbol"
+    ).textContent =
+        tarot.symbol;
+
+    document.getElementById(
+        "tarotName"
+    ).textContent =
+        tarot.name;
+
+    document.getElementById(
+        "tarotMeaning"
+    ).textContent =
+        tarot.meaning;
+
+    document.getElementById(
+        "tarotAdvice"
+    ).textContent =
+        `Advice: ${tarot.advice}`;
+
+    document.getElementById(
+        "tarotPageSymbol"
+    ).textContent =
+        tarot.symbol;
+
+    document.getElementById(
+        "tarotPageName"
+    ).textContent =
+        tarot.name;
+
+    document.getElementById(
+        "tarotPageMeaning"
+    ).textContent =
+        tarot.meaning;
+
+    document.getElementById(
+        "tarotPageAdvice"
+    ).textContent =
+        `Advice: ${tarot.advice}`;
+}
+
+
+/* =========================================================
+   LOAD QUOTE
+   ========================================================= */
+
+async function loadQuote() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/daily-quote`
+            );
+
+        if (!response.ok) {
+            throw new Error();
+        }
+
+        const data =
+            await response.json();
+
+        document.getElementById(
+            "quoteText"
+        ).textContent =
+            data.quote;
+
+    } catch (error) {
+
+        document.getElementById(
+            "quoteText"
+        ).textContent =
+            "Every day is a new opportunity.";
+
+    }
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function showSection(
+    sectionId,
+    button
+) {
+
+    document
+        .querySelectorAll(
+            ".page-section"
+        )
+        .forEach(
+            section => {
+                section.classList.add(
+                    "hidden"
+                );
+            }
+        );
+
+    const section =
+        document.getElementById(
+            sectionId
+        );
+
+    if (section) {
+        section.classList.remove(
+            "hidden"
+        );
+    }
+
+    document
+        .querySelectorAll(
+            ".nav button"
+        )
+        .forEach(
+            btn => {
+                btn.classList.remove(
+                    "active"
+                );
+            }
+        );
+
+    document
+        .querySelectorAll(
+            ".bottom-inner button"
+        )
+        .forEach(
+            btn => {
+                btn.classList.remove(
+                    "active"
+                );
+            }
+        );
+
+    if (button) {
+        button.classList.add(
+            "active"
+        );
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   PREMIUM
+   ========================================================= */
+
+function openPremium() {
+
+    openModal(
+        "premiumModal"
+    );
+}
+
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+function openFeature(feature) {
+
+    const title =
+        document.getElementById(
+            "featureTitle"
+        );
+
+    const content =
+        document.getElementById(
+            "featureContent"
+        );
+
+    title.textContent =
+        feature;
+
+    if (feature === "Birth Chart") {
+
+        content.innerHTML =
+            `
+            <div class="feature-icon">🌌</div>
+
+            <h3>Birth Chart</h3>
+
+            <p>
+                Your basic birth-chart overview will
+                be available here.
+            </p>
+
+            <p style="margin-top:12px;">
+                The complete detailed report will be
+                available with Premium.
+            </p>
+
+            <button
+                class="action gold"
+                onclick="openPremium()">
+                💎 Unlock Full Report
+            </button>
+            `;
+
+    } else if (
+        feature === "Compatibility"
+    ) {
+
+        content.innerHTML =
+            `
+            <div class="feature-icon">💞</div>
+
+            <h3>Compatibility</h3>
+
+            <p>
+                Compare your zodiac energy with
+                friends, partners and people you care about.
+            </p>
+
+            <p style="margin-top:12px;">
+                Unlimited comparisons will be
+                available with Premium.
+            </p>
+
+            <button
+                class="action gold"
+                onclick="openPremium()">
+                💎 Unlock Unlimited Comparisons
+            </button>
+            `;
+
+    } else {
+
+        content.innerHTML =
+            `
+            <div class="feature-icon">😊</div>
+
+            <h3>Mood Analytics</h3>
+
+            <p>
+                Record how you feel each day.
+                Your daily mood log is free.
+            </p>
+
+            <button
+                class="action primary"
+                onclick="logMood()">
+                😊 Log Today's Mood
+            </button>
+
+            <button
+                class="action gold"
+                onclick="openPremium()">
+                💎 Unlock Weekly & Monthly Trends
+            </button>
+            `;
+    }
+
+    openModal(
+        "featureModal"
+    );
+}
+
+
+/* =========================================================
+   MOOD
+   ========================================================= */
+
+function logMood() {
+
+    const moods = [
+        "😊 Happy",
+        "😌 Calm",
+        "🥰 Loved",
+        "😐 Okay",
+        "😔 Sad",
+        "😤 Stressed",
+        "😴 Tired"
+    ];
+
+    const choice =
+        prompt(
+            "How are you feeling today?\n\n" +
+            moods.join("\n")
+        );
+
+    if (!choice) {
+        return;
+    }
+
+    saveHistory({
+        type: "Mood",
+        date: new Date().toISOString(),
+        mood: choice
+    });
+
+    alert(
+        "Your mood has been saved ✨"
+    );
+
+    loadHistory();
+}
+
+
+/* =========================================================
+   ACCOUNT
+   ========================================================= */
+
+function saveAccount() {
+
+    const name =
+        document.getElementById(
+            "profileName"
+        ).value.trim();
+
+    const email =
+        document.getElementById(
+            "profileEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "profilePassword"
+        ).value;
+
+    if (!name || !email || !password) {
+
+        document.getElementById(
+            "accountStatus"
+        ).textContent =
+            "Please complete all fields.";
+
+        document.getElementById(
+            "accountStatus"
+        ).className =
+            "status bad";
+
+        return;
+    }
+
+    /*
+       IMPORTANT:
+       This is only frontend/local account storage.
+       Do NOT use this as real production authentication.
+       Real email/password and Google authentication
+       should later be connected to a proper auth backend.
+    */
+
+    const account = {
+        name: name,
+        email: email,
+        createdAt:
+            new Date().toISOString()
+    };
+
+    localStorage.setItem(
+        STORAGE.account,
+        JSON.stringify(account)
+    );
+
+    document.getElementById(
+        "accountStatus"
+    ).textContent =
+        "Account saved on this device.";
+
+    document.getElementById(
+        "accountStatus"
+    ).className =
+        "status good";
+
+    loadAccount();
+
+    setTimeout(
+        () => closeModal("accountModal"),
+        900
+    );
+}
+
+
+/* =========================================================
+   GOOGLE SIGN-IN PLACEHOLDER
+   ========================================================= */
+
+function googleSignIn() {
+
+    alert(
+        "Google Sign-In will be connected to the authentication backend later."
+    );
+}
+
+
+/* =========================================================
+   LOAD ACCOUNT
+   ========================================================= */
+
+function loadAccount() {
+
+    const raw =
+        localStorage.getItem(
+            STORAGE.account
+        );
+
+    if (!raw) {
+        return;
+    }
+
+    try {
+
+        const account =
+            JSON.parse(raw);
+
+        document.getElementById(
+            "accountName"
+        ).textContent =
+            account.name;
+
+        document.getElementById(
+            "accountEmail"
+        ).textContent =
+            account.email;
+
+        document.getElementById(
+            "profileName"
+        ).value =
+            account.name;
+
+        document.getElementById(
+            "profileEmail"
+        ).value =
+            account.email;
+
+    } catch (error) {
+
+        console.error(
+            "Account loading error:",
+            error
+        );
+    }
+}
+
+
+/* =========================================================
+   SIGN OUT
+   ========================================================= */
+
+function signOut() {
+
+    localStorage.removeItem(
+        STORAGE.account
+    );
+
+    document.getElementById(
+        "accountName"
+    ).textContent =
+        "Sign in to Daily Aura";
+
+    document.getElementById(
+        "accountEmail"
+    ).textContent =
+        "Save your profile and app history.";
+
+    document.getElementById(
+        "accountStatus"
+    ).textContent =
+        "Signed out.";
+
+    document.getElementById(
+        "accountStatus"
+    ).className =
+        "status good";
+}
+
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+function saveHistory(item) {
+
+    let history = [];
+
+    try {
+
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE.history
+                )
+            ) || [];
+
+    } catch (error) {
+
+        history = [];
+    }
+
+    history.unshift(item);
+
+    history =
+        history.slice(0, 50);
+
+    localStorage.setItem(
+        STORAGE.history,
+        JSON.stringify(history)
+    );
+
+    loadHistory();
+}
+
+
+function loadHistory() {
+
+    const container =
+        document.getElementById(
+            "historyList"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    let history = [];
+
+    try {
+
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE.history
+                )
+            ) || [];
+
+    } catch (error) {
+
+        history = [];
+    }
+
+    if (!history.length) {
+
+        container.innerHTML =
+            "No history yet.";
+
+        return;
+    }
+
+    container.innerHTML =
+        history
+            .slice(0,10)
+            .map(
+                item => {
+
+                    let text =
+                        item.type || "Activity";
+
+                    if (item.sign) {
+                        text +=
+                            ` — ${item.sign}`;
+                    }
+
+                    if (item.card) {
+                        text +=
+                            ` — ${item.card}`;
+                    }
+
+                    if (item.mood) {
+                        text +=
+                            ` — ${item.mood}`;
+                    }
+
+                    return `
+                    <div class="history-item">
+                        <strong>${text}</strong>
+                        <div style="color:var(--muted);font-size:12px;margin-top:4px;">
+                            ${formatDate(item.date)}
+                        </div>
+                    </div>
+                    `;
+                }
+            )
+            .join("");
+}
+
+
+function formatDate(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    try {
+
+        return new Date(value)
+            .toLocaleString();
+
+    } catch (error) {
+
+        return value;
+    }
+}
+
+
+/* =========================================================
+   LANGUAGE
+   ========================================================= */
+
+function loadSavedSettings() {
+
+    const language =
+        localStorage.getItem(
+            STORAGE.language
+        ) || "en";
+
+    document.getElementById(
+        "languageSelector"
+    ).value =
+        language;
+}
+
+
+function saveLanguage() {
+
+    const language =
+        document.getElementById(
+            "languageSelector"
+        ).value;
+
+    localStorage.setItem(
+        STORAGE.language,
+        language
+    );
+
+    /*
+       The current backend accepts the language
+       when subscribing to notifications.
+
+       Full UI translation can be added later
+       without changing the backend connection.
+    */
+
+    alert(
+        "Language preference saved."
+    );
+}
+
+
+/* =========================================================
+   PUSH NOTIFICATIONS
+   ========================================================= */
+
+async function subscribeNotifications() {
+
+    const status =
+        document.getElementById(
+            "notificationStatus"
+        );
+
+    if (!("Notification" in window)) {
+
+        status.textContent =
+            "This browser does not support notifications.";
+
+        status.className =
+            "status bad";
+
+        return;
+    }
+
+    if (!("serviceWorker" in navigator)) {
+
+        status.textContent =
+            "Service workers are not supported.";
+
+        status.className =
+            "status bad";
+
+        return;
+    }
+
+    try {
+
+        /*
+           Ask the browser for notification permission.
+        */
+
+        const permission =
+            await Notification.requestPermission();
+
+        if (permission !== "granted") {
+
+            status.textContent =
+                "Notification permission was not granted.";
+
+            status.className =
+                "status bad";
+
+            return;
+        }
+
+
+        /*
+           Get VAPID public key from Render.
+
+           This will currently return 503 until
+           you configure VAPID_PUBLIC_KEY on Render.
+        */
+
+        const keyResponse =
+            await fetch(
+                `${API_URL}/vapid-public-key`
+            );
+
+        if (!keyResponse.ok) {
+
+            status.textContent =
+                "VAPID is not configured on the backend yet.";
+
+            status.className =
+                "status bad";
+
+            return;
+        }
+
+        const keyData =
+            await keyResponse.json();
+
+
+        /*
+           Register service worker.
+        */
+
+        const registration =
+            await navigator.serviceWorker.register(
+                "./service-worker.js"
+            );
+
+
+        /*
+           Create push subscription.
+        */
+
+        const subscription =
+            await registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey:
+                    urlBase64ToUint8Array(
+                        keyData.publicKey
+                    )
+            });
+
+
+        const sign =
+            localStorage.getItem(
+                STORAGE.sign
+            ) || "Aries";
+
+        const language =
+            localStorage.getItem(
+                STORAGE.language
+            ) || "en";
+
+
+        /*
+           Send subscription to Render backend.
+        */
+
+        const response =
+            await fetch(
+                `${API_URL}/subscribe`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        subscription:
+                            subscription.toJSON(),
+
+                        horoscope:
+                            sign,
+
+                        language:
+                            language
+                    })
+                }
+            );
+
+
+        if (!response.ok) {
+            throw new Error(
+                "Backend subscription failed."
+            );
+        }
+
+
+        localStorage.setItem(
+            STORAGE.subscription,
+            JSON.stringify(
+                subscription.toJSON()
+            )
+        );
+
+
+        status.textContent =
+            "✓ Daily notifications enabled.";
+
+        status.className =
+            "status good";
+
+    } catch (error) {
+
+        console.error(
+            "Notification subscription error:",
+            error
+        );
+
+        status.textContent =
+            "Notifications are not configured yet.";
+
+        status.className =
+            "status bad";
+    }
+}
+
+
+/* =========================================================
+   UNSUBSCRIBE NOTIFICATIONS
+   ========================================================= */
+
+async function unsubscribeNotifications() {
+
+    const status =
+        document.getElementById(
+            "notificationStatus"
+        );
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                STORAGE.subscription
+            );
+
+        if (!saved) {
+
+            status.textContent =
+                "No notification subscription found.";
+
+            status.className =
+                "status";
+
+            return;
+        }
+
+        const subscription =
+            JSON.parse(saved);
+
+        await fetch(
+            `${API_URL}/unsubscribe`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    endpoint:
+                        subscription.endpoint
+                })
+            }
+        );
+
+
+        localStorage.removeItem(
+            STORAGE.subscription
+        );
+
+
+        status.textContent =
+            "✓ Daily notifications disabled.";
+
+        status.className =
+            "status good";
+
+    } catch (error) {
+
+        console.error(
+            "Unsubscribe error:",
+            error
+        );
+
+        status.textContent =
+            "Could not unsubscribe.";
+
+        status.className =
+            "status bad";
+    }
+}
+
+
+/* =========================================================
+   VAPID KEY CONVERTER
+   ========================================================= */
+
+function urlBase64ToUint8Array(
+    base64String
+) {
+
+    const padding =
+        "=".repeat(
+            (4 - base64String.length % 4) % 4
+        );
+
+    const base64 =
+        (
+            base64String +
+            padding
+        )
+            .replace(
+                /-/g,
+                "+"
+            )
+            .replace(
+                /_/g,
+                "/"
+            );
+
+    const rawData =
+        window.atob(base64);
+
+    const outputArray =
+        new Uint8Array(
+            rawData.length
+        );
+
+    for (
+        let i = 0;
+        i < rawData.length;
+        ++i
+    ) {
+        outputArray[i] =
+            rawData.charCodeAt(i);
+    }
+
+    return outputArray;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+function openModal(id) {
+
+    const modal =
+        document.getElementById(id);
+
+    if (modal) {
+        modal.classList.add(
+            "show"
+        );
+    }
+}
+
+
+function closeModal(id) {
+
+    const modal =
+        document.getElementById(id);
+
+    if (modal) {
+        modal.classList.remove(
+            "show"
+        );
+    }
+}
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+   ========================================================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(
+        modal => {
+
+            modal.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target ===
+                        modal
+                    ) {
+
+                        modal.classList.remove(
+                            "show"
+                        );
+                    }
+                }
+            );
+        }
+    );
+
+</script>
+
+</body>
+</html>
