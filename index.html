@@ -634,116 +634,61 @@ select option {
 #profilePassword.password-invalid{border-color:rgba(239,68,68,.45)}
 @media(max-width:520px){.password-requirements{padding:10px;border-radius:12px}.password-requirement{font-size:11.5px}}
 
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* GEN-Z TYPOGRAPHY SYSTEM */
-:root{--font-display:"DM Serif Display",Georgia,serif;--font-sans:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-body{font-family:var(--font-sans);letter-spacing:-.012em}
-.logo,.hero h1,.section-title h2,.card h3,.tarot-name{font-family:var(--font-display);letter-spacing:-.035em}
-.logo{font-size:21px;font-weight:600}
-.hero .eyebrow,.tarot-label,.badge,.label{font-family:var(--font-sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-.hero h1{font-size:clamp(46px,9vw,72px);font-weight:400;line-height:.95}
-.hero p{font-size:clamp(15px,2.8vw,18px);line-height:1.65;max-width:620px}
-.section-title h2{font-size:clamp(25px,5vw,34px);font-weight:400;line-height:1.05}
-.section-title p,.card p{font-size:14px;line-height:1.7}
-.card h3{font-size:clamp(21px,4vw,28px);font-weight:400;line-height:1.08}
-.reading,.meaning,.advice,.quote-text{font-family:var(--font-sans);font-size:clamp(15px,3vw,17px);line-height:1.72}
-.tarot-name{font-size:clamp(25px,6vw,36px);font-weight:400}
-.nav button,.action,.bottom-inner button{font-family:var(--font-sans);font-weight:700;letter-spacing:.01em}
-@media(max-width:520px){.hero h1{font-size:clamp(42px,14vw,58px)}.section-title h2{font-size:27px}.card h3{font-size:23px}.card{padding:18px}.hero p{font-size:15px}.reading,.meaning,.advice,.quote-text{font-size:15px}}
-</style>
-<style>
 
-/* DAILY AURA — GEN Z TYPOGRAPHY SYSTEM */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap');
+/* ============================================================
+   PREMIUM BIRTH CHART — FRONTEND
+   ============================================================ */
 
-:root{
-  --font-display:"DM Serif Display",Georgia,serif;
-  --font-body:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-
-html{
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  text-rendering:optimizeLegibility;
-}
-
-body,input,select,textarea,button{
-  font-family:var(--font-body);
-  letter-spacing:-.012em;
-}
-
-h1,h2,h3,h4,h5,h6,.logo,.hero-title,.section-title,.card-title,
-.tarot-name,.quote-text,.modal-title{
-  font-family:var(--font-display);
-  font-weight:400;
-  letter-spacing:-.045em;
-  text-wrap:balance;
-}
-
-h1{font-size:clamp(2.55rem,8vw,5.2rem);line-height:.94}
-h2{font-size:clamp(2rem,6vw,3.5rem);line-height:.98}
-h3{font-size:clamp(1.35rem,4vw,2rem);line-height:1.05}
-
-.hero-title{font-size:clamp(2.7rem,10vw,5.5rem);line-height:.9}
-
-p,.reading,.meaning,.advice,.description,.subtitle{
-  font-size:clamp(.92rem,2.2vw,1.04rem);
-  line-height:1.68;
-  font-weight:400;
-  text-wrap:pretty;
-}
-
-.label,.eyebrow,.badge,.card-label,.settings-eyebrow{
-  font-family:var(--font-body);
-  font-size:.68rem;
-  line-height:1;
-  font-weight:800;
-  letter-spacing:.13em;
-  text-transform:uppercase;
-}
-
-button,.action,.nav-item,.tab{
-  font-family:var(--font-body);
-  font-weight:700;
-  letter-spacing:-.01em;
-}
-
-.quote-text,.quote{
-  font-family:var(--font-display);
-  font-size:clamp(1.45rem,4.8vw,2.35rem);
-  line-height:1.15;
-  letter-spacing:-.035em;
-}
-
-.tarot-name{
-  font-size:clamp(1.65rem,5vw,2.45rem);
-  line-height:1;
-}
-
-.metadata,.vedic,.date,.small-text{
-  font-size:.76rem;
-  line-height:1.4;
-  font-weight:600;
-}
-
-@media(max-width:600px){
-  .hero-title{font-size:clamp(2.45rem,12vw,4rem)}
-  .section-title,.card-title{font-size:clamp(1.65rem,8vw,2.25rem)}
-  .quote-text,.quote{font-size:clamp(1.35rem,6vw,1.8rem)}
-  p,.reading,.meaning,.advice{font-size:.94rem;line-height:1.64}
-}
-
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.01ms!important;
-  }
+.premium-mini-badge{display:inline-block;font-size:9px;font-weight:900;letter-spacing:.14em;color:#f5d58a;text-transform:uppercase;margin-bottom:5px}
+.birth-chart-modal{max-width:760px;max-height:90vh;overflow:auto}
+.birth-chart-header{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:20px}
+.birth-chart-header h2{font-size:clamp(2rem,6vw,3.2rem);margin:5px 0 8px}
+.birth-chart-header p{color:var(--muted);line-height:1.6}
+.birth-chart-paywall{padding:34px 22px;text-align:center;border:1px solid rgba(245,213,138,.25);border-radius:26px;background:radial-gradient(circle at 50% 0,rgba(167,139,250,.2),transparent 50%),rgba(255,255,255,.035)}
+.birth-orbit{width:72px;height:72px;margin:0 auto 15px;display:grid;place-items:center;border-radius:50%;font-size:32px;background:linear-gradient(135deg,rgba(139,92,246,.35),rgba(236,72,153,.2));box-shadow:0 0 45px rgba(139,92,246,.25)}
+.birth-chart-paywall h3{font-size:25px;margin-bottom:8px}
+.birth-chart-paywall p{max-width:560px;margin:0 auto 20px;color:var(--muted);line-height:1.65}
+.birth-chart-form{display:grid;gap:13px}
+.birth-form-intro{margin-bottom:3px}
+.birth-form-intro h3{font-size:22px;margin-bottom:5px}
+.birth-form-intro p,.birth-chart-note{color:var(--muted);font-size:12px;line-height:1.55}
+.birth-chart-form label{display:grid;gap:7px;font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.02em}
+.birth-chart-form input[type="date"],.birth-chart-form input[type="time"],.birth-chart-form input[type="text"]{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid var(--border);border-radius:15px;background:rgba(255,255,255,.045);color:var(--text);font:inherit;outline:none}
+.birth-chart-form input:focus{border-color:rgba(167,139,250,.65);box-shadow:0 0 0 3px rgba(167,139,250,.1)}
+.birth-time-unknown{display:flex!important;grid-template-columns:none!important;grid-auto-flow:column;justify-content:start;align-items:center;gap:9px!important;font-size:12px!important}
+.birth-time-unknown input{width:16px;height:16px}
+.chart-hero{padding:22px;border-radius:24px;background:linear-gradient(135deg,rgba(139,92,246,.18),rgba(236,72,153,.08));border:1px solid var(--border);margin-bottom:16px}
+.chart-hero h3{font-size:29px;margin:5px 0}
+.chart-hero p{color:var(--muted);font-size:12px}
+.chart-section{margin-top:15px;padding:18px;border:1px solid var(--border);border-radius:22px;background:rgba(255,255,255,.035)}
+.chart-section-heading{display:flex;gap:11px;align-items:flex-start;margin-bottom:14px}
+.chart-section-heading>span{font-size:22px}
+.chart-section-heading>div>span,.interpretation-card>div>span,.detailed-reading>span{font-size:9px;font-weight:900;letter-spacing:.13em;color:var(--gold)}
+.chart-section-heading h3{font-size:20px;margin-top:4px}
+.big-three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.big-three-grid article{padding:16px;text-align:center;border-radius:17px;background:rgba(255,255,255,.045)}
+.big-three-grid article>span{font-size:25px;display:block;margin-bottom:8px}
+.big-three-grid small{display:block;color:var(--muted);font-size:10px;font-weight:700;margin-bottom:5px}
+.big-three-grid strong{font-size:15px}
+.placement-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.placement-grid>div,.house-grid>div{display:flex;justify-content:space-between;gap:10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);font-size:12px}
+.placement-grid span,.house-grid span{color:var(--muted)}
+.house-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.aspect-list{display:grid;gap:7px}
+.aspect-list>div{padding:11px 13px;border-radius:13px;background:rgba(255,255,255,.04);font-size:12px;color:var(--muted)}
+.interpretation-card{display:grid;grid-template-columns:44px 1fr;gap:13px;margin-top:12px;padding:18px;border:1px solid var(--border);border-radius:20px;background:rgba(255,255,255,.035)}
+.interpretation-card>span{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.07);font-size:21px}
+.interpretation-card h3{font-size:19px;margin:4px 0 7px}
+.interpretation-card p,.detailed-reading p{color:var(--muted);font-size:13px;line-height:1.7}
+.detailed-reading{margin-top:12px;padding:20px;border-radius:22px;background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(255,255,255,.035));border:1px solid var(--border)}
+.detailed-reading h3{font-size:22px;margin:6px 0 9px}
+@media(max-width:560px){
+  .birth-chart-modal{width:calc(100vw - 20px);max-height:92vh;padding:15px;border-radius:24px}
+  .birth-chart-header h2{font-size:28px}
+  .big-three-grid{grid-template-columns:1fr}
+  .placement-grid,.house-grid{grid-template-columns:1fr}
+  .interpretation-card{grid-template-columns:38px 1fr;padding:15px}
+  .interpretation-card>span{width:38px;height:38px}
 }
 
 </style>
@@ -934,18 +879,23 @@ button,.action,.nav-item,.tab{
 
                 <div class="grid">
 
-                    <div class="card feature-card">
+                    
+<div class="feature-copy">
+    <span class="premium-mini-badge">PREMIUM</span>
+    <h3>Birth Chart</h3>
+    <p>Discover your Sun, Moon, Rising, planets, houses and major aspects.</p>
+  </div>
+  <button class="feature-action" onclick="event.stopPropagation();openBirthChart()">Explore</button>
+</div>
+
+<div class="card feature-card" onclick="openBirthChart()">
                         <div class="feature-icon">🌌</div>
-                        <h3>Birth Chart</h3>
+                        <span class="premium-mini-badge">PREMIUM</span><h3>Birth Chart</h3>
                         <p>
                             Get a basic overview for free.
                             Unlock the complete report with Premium.
                         </p>
-                        <button
-                            class="action"
-                            onclick="openFeature('Birth Chart')">
-                            Explore
-                        </button>
+                        <button type="button" onclick="event.stopPropagation();openBirthChart()">Explore</button>
                     </div>
 
 
@@ -1627,7 +1577,7 @@ async function checkBackend() {
             await response.json();
 
         status.textContent =
-            "";
+            "● Daily Aura backend connected";
 
         status.className =
             "status good";
@@ -2558,7 +2508,213 @@ document.addEventListener("DOMContentLoaded", () => {
     if (password) password.addEventListener("input", updatePasswordRequirements);
 });
 
+
+/* ============================================================
+   PREMIUM BIRTH CHART — FRONTEND STATE
+   ============================================================ */
+function isDailyAuraPremium(){
+  return localStorage.getItem("dailyAuraPremium") === "true" ||
+         localStorage.getItem("premium") === "true" ||
+         window.DAILY_AURA_PREMIUM === true;
+}
+
+function openBirthChart(){
+  openModal("birthChartModal");
+
+  const premium = isDailyAuraPremium();
+  const paywall = document.getElementById("birthChartPaywall");
+  const form = document.getElementById("birthChartForm");
+  const results = document.getElementById("birthChartResults");
+
+  if (!paywall || !form) return;
+
+  if (premium){
+    paywall.hidden = true;
+    form.hidden = false;
+    if (results) results.hidden = true;
+  }else{
+    paywall.hidden = false;
+    form.hidden = true;
+    if (results) results.hidden = true;
+  }
+}
+
+function generateBirthChart(){
+  const date = document.getElementById("birthDate")?.value;
+  const time = document.getElementById("birthTime")?.value;
+  const city = document.getElementById("birthCity")?.value.trim();
+  const country = document.getElementById("birthCountry")?.value.trim();
+  const unknownTime = document.getElementById("birthTimeUnknown")?.checked;
+
+  if (!date || !city || !country || (!time && !unknownTime)){
+    alert("Please enter your birth date, birthplace and birth time. If you don't know the exact time, select the option provided.");
+    return;
+  }
+
+  const results = document.getElementById("birthChartResults");
+  const form = document.getElementById("birthChartForm");
+
+  form.hidden = true;
+  results.hidden = false;
+
+  document.getElementById("chartResultTitle").textContent = "Your Cosmic Blueprint";
+  document.getElementById("chartResultMeta").textContent =
+    `${date} · ${time || "Birth time unknown"} · ${city}, ${country}`;
+
+  // Frontend-only placeholders until the backend calculation endpoint is connected.
+  document.getElementById("chartSun").textContent = "To be calculated";
+  document.getElementById("chartMoon").textContent = "To be calculated";
+  document.getElementById("chartRising").textContent =
+    unknownTime ? "Needs birth time" : "To be calculated";
+
+  document.getElementById("personalityText").textContent =
+    "Your complete personality interpretation will be generated from your calculated birth-chart placements.";
+  document.getElementById("relationshipText").textContent =
+    "Your relationship tendencies will be based on Venus, Mars, Moon and relevant chart aspects.";
+  document.getElementById("careerText").textContent =
+    "Your career themes will be based on your planetary placements, houses and chart angles.";
+  document.getElementById("growthText").textContent =
+    "Your strengths and growth areas will be identified from the complete chart.";
+  document.getElementById("detailedReading").textContent =
+    "Once the birth-chart calculation backend is connected, this section will show your detailed personalized reading.";
+
+  const houses = document.getElementById("housePlacements");
+  if (houses){
+    houses.innerHTML = Array.from({length:12},(_,i)=>
+      `<div><b>House ${i+1}</b><span>To be calculated</span></div>`
+    ).join("");
+  }
+
+  const aspects = document.getElementById("majorAspects");
+  if (aspects){
+    aspects.innerHTML =
+      '<div class="empty-chart-item">Major aspects will appear after the chart is calculated.</div>';
+  }
+
+  document.getElementById("birthChartModal")?.querySelector(".birth-chart-modal")?.scrollTo({top:0,behavior:"smooth"});
+}
+
 </script>
+
+
+<!-- PREMIUM BIRTH CHART -->
+<div id="birthChartModal" class="modal">
+  <div class="modal-box birth-chart-modal">
+    <div class="birth-chart-header">
+      <div>
+        <span class="premium-mini-badge">💎 PREMIUM BIRTH CHART</span>
+        <h2>🌌 Your Cosmic Blueprint</h2>
+        <p>A personalized map of your birth sky.</p>
+      </div>
+      <button class="close" onclick="closeModal('birthChartModal')">✕</button>
+    </div>
+
+    <div id="birthChartPaywall" class="birth-chart-paywall">
+      <div class="birth-orbit">✦</div>
+      <h3>Unlock your complete chart</h3>
+      <p>
+        Explore your Big Three, planetary placements, houses, major aspects,
+        personality, relationships, career themes and growth areas.
+      </p>
+      <button class="action gold" onclick="openPremium()">💎 Unlock with Premium</button>
+    </div>
+
+    <div id="birthChartForm" class="birth-chart-form" hidden>
+      <div class="birth-form-intro">
+        <h3>Tell us about your birth</h3>
+        <p>Your birth time and birthplace are needed for the Ascendant and houses.</p>
+      </div>
+
+      <label>Date of birth
+        <input id="birthDate" type="date" autocomplete="bday">
+      </label>
+
+      <label>Exact birth time
+        <input id="birthTime" type="time">
+      </label>
+
+      <label>Birth city
+        <input id="birthCity" type="text" placeholder="e.g. Kathmandu" autocomplete="address-level2">
+      </label>
+
+      <label>Country
+        <input id="birthCountry" type="text" placeholder="e.g. Nepal" autocomplete="country-name">
+      </label>
+
+      <label class="birth-time-unknown">
+        <input id="birthTimeUnknown" type="checkbox">
+        I don't know my exact birth time
+      </label>
+
+      <button class="action primary" onclick="generateBirthChart()">
+        ✨ Generate My Birth Chart
+      </button>
+
+      <p class="birth-chart-note">
+        Your chart will be calculated from your birth details when the backend calculation is connected.
+      </p>
+    </div>
+
+    <div id="birthChartResults" class="birth-chart-results" hidden>
+
+      <div class="chart-hero">
+        <span class="premium-mini-badge">YOUR COSMIC BLUEPRINT</span>
+        <h3 id="chartResultTitle">Your Birth Chart</h3>
+        <p id="chartResultMeta">Birth details</p>
+      </div>
+
+      <section class="chart-section">
+        <div class="chart-section-heading">
+          <span>✨</span><div><span>THE BIG THREE</span><h3>Your core energy</h3></div>
+        </div>
+        <div class="big-three-grid">
+          <article><span>☀️</span><small>Sun Sign</small><strong id="chartSun">—</strong></article>
+          <article><span>🌙</span><small>Moon Sign</small><strong id="chartMoon">—</strong></article>
+          <article><span>⬆️</span><small>Rising / Ascendant</small><strong id="chartRising">—</strong></article>
+        </div>
+      </section>
+
+      <section class="chart-section">
+        <div class="chart-section-heading"><span>🪐</span><div><span>PLANET PLACEMENTS</span><h3>Your planetary map</h3></div></div>
+        <div id="planetPlacements" class="placement-grid">
+          <div><b>☿ Mercury</b><span>—</span></div>
+          <div><b>♀ Venus</b><span>—</span></div>
+          <div><b>♂ Mars</b><span>—</span></div>
+          <div><b>♃ Jupiter</b><span>—</span></div>
+          <div><b>♄ Saturn</b><span>—</span></div>
+          <div><b>♅ Uranus</b><span>—</span></div>
+          <div><b>♆ Neptune</b><span>—</span></div>
+          <div><b>♇ Pluto</b><span>—</span></div>
+        </div>
+      </section>
+
+      <section class="chart-section">
+        <div class="chart-section-heading"><span>♈</span><div><span>12 HOUSES</span><h3>Life areas</h3></div></div>
+        <div id="housePlacements" class="house-grid"></div>
+      </section>
+
+      <section class="chart-section">
+        <div class="chart-section-heading"><span>🔗</span><div><span>MAJOR ASPECTS</span><h3>How your placements interact</h3></div></div>
+        <div id="majorAspects" class="aspect-list"><div class="empty-chart-item">Your calculated aspects will appear here.</div></div>
+      </section>
+
+      <section class="interpretation-card"><span>💫</span><div><span>PERSONALITY INTERPRETATION</span><h3 id="personalityTitle">Your unique energy</h3><p id="personalityText">Your personalized interpretation will appear here.</p></div></section>
+
+      <section class="interpretation-card"><span>❤️</span><div><span>RELATIONSHIP TENDENCIES</span><h3>How you connect</h3><p id="relationshipText">Your relationship reading will appear here.</p></div></section>
+
+      <section class="interpretation-card"><span>💼</span><div><span>CAREER THEMES</span><h3>Your natural direction</h3><p id="careerText">Your career themes will appear here.</p></div></section>
+
+      <section class="interpretation-card"><span>🌱</span><div><span>STRENGTHS &amp; GROWTH AREAS</span><h3>Where you can grow</h3><p id="growthText">Your strengths and growth areas will appear here.</p></div></section>
+
+      <section class="detailed-reading">
+        <span>📖 DETAILED PERSONALIZED READING</span>
+        <h3>Your full cosmic story</h3>
+        <p id="detailedReading">Your detailed birth-chart reading will appear here.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
