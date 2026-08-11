@@ -555,6 +555,55 @@ select option {
     border-bottom: 0;
 }
 
+/* MOBILE ANIMATIONS & RESPONSIVE POLISH */
+@keyframes auraIn {
+    from { opacity: 0; transform: translateY(14px) scale(.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 18px 55px rgba(139,92,246,.16); }
+    50% { box-shadow: 0 22px 70px rgba(236,72,153,.24); }
+}
+
+.page-section:not(.hidden) { animation: auraIn .42s ease both; }
+.card { transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 24px 65px rgba(0,0,0,.25); }
+.action, .icon-btn, .nav button, .sign-row button, .bottom-inner button { transition: transform .18s ease, opacity .18s ease, background .18s ease; }
+.action:active, .icon-btn:active, .nav button:active, .sign-row button:active { transform: scale(.97); }
+.tarot-card { animation: glowPulse 4s ease-in-out infinite; }
+.horoscope-card, .quote { animation: auraIn .5s ease both; }
+
+@media (max-width: 520px) {
+    body { overflow-x: hidden; }
+    .app { padding-bottom: 92px; }
+    .header-inner { padding: 10px 12px; }
+    .logo { font-size: 17px; }
+    .logo-icon, .icon-btn { width: 38px; height: 38px; }
+    .hero { padding: 26px 14px 16px; }
+    .hero h1 { font-size: 40px; }
+    .hero p { font-size: 14px; }
+    main { padding: 0 12px; }
+    .nav { padding-left: 12px; padding-right: 12px; }
+    .section { margin-top: 18px; }
+    .section-title h2 { font-size: 20px; }
+    .card { padding: 16px; border-radius: 20px; }
+    .sign-row { gap: 8px; margin-right: -4px; }
+    .sign-row button { min-width: 68px; padding: 10px 7px; font-size: 12px; }
+    .sign-symbol { font-size: 22px; }
+    .tarot-card { width: min(190px, 72vw); height: min(285px, 108vw); }
+    .tarot-symbol { font-size: 54px; }
+    .tarot-name { font-size: 19px; text-align: center; padding: 0 8px; }
+    .quote { padding: 22px 16px; }
+    .quote-text { font-size: 18px; }
+    .bottom-inner button { padding: 10px 3px; font-size: 10px; }
+    .bottom-inner button span { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 520px) {
@@ -575,31 +624,127 @@ select option {
     }
 }
 
-/* PREMIUM SETTINGS */
-.settings-intro{
-  padding:20px;
-  border-radius:22px;
-  margin-bottom:18px;
-  background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.035));
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 14px 40px rgba(0,0,0,.18);
+/* PASSWORD REQUIREMENTS */
+.password-requirements{margin-top:10px;padding:11px 12px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.035);display:grid;gap:6px}
+.password-requirement{color:var(--muted);font-size:12px;line-height:1.35;transition:color .2s ease,transform .2s ease}
+.password-requirement span{display:inline-block;width:17px;font-weight:800}
+.password-requirement.valid,.password-requirement.valid span{color:var(--green)}
+.password-requirement.invalid,.password-requirement.invalid span{color:var(--danger)}
+#profilePassword.password-valid{border-color:rgba(34,197,94,.55);box-shadow:0 0 0 3px rgba(34,197,94,.08)}
+#profilePassword.password-invalid{border-color:rgba(239,68,68,.45)}
+@media(max-width:520px){.password-requirements{padding:10px;border-radius:12px}.password-requirement{font-size:11.5px}}
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* GEN-Z TYPOGRAPHY SYSTEM */
+:root{--font-display:"DM Serif Display",Georgia,serif;--font-sans:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{font-family:var(--font-sans);letter-spacing:-.012em}
+.logo,.hero h1,.section-title h2,.card h3,.tarot-name{font-family:var(--font-display);letter-spacing:-.035em}
+.logo{font-size:21px;font-weight:600}
+.hero .eyebrow,.tarot-label,.badge,.label{font-family:var(--font-sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:clamp(46px,9vw,72px);font-weight:400;line-height:.95}
+.hero p{font-size:clamp(15px,2.8vw,18px);line-height:1.65;max-width:620px}
+.section-title h2{font-size:clamp(25px,5vw,34px);font-weight:400;line-height:1.05}
+.section-title p,.card p{font-size:14px;line-height:1.7}
+.card h3{font-size:clamp(21px,4vw,28px);font-weight:400;line-height:1.08}
+.reading,.meaning,.advice,.quote-text{font-family:var(--font-sans);font-size:clamp(15px,3vw,17px);line-height:1.72}
+.tarot-name{font-size:clamp(25px,6vw,36px);font-weight:400}
+.nav button,.action,.bottom-inner button{font-family:var(--font-sans);font-weight:700;letter-spacing:.01em}
+@media(max-width:520px){.hero h1{font-size:clamp(42px,14vw,58px)}.section-title h2{font-size:27px}.card h3{font-size:23px}.card{padding:18px}.hero p{font-size:15px}.reading,.meaning,.advice,.quote-text{font-size:15px}}
+</style>
+<style>
+
+/* DAILY AURA — GEN Z TYPOGRAPHY SYSTEM */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --font-display:"DM Serif Display",Georgia,serif;
+  --font-body:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-.settings-brand{display:flex;align-items:center;gap:13px;margin-bottom:10px}
-.settings-logo{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:25px;background:linear-gradient(135deg,#ffd166,#c77dff);box-shadow:0 8px 24px rgba(199,125,255,.25)}
-.settings-brand h3{margin:0;font-size:22px}
-.settings-version{font-size:12px;opacity:.62;margin-top:3px}
-.settings-about{font-size:14px;line-height:1.65;opacity:.82;margin:0}
-.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
-.settings-link{width:100%;text-align:left;padding:16px;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);color:inherit;cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease}
-.settings-link:hover{transform:translateY(-2px);background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.18)}
-.settings-link strong{display:block;font-size:14px;margin-bottom:5px}
-.settings-link span{display:block;font-size:12px;opacity:.62;line-height:1.45}
-.settings-link .icon{font-size:20px;margin-bottom:8px;display:block}
-.about-details{line-height:1.7;font-size:14px;opacity:.84}
-.about-details strong{opacity:1}
-.contact-card{display:flex;gap:12px;align-items:center;padding:14px 0}
-.contact-card .icon{font-size:22px}
-@media(max-width:560px){.settings-grid{grid-template-columns:1fr}.settings-intro{padding:17px}}
+
+html{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+body,input,select,textarea,button{
+  font-family:var(--font-body);
+  letter-spacing:-.012em;
+}
+
+h1,h2,h3,h4,h5,h6,.logo,.hero-title,.section-title,.card-title,
+.tarot-name,.quote-text,.modal-title{
+  font-family:var(--font-display);
+  font-weight:400;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+
+h1{font-size:clamp(2.55rem,8vw,5.2rem);line-height:.94}
+h2{font-size:clamp(2rem,6vw,3.5rem);line-height:.98}
+h3{font-size:clamp(1.35rem,4vw,2rem);line-height:1.05}
+
+.hero-title{font-size:clamp(2.7rem,10vw,5.5rem);line-height:.9}
+
+p,.reading,.meaning,.advice,.description,.subtitle{
+  font-size:clamp(.92rem,2.2vw,1.04rem);
+  line-height:1.68;
+  font-weight:400;
+  text-wrap:pretty;
+}
+
+.label,.eyebrow,.badge,.card-label,.settings-eyebrow{
+  font-family:var(--font-body);
+  font-size:.68rem;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+button,.action,.nav-item,.tab{
+  font-family:var(--font-body);
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+
+.quote-text,.quote{
+  font-family:var(--font-display);
+  font-size:clamp(1.45rem,4.8vw,2.35rem);
+  line-height:1.15;
+  letter-spacing:-.035em;
+}
+
+.tarot-name{
+  font-size:clamp(1.65rem,5vw,2.45rem);
+  line-height:1;
+}
+
+.metadata,.vedic,.date,.small-text{
+  font-size:.76rem;
+  line-height:1.4;
+  font-weight:600;
+}
+
+@media(max-width:600px){
+  .hero-title{font-size:clamp(2.45rem,12vw,4rem)}
+  .section-title,.card-title{font-size:clamp(1.65rem,8vw,2.25rem)}
+  .quote-text,.quote{font-size:clamp(1.35rem,6vw,1.8rem)}
+  p,.reading,.meaning,.advice{font-size:.94rem;line-height:1.64}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
 
 </style>
 </head>
@@ -683,6 +828,12 @@ select option {
                             Choose your sign above to see today's reading.
                         </p>
 
+                    </div>
+
+                    <div
+                        id="backendStatus"
+                        class="status">
+                        Connecting to Daily Aura...
                     </div>
 
                 </div>
@@ -1228,7 +1379,16 @@ select option {
             <input
                 id="profilePassword"
                 type="password"
-                placeholder="Password">
+                placeholder="Password"
+                autocomplete="new-password">
+
+            <div id="passwordRequirements" class="password-requirements">
+                <div class="password-requirement" data-rule="length"><span>○</span> At least 8 characters</div>
+                <div class="password-requirement" data-rule="upper"><span>○</span> One uppercase letter</div>
+                <div class="password-requirement" data-rule="lower"><span>○</span> One lowercase letter</div>
+                <div class="password-requirement" data-rule="number"><span>○</span> One number</div>
+                <div class="password-requirement" data-rule="symbol"><span>○</span> One symbol</div>
+            </div>
 
         </div>
 
@@ -1238,16 +1398,7 @@ select option {
             onclick="saveAccount()">
             Create / Save Account
         </button>
-
-
-        <button
-            class="action"
-            onclick="googleSignIn()">
-            Continue with Google
-        </button>
-
-
-        <button
+<button
             class="action danger"
             onclick="signOut()">
             Sign Out
@@ -1266,134 +1417,83 @@ select option {
 
 <!-- SETTINGS MODAL -->
 
-<div id="settingsModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h2>⚙️ Settings</h2>
-      <button class="close" onclick="closeModal('settingsModal')">✕</button>
-    </div>
+<div
+    id="settingsModal"
+    class="modal">
 
-    <div class="settings-intro">
-      <div class="settings-brand">
-        <div class="settings-logo">✨</div>
-        <div>
-          <h3>Daily Aura</h3>
-          <div class="settings-version">Version 3.0.0 · Daily reflection & discovery</div>
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>⚙️ Settings</h2>
+
+            <button
+                class="close"
+                onclick="closeModal('settingsModal')">
+                ✕
+            </button>
+
         </div>
-      </div>
-      <p class="settings-about">A calm daily space for horoscope readings, tarot guidance and fresh inspirational content.</p>
+
+
+        <div class="form-group">
+
+            <label>🌐 Language</label>
+
+            <select
+                id="languageSelector"
+                onchange="saveLanguage()">
+
+                <option value="en">English</option>
+                <option value="ne">नेपाली</option>
+                <option value="hi">हिन्दी</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="zh">中文</option>
+                <option value="ar">العربية</option>
+                <option value="bn">বাংলা</option>
+                <option value="ur">اردو</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+                <option value="ta">தமிழ்</option>
+                <option value="te">తెలుగు</option>
+                <option value="mr">मराठी</option>
+                <option value="gu">ગુજરાતી</option>
+                <option value="id">Bahasa Indonesia</option>
+                <option value="tr">Türkçe</option>
+
+            </select>
+
+        </div>
+
+
+        <div
+            class="card"
+            style="margin-top:15px;">
+
+            <h3>💎 Premium</h3>
+
+            <p style="margin-top:7px;">
+                Premium billing will be connected to Stripe later.
+            </p>
+
+            <button
+                class="action gold"
+                onclick="openPremium()">
+                View Premium
+            </button>
+
+        </div>
+
     </div>
 
-    <div class="form-group">
-      <label>🌐 Language</label>
-      <select id="languageSelector" onchange="saveLanguage()">
-        <option value="en">English</option>
-        <option value="ne">नेपाली</option>
-        <option value="hi">हिन्दी</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-        <option value="it">Italiano</option>
-        <option value="pt">Português</option>
-        <option value="ru">Русский</option>
-        <option value="ja">日本語</option>
-        <option value="ko">한국어</option>
-        <option value="zh">中文</option>
-        <option value="ar">العربية</option>
-        <option value="bn">বাংলা</option>
-        <option value="ur">اردو</option>
-        <option value="pa">ਪੰਜਾਬੀ</option>
-        <option value="ta">தமிழ்</option>
-        <option value="te">తెలుగు</option>
-        <option value="mr">मराठी</option>
-        <option value="gu">ગુજરાતી</option>
-        <option value="id">Bahasa Indonesia</option>
-        <option value="tr">Türkçe</option>
-      </select>
-    </div>
-
-    <div class="card" style="margin-top:15px;">
-      <h3>💎 Premium</h3>
-      <p style="margin-top:7px;">Unlock the premium Daily Aura experience when billing is connected.</p>
-      <button class="action gold" onclick="openPremium()">View Premium</button>
-    </div>
-
-    <div class="settings-grid">
-      <button class="settings-link" onclick="openModal('aboutModal')">
-        <span class="icon">✨</span>
-        <strong>About Daily Aura</strong>
-        <span>Learn what the app does and how daily content works.</span>
-      </button>
-      <button class="settings-link" onclick="openModal('privacyModal')">
-        <span class="icon">🔒</span>
-        <strong>Privacy Policy</strong>
-        <span>How Daily Aura handles information and app data.</span>
-      </button>
-      <button class="settings-link" onclick="openModal('termsModal')">
-        <span class="icon">📄</span>
-        <strong>Terms of Use</strong>
-        <span>Guidelines for using Daily Aura and its content.</span>
-      </button>
-      <button class="settings-link" onclick="openModal('contactModal')">
-        <span class="icon">💬</span>
-        <strong>Contact</strong>
-        <span>Get in touch about feedback, support or questions.</span>
-      </button>
-    </div>
-  </div>
 </div>
 
-<!-- ABOUT MODAL -->
-<div id="aboutModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-header"><h2>✨ About Daily Aura</h2><button class="close" onclick="closeModal('aboutModal')">✕</button></div>
-    <div class="about-details">
-      <p><strong>Daily Aura</strong> is your personal space for daily inspiration, reflection and discovery.</p>
-      <p>Explore a daily <strong>horoscope</strong>, <strong>tarot card</strong> and <strong>inspirational quote</strong> in a simple mobile-friendly experience.</p>
-      <p><strong>Version:</strong> 3.0.0</p>
-    </div>
-  </div>
-</div>
-
-<!-- PRIVACY MODAL -->
-<div id="privacyModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-header"><h2>🔒 Privacy Policy</h2><button class="close" onclick="closeModal('privacyModal')">✕</button></div>
-    <div class="about-details">
-      <p><strong>Daily Aura is designed with privacy in mind.</strong></p>
-      <p>The app uses the information needed to provide its features, such as your selected zodiac sign and language preference.</p>
-      <p>Daily Aura does not require notification subscriptions. Content may be retrieved from public internet sources when the feature is available.</p>
-      <p>Do not enter sensitive personal information into free-text areas unless the app specifically asks for it.</p>
-      <p>This in-app summary is informational and should be replaced with your final legal privacy policy before public commercial launch.</p>
-    </div>
-  </div>
-</div>
-
-<!-- TERMS MODAL -->
-<div id="termsModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-header"><h2>📄 Terms of Use</h2><button class="close" onclick="closeModal('termsModal')">✕</button></div>
-    <div class="about-details">
-      <p><strong>By using Daily Aura, you agree to use the app responsibly.</strong></p>
-      <p>Horoscope and tarot content is provided for entertainment, reflection and personal inspiration. It is not professional medical, financial, legal or other expert advice.</p>
-      <p>Internet-based content may change, become unavailable or contain inaccuracies. Daily Aura does not guarantee that external content will always be available or accurate.</p>
-      <p>Features and content may be updated as the app evolves.</p>
-      <p>This in-app summary is informational and should be replaced with your final legal terms before public commercial launch.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CONTACT MODAL -->
-<div id="contactModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-header"><h2>💬 Contact</h2><button class="close" onclick="closeModal('contactModal')">✕</button></div>
-    <div class="about-details">
-      <div class="contact-card"><span class="icon">📩</span><div><strong>Support</strong><br><span>Use the support email configured for your Daily Aura project.</span></div></div>
-      <div class="contact-card"><span class="icon">💡</span><div><strong>Feedback</strong><br><span>Tell us what you would like to improve or add.</span></div></div>
-      <p style="margin-top:12px;opacity:.65;font-size:12px;">Add your real support email or contact link here before publishing the app.</p>
-    </div>
-  </div>
-</div>
 
 <!-- FEATURE MODAL -->
 
@@ -1446,7 +1546,6 @@ const STORAGE = {
     language: "dailyAuraLanguage",
     account: "dailyAuraAccount",
     history: "dailyAuraHistory",
-    subscription: "dailyAuraPushSubscription"
 };
 
 
@@ -1527,6 +1626,11 @@ async function checkBackend() {
         const data =
             await response.json();
 
+        status.textContent =
+            "";
+
+        status.className =
+            "status good";
 
         console.log(
             "Daily Aura backend:",
@@ -1535,6 +1639,11 @@ async function checkBackend() {
 
     } catch (error) {
 
+        status.textContent =
+            "● Backend temporarily unavailable";
+
+        status.className =
+            "status bad";
 
         console.error(
             "Backend connection error:",
@@ -1826,10 +1935,11 @@ async function loadQuote() {
         const data =
             await response.json();
 
-        document.getElementById(
-            "quoteText"
-        ).textContent =
-            data.quote;
+        const quote = typeof data.quote === "string"
+            ? data.quote
+            : (data.quote && (data.quote.content || data.quote.text)) || "Every day is a new opportunity.";
+
+        document.getElementById("quoteText").textContent = quote;
 
     } catch (error) {
 
@@ -2071,88 +2181,66 @@ function logMood() {
    ACCOUNT
    ========================================================= */
 
+function validatePassword(password) {
+    return {
+        length: password.length >= 8,
+        upper: /[A-Z]/.test(password),
+        lower: /[a-z]/.test(password),
+        number: /[0-9]/.test(password),
+        symbol: /[^A-Za-z0-9]/.test(password)
+    };
+}
+
+function updatePasswordRequirements() {
+    const input = document.getElementById("profilePassword");
+    const container = document.getElementById("passwordRequirements");
+    if (!input || !container) return false;
+
+    const rules = validatePassword(input.value);
+    Object.keys(rules).forEach(rule => {
+        const item = container.querySelector(`[data-rule="${rule}"]`);
+        if (!item) return;
+        item.classList.toggle("valid", rules[rule]);
+        item.classList.toggle("invalid", input.value.length > 0 && !rules[rule]);
+        item.querySelector("span").textContent = rules[rule] ? "✓" : (input.value.length ? "×" : "○");
+    });
+
+    const valid = Object.values(rules).every(Boolean);
+    input.classList.toggle("password-valid", valid && input.value.length > 0);
+    input.classList.toggle("password-invalid", input.value.length > 0 && !valid);
+    return valid;
+}
+
 function saveAccount() {
-
-    const name =
-        document.getElementById(
-            "profileName"
-        ).value.trim();
-
-    const email =
-        document.getElementById(
-            "profileEmail"
-        ).value.trim();
-
-    const password =
-        document.getElementById(
-            "profilePassword"
-        ).value;
+    const name = document.getElementById("profileName").value.trim();
+    const email = document.getElementById("profileEmail").value.trim();
+    const password = document.getElementById("profilePassword").value;
+    const status = document.getElementById("accountStatus");
 
     if (!name || !email || !password) {
-
-        document.getElementById(
-            "accountStatus"
-        ).textContent =
-            "Please complete all fields.";
-
-        document.getElementById(
-            "accountStatus"
-        ).className =
-            "status bad";
-
+        status.textContent = "Please complete all fields.";
+        status.className = "status bad";
         return;
     }
 
-    /*
-       IMPORTANT:
-       This is only frontend/local account storage.
-       Do NOT use this as real production authentication.
-       Real email/password and Google authentication
-       should later be connected to a proper auth backend.
-    */
+    if (!updatePasswordRequirements()) {
+        status.textContent = "Password must be at least 8 characters and include uppercase, lowercase, a number, and a symbol.";
+        status.className = "status bad";
+        return;
+    }
 
     const account = {
         name: name,
         email: email,
-        createdAt:
-            new Date().toISOString()
+        createdAt: new Date().toISOString()
     };
 
-    localStorage.setItem(
-        STORAGE.account,
-        JSON.stringify(account)
-    );
-
-    document.getElementById(
-        "accountStatus"
-    ).textContent =
-        "Account saved on this device.";
-
-    document.getElementById(
-        "accountStatus"
-    ).className =
-        "status good";
-
+    localStorage.setItem(STORAGE.account, JSON.stringify(account));
+    status.textContent = "Account saved on this device.";
+    status.className = "status good";
     loadAccount();
-
-    setTimeout(
-        () => closeModal("accountModal"),
-        900
-    );
+    setTimeout(() => closeModal("accountModal"), 900);
 }
-
-
-/* =========================================================
-   GOOGLE SIGN-IN PLACEHOLDER
-   ========================================================= */
-
-function googleSignIn() {
-
-    alert(
-        "Google Sign-In will be connected to the authentication backend later."
-    );
-}
-
 
 /* =========================================================
    LOAD ACCOUNT
@@ -2208,77 +2296,33 @@ function loadAccount() {
    SIGN OUT
    ========================================================= */
 
-function signOut(event) {
+function signOut() {
 
-    if (event) {
-        event.preventDefault();
-    }
+    localStorage.removeItem(
+        STORAGE.account
+    );
 
-    // Remove saved account
-    localStorage.removeItem(STORAGE.account);
+    document.getElementById(
+        "accountName"
+    ).textContent =
+        "Sign in to Daily Aura";
 
-    // Clear profile fields
-    const profileName =
-        document.getElementById("profileName");
+    document.getElementById(
+        "accountEmail"
+    ).textContent =
+        "Save your profile and app history.";
 
-    const profileEmail =
-        document.getElementById("profileEmail");
+    document.getElementById(
+        "accountStatus"
+    ).textContent =
+        "Signed out.";
 
-    const profilePassword =
-        document.getElementById("profilePassword");
-
-    if (profileName) {
-        profileName.value = "";
-    }
-
-    if (profileEmail) {
-        profileEmail.value = "";
-    }
-
-    if (profilePassword) {
-        profilePassword.value = "";
-    }
-
-    // Reset account display
-    const accountName =
-        document.getElementById("accountName");
-
-    const accountEmail =
-        document.getElementById("accountEmail");
-
-    if (accountName) {
-        accountName.textContent =
-            "Sign in to Daily Aura";
-    }
-
-    if (accountEmail) {
-        accountEmail.textContent =
-            "Save your profile and app history.";
-    }
-
-    // Show confirmation
-    const accountStatus =
-        document.getElementById("accountStatus");
-
-    if (accountStatus) {
-        accountStatus.textContent =
-            "✓ You have been signed out.";
-
-        accountStatus.className =
-            "status good";
-    }
-
-    // Close account modal after a short confirmation
-    setTimeout(() => {
-
-        if (typeof closeModal === "function") {
-            closeModal("accountModal");
-        }
-
-    }, 700);
-
-    console.log("Daily Aura: account signed out.");
+    document.getElementById(
+        "accountStatus"
+    ).className =
+        "status good";
 }
+
 
 /* =========================================================
    HISTORY
@@ -2452,313 +2496,6 @@ function saveLanguage() {
 
 
 /* =========================================================
-   PUSH NOTIFICATIONS
-   ========================================================= */
-
-async function subscribeNotifications() {
-
-    const status =
-        document.getElementById(
-            "notificationStatus"
-        );
-
-    if (!("Notification" in window)) {
-
-        status.textContent =
-            "This browser does not support notifications.";
-
-        status.className =
-            "status bad";
-
-        return;
-    }
-
-    if (!("serviceWorker" in navigator)) {
-
-        status.textContent =
-            "Service workers are not supported.";
-
-        status.className =
-            "status bad";
-
-        return;
-    }
-
-    try {
-
-        /*
-           Ask the browser for notification permission.
-        */
-
-        const permission =
-            await Notification.requestPermission();
-
-        if (permission !== "granted") {
-
-            status.textContent =
-                "Notification permission was not granted.";
-
-            status.className =
-                "status bad";
-
-            return;
-        }
-
-
-        /*
-           Get VAPID public key from Render.
-
-           This will currently return 503 until
-           you configure VAPID_PUBLIC_KEY on Render.
-        */
-
-        const keyResponse =
-            await fetch(
-                `${API_URL}/vapid-public-key`
-            );
-
-        if (!keyResponse.ok) {
-
-            status.textContent =
-                "VAPID is not configured on the backend yet.";
-
-            status.className =
-                "status bad";
-
-            return;
-        }
-
-        const keyData =
-            await keyResponse.json();
-
-
-        /*
-           Register service worker.
-        */
-
-        const registration =
-            await navigator.serviceWorker.register(
-                "./service-worker.js"
-            );
-
-
-        /*
-           Create push subscription.
-        */
-
-        const subscription =
-            await registration.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey:
-                    urlBase64ToUint8Array(
-                        keyData.publicKey
-                    )
-            });
-
-
-        const sign =
-            localStorage.getItem(
-                STORAGE.sign
-            ) || "Aries";
-
-        const language =
-            localStorage.getItem(
-                STORAGE.language
-            ) || "en";
-
-
-        /*
-           Send subscription to Render backend.
-        */
-
-        const response =
-            await fetch(
-                `${API_URL}/subscribe`,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        subscription:
-                            subscription.toJSON(),
-
-                        horoscope:
-                            sign,
-
-                        language:
-                            language
-                    })
-                }
-            );
-
-
-        if (!response.ok) {
-            throw new Error(
-                "Backend subscription failed."
-            );
-        }
-
-
-        localStorage.setItem(
-            STORAGE.subscription,
-            JSON.stringify(
-                subscription.toJSON()
-            )
-        );
-
-
-        status.textContent =
-            "✓ Daily notifications enabled.";
-
-        status.className =
-            "status good";
-
-    } catch (error) {
-
-        console.error(
-            "Notification subscription error:",
-            error
-        );
-
-        status.textContent =
-            "Notifications are not configured yet.";
-
-        status.className =
-            "status bad";
-    }
-}
-
-
-/* =========================================================
-   UNSUBSCRIBE NOTIFICATIONS
-   ========================================================= */
-
-async function unsubscribeNotifications() {
-
-    const status =
-        document.getElementById(
-            "notificationStatus"
-        );
-
-    try {
-
-        const saved =
-            localStorage.getItem(
-                STORAGE.subscription
-            );
-
-        if (!saved) {
-
-            status.textContent =
-                "No notification subscription found.";
-
-            status.className =
-                "status";
-
-            return;
-        }
-
-        const subscription =
-            JSON.parse(saved);
-
-        await fetch(
-            `${API_URL}/unsubscribe`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-                    endpoint:
-                        subscription.endpoint
-                })
-            }
-        );
-
-
-        localStorage.removeItem(
-            STORAGE.subscription
-        );
-
-
-        status.textContent =
-            "✓ Daily notifications disabled.";
-
-        status.className =
-            "status good";
-
-    } catch (error) {
-
-        console.error(
-            "Unsubscribe error:",
-            error
-        );
-
-        status.textContent =
-            "Could not unsubscribe.";
-
-        status.className =
-            "status bad";
-    }
-}
-
-
-/* =========================================================
-   VAPID KEY CONVERTER
-   ========================================================= */
-
-function urlBase64ToUint8Array(
-    base64String
-) {
-
-    const padding =
-        "=".repeat(
-            (4 - base64String.length % 4) % 4
-        );
-
-    const base64 =
-        (
-            base64String +
-            padding
-        )
-            .replace(
-                /-/g,
-                "+"
-            )
-            .replace(
-                /_/g,
-                "/"
-            );
-
-    const rawData =
-        window.atob(base64);
-
-    const outputArray =
-        new Uint8Array(
-            rawData.length
-        );
-
-    for (
-        let i = 0;
-        i < rawData.length;
-        ++i
-    ) {
-        outputArray[i] =
-            rawData.charCodeAt(i);
-    }
-
-    return outputArray;
-}
-
-
-/* =========================================================
    MODALS
    ========================================================= */
 
@@ -2814,6 +2551,12 @@ document
             );
         }
     );
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const password = document.getElementById("profilePassword");
+    if (password) password.addEventListener("input", updatePasswordRequirements);
+});
 
 </script>
 
